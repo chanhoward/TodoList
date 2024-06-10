@@ -18,13 +18,13 @@ public class ToDoList_Main {
         main.run();
     }
 
-    public final void run() {
+    private void run() {
         TaskClass taskClass = input();
         fileAccess.accessFile(taskClass);
         output();
     }
 
-    public final TaskClass input() {
+    private TaskClass input() {
         System.out.println("請輸入內容: ");
         String inputContent = input.nextLine();
 
@@ -38,7 +38,7 @@ public class ToDoList_Main {
 
     }
 
-    public final void output() {
+    private void output() {
         List<TaskClass> lists = fileAccess.readFile();
         for (TaskClass taskClass : lists) {
 
