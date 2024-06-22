@@ -7,12 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="Update workspace.xml">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/CheckFile.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/checkFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CheckFile.java" afterDir="false" />
-    </list>
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="Update workspace.xml&#10;&#10;add new function:&#10;    isFileExist&#10;    askRemoveFile&#10;    readFile&#10;    &#10;use try_with_resource optimize the reader" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,14 +120,31 @@
       <recent name="C:\Users\how20\dev\ToDoList" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CheckFile">
+  <component name="RunManager" selected="应用程序.CheckFile">
+    <configuration name="CheckFile" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="UNNAMED_CLASS_CONFIGURATION" value="true" />
+      <option name="MAIN_CLASS_NAME" value="CheckFile" />
+      <module name="learning" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.ToDoList.ToDoList_Main" />
+      <module name="learning" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.CheckFile" />
+      <item itemvalue="应用程序.Main" />
+      <item itemvalue="应用程序.CheckFile" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CheckFile" />
+        <item itemvalue="应用程序.CheckFile" />
       </list>
     </recent_temporary>
   </component>
@@ -233,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718549615604</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update workspace.xml&#10;&#10;add new function:&#10;    isFileExist&#10;    askRemoveFile&#10;    readFile&#10;    &#10;use try_with_resource optimize the reader">
+      <option name="closed" value="true" />
+      <created>1719014298520</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719014298520</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -273,7 +293,8 @@
     <MESSAGE value="1.0.0" />
     <MESSAGE value="1.0.1&#10;public -&gt; private" />
     <MESSAGE value="Update workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml" />
+    <MESSAGE value="Update workspace.xml&#10;&#10;add new function:&#10;    isFileExist&#10;    askRemoveFile&#10;    readFile&#10;    &#10;use try_with_resource optimize the reader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml&#10;&#10;add new function:&#10;    isFileExist&#10;    askRemoveFile&#10;    readFile&#10;    &#10;use try_with_resource optimize the reader" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
