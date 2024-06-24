@@ -2,6 +2,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+iv.bin
+key.bin
+Data.dat
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -36,5 +39,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
-document.json
 .idea/workspace.xml

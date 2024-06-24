@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="Update workspace.xml" />
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.2.0&#10;新增檔案加密系統:&#10;    document.dat&#10;    iv.bin&#10;    key.bin&#10;    &#10;新增測試文件">
+      <change afterPath="$PROJECT_DIR$/iv.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileAccess.java.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileAccess.java.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CheckFile.java.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CheckFile.java.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,6 +79,7 @@
     "Application.CheckFile.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.ToDodList.executor": "Run",
+    "JUnit.FileEncryptionTest.executor": "Run",
     "Maven.learning [test].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -89,11 +93,12 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "应用程序.CheckFile.executor": "Run",
     "应用程序.Guess.executor": "Run",
     "应用程序.Main.executor": "Run",
     "应用程序.Student.executor": "Run",
+    "应用程序.Test.executor": "Run",
     "应用程序.ToDoList.executor": "Run",
     "应用程序.ToDoList_Main.executor": "Run",
     "应用程序.ToDodList.executor": "Run",
@@ -120,17 +125,7 @@
       <recent name="C:\Users\how20\dev\ToDoList" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Main">
-    <configuration name="CheckFile" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="21" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="UNNAMED_CLASS_CONFIGURATION" value="true" />
-      <option name="MAIN_CLASS_NAME" value="CheckFile" />
-      <module name="learning" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.ToDoList.ToDoList_Main" />
       <module name="learning" />
@@ -138,15 +133,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="应用程序.Main" />
-      <item itemvalue="应用程序.CheckFile" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.CheckFile" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -269,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719014875616</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="1.2.0&#10;新增檔案加密系統:&#10;    document.dat&#10;    iv.bin&#10;    key.bin&#10;    &#10;新增測試文件">
+      <option name="closed" value="true" />
+      <created>1719218500693</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1719218500693</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -311,7 +305,9 @@
     <MESSAGE value="Update workspace.xml&#10;&#10;add new function:&#10;    isFileExist&#10;    askRemoveFile&#10;    readFile&#10;    &#10;use try_with_resource optimize the reader" />
     <MESSAGE value="Update workspace.xml&#10;&#10;add new function:&#10;    isFileExist&#10;    askRemoveFile&#10;    readFile&#10;&#10;use try_with_resource optimize the reader" />
     <MESSAGE value="Update workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update workspace.xml" />
+    <MESSAGE value="1.2.0&#10;新增檔案加密系統:&#10;    document.dat&#10;    iv.bin&#10;    key.bin&#10;    &#10;新增測試文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.2.0&#10;新增檔案加密系統:&#10;    document.dat&#10;    iv.bin&#10;    key.bin&#10;    &#10;新增測試文件" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

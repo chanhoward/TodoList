@@ -12,7 +12,6 @@ public class ToDoList_Main {
     }
 
     public static void main(String[] args) {
-        // 創建 FileAccess 實例並注入到 ToDoList_Main
         FileAccess fileAccess = new FileAccess();
         ToDoList_Main main = new ToDoList_Main(fileAccess);
         main.run();
@@ -35,18 +34,20 @@ public class ToDoList_Main {
         String currentTime = customLocalTime.getTime();
 
         return new TaskClass(currentTime, inputContent, inputAuthor);
-
     }
 
     private void output() {
         List<TaskClass> lists = fileAccess.readFile();
+        /*
+        if (lists.isEmpty()) {
+            System.out.println("目前沒有待辦事項。");
+            return;
+        }*/
         for (TaskClass taskClass : lists) {
-
             System.out.println(taskClass.content());
             System.out.print("by " + taskClass.author());
             System.out.printf("\t(%s)\n", taskClass.time());
             System.out.println("-------------------------------------------------------------------------");
         }
-
     }
 }
