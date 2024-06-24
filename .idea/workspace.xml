@@ -7,6 +7,8 @@
     <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.2.0&#10;新增檔案加密系統:&#10;    document.dat&#10;    iv.bin&#10;    key.bin&#10;    &#10;新增測試文件">
       <change afterPath="$PROJECT_DIR$/iv.bin" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/key.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
