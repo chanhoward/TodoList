@@ -19,11 +19,9 @@ class FileEncryptionTest {
 
     private static final String KEY_FILE = "key.bin";
     private static final String IV_FILE = "iv.bin";
-    private FileEncryption fileEncryption;
 
     @BeforeEach
     public void setUp() throws IOException, NoSuchAlgorithmException {
-        fileEncryption = new FileEncryption();
         FileEncryption.initializeKeyAndIv();
     }
 
@@ -37,10 +35,10 @@ class FileEncryptionTest {
     @ValueSource(strings = {"Hello, World!", "", "VeryLongStringVeryLongStringVeryLongStringVeryLongString", "包含特殊字元~!@#$%^&*()_+=-`", "包含中文測試"})
     public void testEncryptAndDecrypt(String testData) {
         try {
-            byte[] encryptedData = fileEncryption.encrypt(testData);
+            byte[] encryptedData = FileEncryption.encrypt(testData);
             assertNotNull(encryptedData, "加密後的資料不應為 null");
 
-            String decryptedData = fileEncryption.decrypt(encryptedData);
+            String decryptedData = FileEncryption.decrypt(encryptedData);
             assertNotNull(decryptedData, "解密後的資料不應為 null");
             assertEquals(testData, decryptedData, "解密後的資料應與原始資料相同");
 
@@ -53,11 +51,11 @@ class FileEncryptionTest {
     public void testEncryptAndDecryptEmptyData() {
         try {
             String testData = "";
-            byte[] encryptedData = fileEncryption.encrypt(testData);
+            byte[] encryptedData = FileEncryption.encrypt(testData);
             assertNotNull(encryptedData, "加密後的資料不應為 null");
             assertTrue(encryptedData.length > 0, "加密後的資料長度應大於 0");
 
-            String decryptedData = fileEncryption.decrypt(encryptedData);
+            String decryptedData = FileEncryption.decrypt(encryptedData);
             assertNotNull(decryptedData, "解密後的資料不應為 null");
             assertEquals(testData, decryptedData, "解密後的資料應與原始資料相同");
 
@@ -74,11 +72,11 @@ class FileEncryptionTest {
             Arrays.fill(largeData, (byte) 'A');
             String testData = new String(largeData, StandardCharsets.UTF_8);
 
-            byte[] encryptedData = fileEncryption.encrypt(testData);
+            byte[] encryptedData = FileEncryption.encrypt(testData);
             assertNotNull(encryptedData, "加密後的資料不應為 null");
             assertTrue(encryptedData.length > testData.length(), "加密後的資料長度應大於原始資料長度");
 
-            String decryptedData = fileEncryption.decrypt(encryptedData);
+            String decryptedData = FileEncryption.decrypt(encryptedData);
             assertNotNull(decryptedData, "解密後的資料不應為 null");
             assertEquals(testData, decryptedData, "解密後的資料應與原始資料相同");
 
