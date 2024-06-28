@@ -11,7 +11,6 @@ public class CustomLocalTime {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.formatterTime = time.format(formatter);
-
     }
 
     public final String getTime() {

@@ -27,7 +27,7 @@ public class FileEncryption {
         try {
             initializeKeyAndIv();
         } catch (Exception e) {
-            LOGGER.error("初始化金鑰和 IV 時發生錯誤", e);
+            LOGGER.error("An error occurred while initializing the key and IV", e);
         }
     }
 
@@ -72,13 +72,13 @@ public class FileEncryption {
         key = new SecretKeySpec(keyBytes, "AES");
     }
 
-    public byte[] encrypt(String data) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+    public static byte[] encrypt(String data) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
         return cipher.doFinal(data.getBytes());
     }
 
-    public String decrypt(byte[] encryptedData) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+    public static String decrypt(byte[] encryptedData) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
         return new String(cipher.doFinal(encryptedData));

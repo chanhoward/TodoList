@@ -11,5 +11,4 @@ public record TaskClass(String time, String content, String author) {
         this.content = content;
         this.author = author;
     }
-
 }

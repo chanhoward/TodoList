@@ -9,19 +9,22 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FileEncryptionTest {
+
+class FileEncryptionTest {
 
     private static final String KEY_FILE = "key.bin";
     private static final String IV_FILE = "iv.bin";
     private FileEncryption fileEncryption;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException, NoSuchAlgorithmException {
         fileEncryption = new FileEncryption();
+        FileEncryption.initializeKeyAndIv();
     }
 
     @AfterEach
