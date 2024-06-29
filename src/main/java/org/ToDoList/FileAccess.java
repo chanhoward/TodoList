@@ -26,7 +26,7 @@ public class FileAccess {
         }
     }
 
-    public static void accessFile(TaskClass newList) {
+    public static void addTaskToFile(TaskClass newList) {
         List<TaskClass> tasks = readFile();
         tasks.add(newList);
         writeFile(tasks);
@@ -44,7 +44,7 @@ public class FileAccess {
                 } else {
                     LOGGER.warn("File exist：" + DATA_FILE);
                 }
-                return tasks; // 返回空列表，因為文件是新建的
+                return tasks; // return blank list
             }
 
             byte[] fileData = new byte[(int) DataFile.length()];

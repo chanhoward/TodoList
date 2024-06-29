@@ -1,5 +1,9 @@
 package org.ToDoList;
 
+
+import org.ToDoList.FuncitonClass.AddTask;
+import org.ToDoList.FuncitonClass.ListTask;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -14,13 +18,13 @@ public class Menu {
                     isRunning = false;
                     break;
                 case 1:
-                    MainFunction.addTask();
+                    AddTask.addTask();
                     break;
                 case 2:
-                    MainFunction.listTask();
+                    ListTask.listTask();
                     break;
                 /*case 3:
-                    MainFunction.viewCompletedTasks();
+                    FunctionClass.viewCompletedTasks();
                     break;*/
                 default:
                     System.out.println("Invalid command.");
@@ -45,7 +49,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextInt()) {
             System.out.println("Invalid input. Please enter a number.");
-            scanner.next(); // 清除無效輸入
+            scanner.next(); // clear invalid input
             System.out.print("Enter your command: ");
         }
         return scanner.nextInt();

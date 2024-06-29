@@ -62,13 +62,11 @@ public class FileEncryption {
         byte[] keyBytes = new byte[16];
         iv = new byte[16];
 
-        /*
-        try (FileInputStream keyIn = new FileInputStream(KEY_FILE);
+        /*try (FileInputStream keyIn = new FileInputStream(KEY_FILE);
              FileInputStream ivIn = new FileInputStream(IV_FILE)) {
             keyIn.read(keyBytes);
             ivIn.read(iv);
-        }
-        */
+        }*/
         key = new SecretKeySpec(keyBytes, "AES");
     }
 
