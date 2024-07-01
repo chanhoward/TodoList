@@ -48,7 +48,7 @@ public class Menu {
         System.out.print("Enter your command: ");
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextInt()) {
-            System.out.println("Invalid input. Please enter a number.");
+            System.out.println("Invalid input. Please enter a taskId.");
             scanner.next(); // clear invalid input
             System.out.print("Enter your command: ");
         }
