@@ -4,6 +4,7 @@ import org.ToDoList.CustomLocalTime;
 import org.ToDoList.FileAccess;
 import org.ToDoList.TaskClass;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AddTask {
@@ -18,7 +19,10 @@ public class AddTask {
         CustomLocalTime customLocalTime = new CustomLocalTime();
         String currentTime = customLocalTime.getTime();
 
-        TaskClass taskClass = new TaskClass(inputContent, inputAuthor, currentTime);
+        List<TaskClass> tasks = FileAccess.readFile();
+        int taskId = tasks.isEmpty() ? 1 : tasks.size() + 1;
+
+        TaskClass taskClass = new TaskClass(taskId, inputContent, inputAuthor, currentTime);
         FileAccess.addTaskToFile(taskClass);
 
         System.out.println("Task added successfully!");
