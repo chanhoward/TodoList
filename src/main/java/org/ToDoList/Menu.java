@@ -3,6 +3,7 @@ package org.ToDoList;
 
 import org.ToDoList.FuncitonClass.AddTask;
 import org.ToDoList.FuncitonClass.ListTask;
+import org.ToDoList.FuncitonClass.MarkTaskCompleted;
 
 import java.util.Scanner;
 
@@ -23,9 +24,9 @@ public class Menu {
                 case 2:
                     ListTask.listTask();
                     break;
-                /*case 3:
-                    FunctionClass.viewCompletedTasks();
-                    break;*/
+                case 3:
+                    MarkTaskCompleted.markTaskCompleted();
+                    break;
                 default:
                     System.out.println("Invalid command.");
                     break;
@@ -40,19 +41,18 @@ public class Menu {
         System.out.println("0. Exit");
         System.out.println("1. Add a task");
         System.out.println("2. List the task");
-        //System.out.println("3. View completed tasks");
-
+        System.out.println("3. Mark a task as completed");
     }
 
     private static int getUserCommand() {
         System.out.print("Enter your command: ");
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNextInt()) {
+        Scanner inputCommand = new Scanner(System.in);
+        while (!inputCommand.hasNextInt()) {
             System.out.println("Invalid input. Please enter a number.");
-            scanner.next(); // clear invalid input
+            inputCommand.next(); // clear invalid input
             System.out.print("Enter your command: ");
         }
-        return scanner.nextInt();
+        return inputCommand.nextInt();
 
     }
 

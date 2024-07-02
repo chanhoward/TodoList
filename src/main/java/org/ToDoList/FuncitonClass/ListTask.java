@@ -16,10 +16,11 @@ public class ListTask {
 
         for (TaskClass taskClass : lists) {
             System.out.println("-------------------------------------------------------------------------");
-            System.out.println("Task ID: " + taskClass.getTaskId());
-            System.out.printf("\t%s\n", taskClass.content());
-            System.out.print("\tby " + taskClass.author());
-            System.out.printf("\t(%s)\n", taskClass.time());
+            System.out.println("Task ID: " + taskClass.getTaskID());
+            System.out.printf("\t%s\n", taskClass.getContent());
+            System.out.print("\tby " + taskClass.getAuthor());
+            System.out.printf("\t(%s)\n", taskClass.getTime());
+            System.out.println("Status: " + (taskClass.getIsTaskCompleted() ? "Completed" : "Pending"));
             System.out.println("-------------------------------------------------------------------------");
         }
     }

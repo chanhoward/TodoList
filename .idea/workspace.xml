@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.3.1&#10;提出addTask &amp; listTask 使功能更集中">
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.3.2&#10;add taskID">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/MarkTaskCompleted.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileAccess.java.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/AddTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/AddTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/ListTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/ListTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/TaskClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/TaskClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,50 +77,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.CheckFile.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.ToDodList.executor": "Run",
-    "Docker.Dockerfile.executor": "Run",
-    "JUnit.FileAccessTest 和其他 1 个.executor": "Run",
-    "JUnit.FileAccessTest.executor": "Run",
-    "JUnit.FileEncryptionTest.executor": "Run",
-    "Maven.learning [test].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "code.cleanup.on.save": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/how20/Desktop/dev/ToDoList",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "应用程序.CheckFile.executor": "Run",
-    "应用程序.Guess.executor": "Run",
-    "应用程序.Main.executor": "Run",
-    "应用程序.Student.executor": "Run",
-    "应用程序.Test.executor": "Run",
-    "应用程序.ToDoList.executor": "Run",
-    "应用程序.ToDoList_Main.executor": "Run",
-    "应用程序.ToDodList.executor": "Run",
-    "应用程序.checkFile.executor": "Run",
-    "应用程序.guess.executor": "Run",
-    "应用程序.org.example.Main.executor": "Run",
-    "应用程序.student.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.CheckFile.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ToDodList.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileAccessTest 和其他 1 个.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileAccessTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileEncryptionTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.learning [test].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/how20/Desktop/dev/ToDoList&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;应用程序.CheckFile.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Guess.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Main.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Student.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.ToDoList.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.ToDoList_Main.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.ToDodList.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.checkFile.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.guess.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.org.example.Main.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.student.executor&quot;: &quot;Run&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
-      "TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件&quot;: [
+      &quot;TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.learn.ToDoList" />
@@ -323,7 +326,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719623112624</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="1.3.2&#10;add taskID">
+      <option name="closed" value="true" />
+      <created>1719809776401</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719809776401</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,7 +379,8 @@
     <MESSAGE value="1.2.0&#10;新增檔案加密系統:&#10;    document.dat&#10;    iv.bin&#10;    key.bin&#10;    &#10;新增測試文件" />
     <MESSAGE value="1.3.0&#10;新增菜單系統:&#10;    add&#10;    list" />
     <MESSAGE value="1.3.1&#10;提出addTask &amp; listTask 使功能更集中" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.3.1&#10;提出addTask &amp; listTask 使功能更集中" />
+    <MESSAGE value="1.3.2&#10;add taskID" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.3.2&#10;add taskID" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

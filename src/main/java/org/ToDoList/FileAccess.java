@@ -64,7 +64,7 @@ public class FileAccess {
         return tasks;
     }
 
-    private static void writeFile(List<TaskClass> tasks) {
+    public static void writeFile(List<TaskClass> tasks) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(tasks);
