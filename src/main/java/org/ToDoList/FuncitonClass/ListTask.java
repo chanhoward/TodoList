@@ -7,14 +7,14 @@ import java.util.List;
 
 public class ListTask {
     public static void listTask() {
-        List<TaskClass> lists = FileAccess.readFile();
+        List<TaskClass> tasks = FileAccess.readFile();
 
-        if (lists.isEmpty()) {
+        if (tasks.isEmpty()) {
             System.out.println("There are currently no to-do task");
             return;
         }
 
-        for (TaskClass taskClass : lists) {
+        for (TaskClass taskClass : tasks) {
             System.out.println("-------------------------------------------------------------------------");
             System.out.println("Task ID: " + taskClass.getTaskID());
             System.out.printf("\t%s\n", taskClass.getContent());
