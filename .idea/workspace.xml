@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.4.1&#10;fix function 3: task not found bug">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/ListTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/ListTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/MarkTaskCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/MarkTaskCompleted.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
