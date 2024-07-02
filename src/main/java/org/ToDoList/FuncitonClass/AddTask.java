@@ -9,22 +9,44 @@ import java.util.Scanner;
 
 public class AddTask {
     public static void addTask() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Input content: ");
-        String inputContent = input.nextLine();
-
-        System.out.println("Input author: ");
-        String inputAuthor = input.nextLine();
+        // Input content and author
+        String inputContent = inputContent();
+        String inputAuthor = inputAuthor();
 
         CustomLocalTime customLocalTime = new CustomLocalTime();
         String currentTime = customLocalTime.getTime();
 
         List<TaskClass> tasks = FileAccess.readFile();
-        int taskId = tasks.isEmpty() ? 1 : tasks.size() + 1;
+        int taskID = tasks.isEmpty() ? 1 : tasks.size() + 1;
 
-        TaskClass taskClass = new TaskClass(taskId, inputContent, inputAuthor, currentTime);
+        TaskClass taskClass = new TaskClass(taskID, inputContent, inputAuthor, currentTime, false);
         FileAccess.addTaskToFile(taskClass);
 
         System.out.println("Task added successfully!");
+    }
+
+    private static String inputContent() {
+        Scanner input = new Scanner(System.in);
+        String inputContent;
+        do {
+            System.out.println("Input content: ");
+            inputContent = input.nextLine();
+            if (inputContent.isBlank()) {
+                System.out.println("Content cannot be blank!");
+            }
+        } while (inputContent.isBlank());
+
+        return inputContent;
+    }
+
+    private static String inputAuthor() {
+        System.out.println("Input author: ");
+        Scanner input = new Scanner(System.in);
+        String inputAuthor = input.nextLine();
+        if (inputAuthor.isBlank()) {
+            return "unknown";
+        }
+
+        return inputAuthor;
     }
 }

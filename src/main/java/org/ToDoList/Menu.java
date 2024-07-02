@@ -1,8 +1,8 @@
 package org.ToDoList;
 
-
 import org.ToDoList.FuncitonClass.AddTask;
-import org.ToDoList.FuncitonClass.ListTask;
+import org.ToDoList.FuncitonClass.ListTasks;
+import org.ToDoList.FuncitonClass.MarkTaskCompleted;
 
 import java.util.Scanner;
 
@@ -21,17 +21,16 @@ public class Menu {
                     AddTask.addTask();
                     break;
                 case 2:
-                    ListTask.listTask();
+                    ListTasks.listTask();
                     break;
-                /*case 3:
-                    FunctionClass.viewCompletedTasks();
-                    break;*/
+                case 3:
+                    MarkTaskCompleted.markCompleted();
+                    break;
                 default:
                     System.out.println("Invalid command.");
                     break;
             }
         }
-
     }
 
     private static void displayMenu() {
@@ -39,21 +38,18 @@ public class Menu {
         System.out.println("Welcome to your To-Do-List!");
         System.out.println("0. Exit");
         System.out.println("1. Add a task");
-        System.out.println("2. List the task");
-        //System.out.println("3. View completed tasks");
-
+        System.out.println("2. List the tasks");
+        System.out.println("3. Mark a task as completed");
     }
 
     private static int getUserCommand() {
         System.out.print("Enter your command: ");
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNextInt()) {
-            System.out.println("Invalid input. Please enter a taskId.");
-            scanner.next(); // clear invalid input
+        Scanner inputCommand = new Scanner(System.in);
+        while (!inputCommand.hasNextInt()) {
+            System.out.println("Invalid input. Please enter an number.");
+            inputCommand.next(); // clear invalid input
             System.out.print("Enter your command: ");
         }
-        return scanner.nextInt();
-
+        return inputCommand.nextInt();
     }
-
 }
