@@ -1,8 +1,8 @@
-package org.ToDoList.FuncitonClass;
+package org.todolist.FuncitonClass;
 
-import org.ToDoList.CustomLocalTime;
-import org.ToDoList.FileAccess;
-import org.ToDoList.TaskClass;
+import org.todolist.CustomLocalTime;
+import org.todolist.FileAccess;
+import org.todolist.TaskClass;
 
 import java.util.List;
 import java.util.Scanner;
@@ -16,11 +16,11 @@ public class AddTask {
         CustomLocalTime customLocalTime = new CustomLocalTime();
         String currentTime = customLocalTime.getTime();
 
-        List<TaskClass> tasks = FileAccess.readFile();
+        List<TaskClass> tasks = FileAccess.readDataFile();
         int taskID = tasks.isEmpty() ? 1 : tasks.size() + 1;
 
         TaskClass taskClass = new TaskClass(taskID, inputContent, inputAuthor, currentTime, false);
-        FileAccess.addTaskToFile(taskClass);
+        FileAccess.addTaskToDataFile(taskClass);
 
         System.out.println("Task added successfully!");
     }
@@ -47,7 +47,7 @@ public class AddTask {
         if (inputAuthor.isBlank()) {
             return "unknown";
         }
-        
+
         return inputAuthor;
     }
 }

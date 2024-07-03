@@ -1,13 +1,13 @@
-package org.ToDoList.FuncitonClass;
+package org.todolist.FuncitonClass;
 
-import org.ToDoList.FileAccess;
-import org.ToDoList.TaskClass;
+import org.todolist.FileAccess;
+import org.todolist.TaskClass;
 
 import java.util.List;
 
 public class ListTask {
     public static void listTask() {
-        List<TaskClass> tasks = FileAccess.readFile();
+        List<TaskClass> tasks = FileAccess.readDataFile();
 
         if (tasks.isEmpty()) {
             System.out.println("There are currently no to-do task");

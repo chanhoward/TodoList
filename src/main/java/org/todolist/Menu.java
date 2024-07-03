@@ -1,9 +1,8 @@
-package org.ToDoList;
+package org.todolist;
 
-
-import org.ToDoList.FuncitonClass.AddTask;
-import org.ToDoList.FuncitonClass.ListTask;
-import org.ToDoList.FuncitonClass.MarkTaskCompleted;
+import org.todolist.FuncitonClass.AddTask;
+import org.todolist.FuncitonClass.ListTask;
+import org.todolist.FuncitonClass.MarkTaskCompleted;
 
 import java.util.Scanner;
 
@@ -13,7 +12,9 @@ public class Menu {
     public static void commandMain() {
         while (isRunning) {
             displayMenu();
+
             int command = getUserCommand();
+
             switch (command) {
                 case 0:
                     isRunning = false;
@@ -45,15 +46,18 @@ public class Menu {
     }
 
     private static int getUserCommand() {
-        System.out.print("Enter your command: ");
         Scanner inputCommand = new Scanner(System.in);
-        while (!inputCommand.hasNextInt()) {
-            System.out.println("Invalid input. Please enter a number.");
-            inputCommand.next(); // clear invalid input
-            System.out.print("Enter your command: ");
-        }
-        return inputCommand.nextInt();
 
+        while (true) {
+            System.out.print("Enter your command: ");
+
+            if (inputCommand.hasNextInt()) {
+                return inputCommand.nextInt();
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                inputCommand.next();
+            }
+        }
     }
 
 }

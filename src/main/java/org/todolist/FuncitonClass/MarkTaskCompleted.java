@@ -1,15 +1,17 @@
-package org.ToDoList.FuncitonClass;
+package org.todolist.FuncitonClass;
 
-import org.ToDoList.FileAccess;
-import org.ToDoList.TaskClass;
+import org.todolist.FileAccess;
+import org.todolist.TaskClass;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class MarkTaskCompleted {
+
     public static void markTaskCompleted() {
         while (true) {
-            List<TaskClass> tasks = FileAccess.readFile();
+
+            List<TaskClass> tasks = FileAccess.readDataFile();
 
             if (tasks.isEmpty()) {
                 System.out.println("There are currently no to-do task");
@@ -25,6 +27,7 @@ public class MarkTaskCompleted {
             }
 
             for (TaskClass task : tasks) {
+
                 if (task.getTaskID() != taskID) {
                     continue;
                 }
@@ -33,7 +36,7 @@ public class MarkTaskCompleted {
                     System.out.println("Task is already marked as completed.");
                 } else {
                     task.setTaskCompleted();
-                    FileAccess.writeFile(tasks);
+                    FileAccess.writeToDataFile(tasks);
                     System.out.println("Task marked as completed successfully.");
                 }
 
@@ -50,7 +53,9 @@ public class MarkTaskCompleted {
 
     private static int inputTaskID() {
         System.out.print("Input task ID to mark as completed: ");
+
         Scanner inputTaskID = new Scanner(System.in);
+
         while (!inputTaskID.hasNextInt()) {
             System.out.println("Invalid input.");
             inputTaskID.next(); // clear invalid input

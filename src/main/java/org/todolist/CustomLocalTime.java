@@ -1,4 +1,4 @@
-package org.ToDoList;
+package org.todolist;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
