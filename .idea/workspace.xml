@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.4.1&#10;fix function 3: task not found bug">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/CustomLocalTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/CustomLocalTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FileEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileEncryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/AddTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AddTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/ListTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/ListTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/FuncitonClass/MarkTaskCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/MarkTaskCompleted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ToDoList/TaskClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CheckFile.java.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/File.test.java" beforeDir="false" />
-    </list>
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -363,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719913561608</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file">
+      <option name="closed" value="true" />
+      <created>1720008759958</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1720008759959</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -411,7 +402,8 @@
     <MESSAGE value="1.3.2&#10;add taskID" />
     <MESSAGE value="1.4.0&#10;add mark as completed function&#10;1.4.1&#10;fix function 3: task not found bug" />
     <MESSAGE value="1.4.1&#10;fix function 3: task not found bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.4.1&#10;fix function 3: task not found bug" />
+    <MESSAGE value="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
