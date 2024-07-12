@@ -6,7 +6,7 @@ import org.todolist.TaskClass;
 import java.util.List;
 import java.util.Scanner;
 
-public class MarkTaskCompleted {
+public class MarkTaskAsCompleted implements TodoListManager {
 
     public static void markTaskCompleted() {
         while (true) {
@@ -18,24 +18,25 @@ public class MarkTaskCompleted {
                 break;
             }
 
-            ListTask.listTask();
-            int taskID = inputTaskID();
-            boolean taskFound = false;
+            ListTasks.listTasks();
 
-            if (taskID == 0) {
+            int inputTaskID = inputTaskID();
+            if (inputTaskID == 0) {
                 break;
             }
 
+            boolean taskFound = false;
+
             for (TaskClass task : tasks) {
 
-                if (task.getTaskID() != taskID) {
+                if (task.getTaskID() != inputTaskID) {
                     continue;
                 }
 
-                if (task.getIsTaskCompleted()) {
+                if (task.isTaskCompleteStatus()) {
                     System.out.println("Task is already marked as completed.");
                 } else {
-                    task.setTaskCompleted();
+                    task.setTaskCompleteStatus(true);
                     FileAccess.writeToDataFile(tasks);
                     System.out.println("Task marked as completed successfully.");
                 }
@@ -58,8 +59,8 @@ public class MarkTaskCompleted {
 
         while (!inputTaskID.hasNextInt()) {
             System.out.println("Invalid input.");
-            inputTaskID.next(); // clear invalid input
             System.out.print("Input task ID to mark as completed: ");
+            inputTaskID.next(); // clear invalid input
         }
         return inputTaskID.nextInt();
 

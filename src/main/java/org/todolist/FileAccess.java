@@ -15,19 +15,15 @@ public class FileAccess {
 
     private static final String DATA_FILE = "Data.dat";
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static List<TaskClass> tasks = new ArrayList<>();
 
     static {
         FileEncryption.initializeKeyAndIv();
     }
 
-    public static void addTaskToDataFile(TaskClass newList) {
-        List<TaskClass> tasks = readDataFile();
-        tasks.add(newList);
-        writeToDataFile(tasks);
-    }
-
     public static List<TaskClass> readDataFile() {
-        List<TaskClass> tasks = new ArrayList<>();
+
         try (FileInputStream fis = new FileInputStream(DATA_FILE)) {
             File dataFile = new File(DATA_FILE);
 
@@ -42,16 +38,15 @@ public class FileAccess {
             }
 
             String decryptedData = FileEncryption.decrypt(fileData);
-            ObjectMapper objectMapper = new ObjectMapper();
             tasks = objectMapper.readValue(decryptedData, new TypeReference<>() {
             });
 
         } catch (Exception e) {
-            LOGGER.error("Can't find file or file has broken");
+            LOGGER.error("Can't find file or file has broken", e);
+
             /**
-             * Reset all file
-             * this is for fix bug when program can't find file or file has broken
-             *  and can't decrypt data
+             * This is for fix bug when program can't find file or file has broken and can't decrypt data, but it will delete all data in file.
+             * This action can fix most of the problem in user interface.
              */
             ResetAllFile.resetAllFile();
         }
@@ -60,7 +55,6 @@ public class FileAccess {
 
     public static void writeToDataFile(List<TaskClass> tasks) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(tasks);
             byte[] encryptedData = FileEncryption.encrypt(json);
             try (FileOutputStream fos = new FileOutputStream(DATA_FILE)) {
@@ -77,7 +71,6 @@ public class FileAccess {
 
             boolean created = dataFile.createNewFile();
             if (created) {
-                //System.out.println("File created successfully：" + DATA_FILE);
                 LOGGER.info("File create successfully：" + DATA_FILE);
             } else {
                 LOGGER.warn("File exist：" + DATA_FILE);

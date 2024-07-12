@@ -48,7 +48,6 @@ public class ResetAllFile {
 
         boolean deleted = dataFile.delete();
         if (deleted) {
-            //System.out.println("File deleted successfully: " + DATA_FILE);
             LOGGER.info("File deleted successfully: " + DATA_FILE);
         } else {
             LOGGER.warn("Failed to delete file: " + DATA_FILE);
@@ -80,7 +79,6 @@ public class ResetAllFile {
         }
 
         if (deletedKey && deletedIv) {
-            //System.out.println("Key and IV files deleted successfully");
             LOGGER.info("Key and IV files deleted successfully");
         }
     }

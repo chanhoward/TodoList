@@ -30,7 +30,29 @@ public class FileEncryption {
         } else {
             generateKeyAndIv();
             saveKeyAndIv();
-            //System.out.println("Key and IV generated and saved successfully");
+        }
+    }
+
+    private static void loadKeyAndIv() {
+        System.out.println("Loading key and IV from files...");
+        LOGGER.info("Loading key and IV from files...");
+        try (FileInputStream keyIn = new FileInputStream(KEY_FILE);
+             FileInputStream ivIn = new FileInputStream(IV_FILE)) {
+            byte[] keyBytes = new byte[16];
+            iv = new byte[16];
+
+            int keyRead = keyIn.read(keyBytes);
+            int ivRead = ivIn.read(iv);
+
+            if (keyRead != keyBytes.length || ivRead != iv.length) {
+                LOGGER.error("Incomplete key or IV data");
+                throw new IOException("Failed to read the complete key or IV");
+            }
+
+            key = new SecretKeySpec(keyBytes, "AES");
+        } catch (IOException e) {
+            LOGGER.error("An error occurred while loading the key and IV", e);
+            throw new RuntimeException("Failed to load key and IV", e);
         }
     }
 
@@ -57,29 +79,6 @@ public class FileEncryption {
         } catch (IOException e) {
             LOGGER.error("An error occurred while saving the key and IV", e);
             throw new RuntimeException("Failed to save key and IV", e);
-        }
-    }
-
-    private static void loadKeyAndIv() {
-        System.out.println("Loading key and IV from files...");
-        LOGGER.info("Loading key and IV from files...");
-        try (FileInputStream keyIn = new FileInputStream(KEY_FILE);
-             FileInputStream ivIn = new FileInputStream(IV_FILE)) {
-            byte[] keyBytes = new byte[16];
-            iv = new byte[16];
-
-            int keyRead = keyIn.read(keyBytes);
-            int ivRead = ivIn.read(iv);
-
-            if (keyRead != keyBytes.length || ivRead != iv.length) {
-                LOGGER.error("Incomplete key or IV data");
-                throw new IOException("Failed to read the complete key or IV");
-            }
-
-            key = new SecretKeySpec(keyBytes, "AES");
-        } catch (IOException e) {
-            LOGGER.error("An error occurred while loading the key and IV", e);
-            throw new RuntimeException("Failed to load key and IV", e);
         }
     }
 
