@@ -3,11 +3,10 @@ package org.todolist;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class CustomLocalTime {
+public class LocalTime {
     private final String formatterTime;
 
-    public CustomLocalTime() {
-        // 格式化日期和時間
+    public LocalTime() {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.formatterTime = time.format(formatter);

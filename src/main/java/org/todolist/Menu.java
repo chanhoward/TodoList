@@ -1,36 +1,28 @@
 package org.todolist;
 
-import org.todolist.FuncitonClass.AddTask;
-import org.todolist.FuncitonClass.ListTask;
-import org.todolist.FuncitonClass.MarkTaskCompleted;
+import org.todolist.FuncitonClass.TodoListManager;
 
 import java.util.Scanner;
 
 public class Menu {
     private static boolean isRunning = true;
 
-    public static void commandMain() {
+    public static void menuCommandManager() {
+
         while (isRunning) {
             displayMenu();
 
             int command = getUserCommand();
 
             switch (command) {
-                case 0:
-                    isRunning = false;
-                    break;
-                case 1:
-                    AddTask.addTask();
-                    break;
-                case 2:
-                    ListTask.listTask();
-                    break;
-                case 3:
-                    MarkTaskCompleted.markTaskCompleted();
-                    break;
-                default:
-                    System.out.println("Invalid command.");
-                    break;
+                case 0 -> isRunning = false;
+                case 1 -> TodoListManager.addTask();
+                case 2 -> TodoListManager.markTaskCompleted();
+                case 3 -> TodoListManager.removeTask();
+                case 4 -> TodoListManager.searchTypeManager();
+                case 5 -> TodoListManager.listTasks();
+                default -> System.out.println("Invalid command.");
+
             }
         }
 
@@ -41,8 +33,10 @@ public class Menu {
         System.out.println("Welcome to your To-Do-List!");
         System.out.println("0. Exit");
         System.out.println("1. Add a task");
-        System.out.println("2. List the task");
-        System.out.println("3. Mark a task as completed");
+        System.out.println("2. Mark task as completed");
+        System.out.println("3. Remove a task");
+        System.out.println("4. Search task");
+        System.out.println("5. List the tasks");
     }
 
     private static int getUserCommand() {
@@ -54,7 +48,7 @@ public class Menu {
             if (inputCommand.hasNextInt()) {
                 return inputCommand.nextInt();
             } else {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("Invalid input. Please enter a integer.");
                 inputCommand.next();
             }
         }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -67,54 +68,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.CheckFile.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.ToDodList.executor": "Run",
-    "Docker.Dockerfile.executor": "Run",
-    "JUnit.FileAccessTest 和其他 1 个.executor": "Run",
-    "JUnit.FileAccessTest.executor": "Run",
-    "JUnit.FileEncryptionTest.executor": "Run",
-    "JUnit.FileEncryptionTest.testEncryptAndDecryptWithNullData.executor": "Debug",
-    "JUnit.FileEncryptionTest.testEncryptAndDecryptWithRandomDataAndCheck.executor": "Debug",
-    "Maven.learning [test].executor": "Run",
-    "RESOURCE_BUNDLE_EXPRESSION_USED": "",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "code.cleanup.on.save": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "main",
-    "ignore.preview.features.used": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/how20/dev/ToDoList",
-    "project.structure.last.edited": "项目",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "应用程序.CheckFile.executor": "Run",
-    "应用程序.FileEncryption.executor": "Run",
-    "应用程序.Guess.executor": "Run",
-    "应用程序.Main.executor": "Run",
-    "应用程序.Student.executor": "Run",
-    "应用程序.Test.executor": "Run",
-    "应用程序.ToDoList.executor": "Run",
-    "应用程序.ToDoList_Main.executor": "Run",
-    "应用程序.ToDodList.executor": "Run",
-    "应用程序.checkFile.executor": "Run",
-    "应用程序.guess.executor": "Run",
-    "应用程序.org.example.Main.executor": "Run",
-    "应用程序.student.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.CheckFile.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ToDodList.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileAccessTest 和其他 1 个.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileAccessTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileEncryptionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FileEncryptionTest.testEncryptAndDecryptWithNullData.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.FileEncryptionTest.testEncryptAndDecryptWithRandomDataAndCheck.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.learning [test].executor&quot;: &quot;Run&quot;,
+    &quot;RESOURCE_BUNDLE_EXPRESSION_USED&quot;: &quot;&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/how20/dev/ToDoList&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;应用程序.CheckFile.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.FileEncryption.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Guess.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Main.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Student.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.Test.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.ToDoList.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.ToDoList_Main.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.ToDodList.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.checkFile.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.guess.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.org.example.Main.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.student.executor&quot;: &quot;Run&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
-      "TEXT"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件&quot;: [
+      &quot;TEXT&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.learn.ToDoList" />
@@ -135,19 +136,6 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.todolist.Main" />
       <module name="todolist" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="todolist" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="todolist" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -354,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720008759959</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code">
+      <option name="closed" value="true" />
+      <created>1720769444846</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1720769444846</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -403,7 +399,8 @@
     <MESSAGE value="1.4.0&#10;add mark as completed function&#10;1.4.1&#10;fix function 3: task not found bug" />
     <MESSAGE value="1.4.1&#10;fix function 3: task not found bug" />
     <MESSAGE value="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
+    <MESSAGE value="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

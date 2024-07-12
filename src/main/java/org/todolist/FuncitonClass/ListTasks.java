@@ -5,8 +5,8 @@ import org.todolist.TaskClass;
 
 import java.util.List;
 
-public class ListTask {
-    public static void listTask() {
+public class ListTasks implements TodoListManager {
+    public static void listTasks() {
         List<TaskClass> tasks = FileAccess.readDataFile();
 
         if (tasks.isEmpty()) {
@@ -20,7 +20,7 @@ public class ListTask {
             System.out.printf("\t%s\n", taskClass.getContent());
             System.out.print("\tby " + taskClass.getAuthor());
             System.out.printf("\t(%s)\n", taskClass.getTime());
-            System.out.println("Status: " + (taskClass.getIsTaskCompleted() ? "Completed" : "Pending"));
+            System.out.println("Status: " + (taskClass.isTaskCompleteStatus() ? "Completed" : "Pending"));
             System.out.println("-------------------------------------------------------------------------");
         }
     }
