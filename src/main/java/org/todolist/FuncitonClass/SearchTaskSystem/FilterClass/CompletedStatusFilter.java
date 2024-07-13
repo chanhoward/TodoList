@@ -8,8 +8,8 @@ public class CompletedStatusFilter implements TaskFilteringUtils {
         } else if (keyword.equalsIgnoreCase("n")) {
             processedKeyword = "false";
         } else {
-            processedKeyword = "";
             System.out.println("Invalid input. Please enter 'y' or 'n'.");
+            return;
         }
 
         toBeFilteredTask.stream()

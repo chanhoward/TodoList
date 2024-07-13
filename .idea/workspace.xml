@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code" />
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -350,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720769444846</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code">
+      <option name="closed" value="true" />
+      <created>1720769522586</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1720769522586</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

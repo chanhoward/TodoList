@@ -21,9 +21,8 @@ public interface TaskFilteringUtils {
     }
 
     static void printFilteredTasks() {
-        int foundTaskCount = filteredTask.size();
         if (filteredTask.isEmpty()) {
-            System.out.println("No tasks found for the given search criteria.");
+            System.out.println("No task found for the given search criteria.");
             return;
         }
 
@@ -36,6 +35,8 @@ public interface TaskFilteringUtils {
             System.out.println("Status: " + (taskClass.isTaskCompleteStatus() ? "Completed" : "Pending"));
             System.out.println("-------------------------------------------------------------------------");
         }
+
+        int foundTaskCount = filteredTask.size();
         System.out.println("Found " + foundTaskCount + " matching tasks.");
 
     }
