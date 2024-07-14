@@ -1,6 +1,6 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
-public class CompletedStatusFilter implements TaskFilteringUtils {
+public class CompletedStatusFilter extends TaskFilteringUtils {
     public static void completedStatusFilter(String keyword) {
         String processedKeyword;
         if (keyword.equalsIgnoreCase("y")) {

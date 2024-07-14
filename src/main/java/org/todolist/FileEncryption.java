@@ -24,27 +24,30 @@ public class FileEncryption {
     private static SecretKey key;
     private static byte[] iv;
 
-    public static void initializeKeyAndIv() {
-        if (new File(KEY_FILE).exists() && new File(IV_FILE).exists()) {
-            loadKeyAndIv();
+    static {
+        initializeKeyAndIv();
+    }
+
+    static void initializeKeyAndIv() {
+        File keyFile = new File(KEY_FILE);
+        File ivFile = new File(IV_FILE);
+
+        if (keyFile.exists() && ivFile.exists()) {
+            loadKeyAndIv(keyFile, ivFile);
         } else {
             generateKeyAndIv();
-            saveKeyAndIv();
+            saveKeyAndIv(keyFile, ivFile);
         }
     }
 
-    private static void loadKeyAndIv() {
-        System.out.println("Loading key and IV from files...");
+    private static void loadKeyAndIv(File keyFile, File ivFile) {
         LOGGER.info("Loading key and IV from files...");
-        try (FileInputStream keyIn = new FileInputStream(KEY_FILE);
-             FileInputStream ivIn = new FileInputStream(IV_FILE)) {
-            byte[] keyBytes = new byte[16];
-            iv = new byte[16];
+        try (FileInputStream keyIn = new FileInputStream(keyFile);
+             FileInputStream ivIn = new FileInputStream(ivFile)) {
+            byte[] keyBytes = keyIn.readAllBytes();
+            iv = ivIn.readAllBytes();
 
-            int keyRead = keyIn.read(keyBytes);
-            int ivRead = ivIn.read(iv);
-
-            if (keyRead != keyBytes.length || ivRead != iv.length) {
+            if (keyBytes.length != 32 || iv.length != 16) { // 32 bytes for 256-bit key
                 LOGGER.error("Incomplete key or IV data");
                 throw new IOException("Failed to read the complete key or IV");
             }
@@ -59,7 +62,7 @@ public class FileEncryption {
     private static void generateKeyAndIv() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(128); // 使用 128 位元金鑰
+            keyGenerator.init(256); // 使用 256 位元金鑰
             key = keyGenerator.generateKey();
 
             iv = new byte[16];
@@ -71,9 +74,9 @@ public class FileEncryption {
         }
     }
 
-    private static void saveKeyAndIv() {
-        try (FileOutputStream keyOut = new FileOutputStream(KEY_FILE);
-             FileOutputStream ivOut = new FileOutputStream(IV_FILE)) {
+    private static void saveKeyAndIv(File keyFile, File ivFile) {
+        try (FileOutputStream keyOut = new FileOutputStream(keyFile);
+             FileOutputStream ivOut = new FileOutputStream(ivFile)) {
             keyOut.write(key.getEncoded());
             ivOut.write(iv);
         } catch (IOException e) {
@@ -104,5 +107,4 @@ public class FileEncryption {
             throw new RuntimeException("Failed to decrypt data", e);
         }
     }
-
 }

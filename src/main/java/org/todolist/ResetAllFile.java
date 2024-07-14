@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for resetting all files related to the application.
+ * It includes methods to delete the data file, key and IV files, and initialize them again.
+ */
 public class ResetAllFile {
 
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);

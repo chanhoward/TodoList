@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RemoveTask implements TodoListManager {
-    private static final List<TaskClass> toBeReviseTasks = FileAccess.readDataFile();
+public class RemoveTask extends TodoListManager {
+    private static final List<TaskClass> toBeReviseTasks = tasksInData;
     private static final List<TaskClass> revisedTasks = new ArrayList<>();
 
     public static void removeTask() {
@@ -30,10 +30,10 @@ public class RemoveTask implements TodoListManager {
             }
 
             toBeReviseTasks.stream()
-                    .filter(task -> task.getTaskID() != index)
+                    .filter(task -> task.getTaskId() != index)
                     .forEach(revisedTasks::add);
             rearrangeTasksID();
-            FileAccess.writeToDataFile(revisedTasks);
+            FileAccess.writeDataFile(revisedTasks);
 
             updateToBeReviseTasks();
             clearRevisedTasks();
@@ -63,7 +63,7 @@ public class RemoveTask implements TodoListManager {
 
     private static void rearrangeTasksID() {
         for (int i = 0; i < revisedTasks.size(); i++) {
-            revisedTasks.get(i).setTaskID(i + 1);
+            revisedTasks.get(i).setTaskId(i + 1);
         }
 
     }

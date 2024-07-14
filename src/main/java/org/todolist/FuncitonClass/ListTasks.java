@@ -1,27 +1,27 @@
 package org.todolist.FuncitonClass;
 
-import org.todolist.FileAccess;
 import org.todolist.TaskClass;
 
-import java.util.List;
+public class ListTasks extends TodoListManager {
 
-public class ListTasks implements TodoListManager {
     public static void listTasks() {
-        List<TaskClass> tasks = FileAccess.readDataFile();
 
-        if (tasks.isEmpty()) {
-            System.out.println("There are currently no to-do task");
+        if (tasksInData.isEmpty()) {
+            System.out.println("There are currently no to-do tasks");
             return;
         }
 
-        for (TaskClass taskClass : tasks) {
-            System.out.println("-------------------------------------------------------------------------");
-            System.out.println("Task ID: " + taskClass.getTaskID());
-            System.out.printf("\t%s\n", taskClass.getContent());
-            System.out.print("\tby " + taskClass.getAuthor());
-            System.out.printf("\t(%s)\n", taskClass.getTime());
-            System.out.println("Status: " + (taskClass.isTaskCompleteStatus() ? "Completed" : "Pending"));
-            System.out.println("-------------------------------------------------------------------------");
+        StringBuilder output = new StringBuilder();
+
+        for (TaskClass task : tasksInData) {
+            output.append("-------------------------------------------------------------------------\n")
+                    .append("Task ID: ").append(task.getTaskId()).append("\n")
+                    .append("\t").append(task.getContent()).append("\n")
+                    .append("\tby ").append(task.getAuthor()).append("\t(").append(task.getTime()).append(")\n")
+                    .append("Status: ").append(task.isTaskCompleteStatus() ? "Completed" : "Pending").append("\n")
+                    .append("-------------------------------------------------------------------------\n");
         }
+
+        System.out.print(output);
     }
 }

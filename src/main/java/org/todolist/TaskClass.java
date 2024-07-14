@@ -7,28 +7,28 @@ public class TaskClass {
     private final String content;
     private final String author;
     private final String time;
-    private int taskID;
+    private int taskId;
     private boolean taskCompleteStatus;
 
     @JsonCreator
-    public TaskClass(@JsonProperty("taskID") int taskID,
+    public TaskClass(@JsonProperty("taskId") int taskId,
                      @JsonProperty("content") String content,
                      @JsonProperty("author") String author,
                      @JsonProperty("time") String time,
                      @JsonProperty("taskCompleteStatus") boolean taskCompleteStatus) {
-        this.taskID = taskID;
+        this.taskId = taskId;
         this.content = content;
         this.author = author;
         this.time = time;
         this.taskCompleteStatus = taskCompleteStatus;
     }
 
-    public int getTaskID() {
-        return taskID;
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setTaskID(int taskID) {
-        this.taskID = taskID;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
     public String getContent() {

@@ -7,7 +7,9 @@ import org.todolist.TaskClass;
 import java.util.List;
 import java.util.Scanner;
 
-public class AddTask implements TodoListManager {
+public class AddTask extends TodoListManager {
+    private static final List<TaskClass> tasksInData = TodoListManager.tasksInData;
+
     public static void addTask() {
 
         String inputContent = inputContent();
@@ -16,8 +18,7 @@ public class AddTask implements TodoListManager {
         LocalTime localTime = new LocalTime();
         String currentTime = localTime.getTime();
 
-        List<TaskClass> tasks = FileAccess.readDataFile();
-        int taskID = tasks.isEmpty() ? 1 : tasks.size() + 1;
+        int taskID = tasksInData.isEmpty() ? 1 : tasksInData.size() + 1;
 
         TaskClass newTask = new TaskClass(taskID, inputContent, inputAuthor, currentTime, false);
         addTaskToDataFile(newTask);
@@ -52,8 +53,8 @@ public class AddTask implements TodoListManager {
     }
 
     private static void addTaskToDataFile(TaskClass newTask) {
-        List<TaskClass> tasks = FileAccess.readDataFile();
-        tasks.add(newTask);
-        FileAccess.writeToDataFile(tasks);
+        List<TaskClass> updatedTasks = tasksInData;
+        updatedTasks.add(newTask);
+        FileAccess.writeDataFile(updatedTasks);
     }
 }

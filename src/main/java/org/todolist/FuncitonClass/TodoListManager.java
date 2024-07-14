@@ -1,26 +1,35 @@
 package org.todolist.FuncitonClass;
 
+import org.todolist.FileAccess;
 import org.todolist.FuncitonClass.SearchTaskSystem.SearchingSystemManager;
+import org.todolist.TaskClass;
 
-public interface TodoListManager {
+import java.util.List;
 
-    static void addTask() {
+public abstract class TodoListManager {
+    public static List<TaskClass> tasksInData;
+
+    static {
+        tasksInData = FileAccess.readDataFile();
+    }
+
+    public static void addTask() {
         AddTask.addTask();
     }
 
-    static void listTasks() {
+    public static void listTasks() {
         ListTasks.listTasks();
     }
 
-    static void markTaskCompleted() {
+    public static void markTaskCompleted() {
         MarkTaskAsCompleted.markTaskCompleted();
     }
 
-    static void searchTypeManager() {
+    public static void searchTypeManager() {
         SearchingSystemManager.filterProcessingManager();
     }
 
-    static void removeTask() {
+    public static void removeTask() {
         RemoveTask.removeTask();
     }
 

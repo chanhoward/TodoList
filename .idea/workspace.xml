@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code">
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.6.1&#10;. fix search lists didn't reset&#10;. fix can't input empty when searching author&#10;. some code sort improvement">
+      <change afterPath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AddTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AddTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/ListTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/ListTasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/MarkTaskAsCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/MarkTaskAsCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/RemoveTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/AuthorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/AuthorFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/ContentFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/ContentFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskIDFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskIDFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/TodoListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/TodoListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +93,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Add1000Task.executor&quot;: &quot;Run&quot;,
+    &quot;Application.AddTaskPressureTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.CheckFile.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.ToDodList.executor&quot;: &quot;Run&quot;,
@@ -133,10 +152,17 @@
       <recent name="C:\Users\how20\dev\ToDoList" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile" />
       <method v="2" />
+    </configuration>
+    <configuration name="AddTaskPressureTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AddTaskPressureTest" />
+      <module name="todolist" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.todolist.Main" />
@@ -145,6 +171,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AddTaskPressureTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -363,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720769522586</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="1.6.1&#10;. fix search lists didn't reset&#10;. fix can't input empty when searching author&#10;. some code sort improvement">
+      <option name="closed" value="true" />
+      <created>1720835678275</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1720835678275</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,7 +452,8 @@
     <MESSAGE value="1.4.1&#10;fix function 3: task not found bug" />
     <MESSAGE value="1.5.0&#10;1. more error logger in file_access_system&#10;2. fix some bugs&#10;3. add reset data function&#10;4. rename package&#10;5. check data file health when starting&#10;6. delete test file" />
     <MESSAGE value="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.6.0&#10;. add task_searching system&#10;. add remove file function&#10;. add interface to centrally manage function calls&#10;. rename some function&#10;. delete test code" />
+    <MESSAGE value="1.6.1&#10;. fix search lists didn't reset&#10;. fix can't input empty when searching author&#10;. some code sort improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.6.1&#10;. fix search lists didn't reset&#10;. fix can't input empty when searching author&#10;. some code sort improvement" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

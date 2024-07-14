@@ -22,21 +22,25 @@ public class Menu {
                 case 4 -> TodoListManager.searchTypeManager();
                 case 5 -> TodoListManager.listTasks();
                 default -> System.out.println("Invalid command.");
-
             }
         }
 
     }
 
     private static void displayMenu() {
-        System.out.println();
-        System.out.println("Welcome to your To-Do-List!");
-        System.out.println("0. Exit");
-        System.out.println("1. Add a task");
-        System.out.println("2. Mark task as completed");
-        System.out.println("3. Remove a task");
-        System.out.println("4. Search task");
-        System.out.println("5. List the tasks");
+
+        String menu = """
+
+                Welcome to your To-Do-List!
+                0. Exit
+                1. Add a task
+                2. Mark task as completed
+                3. Remove a task
+                4. Search task
+                5. List the tasks
+                """;
+
+        System.out.print(menu);
     }
 
     private static int getUserCommand() {

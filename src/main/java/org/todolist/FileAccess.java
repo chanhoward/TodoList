@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class FileAccess {
 
     private static final String DATA_FILE = "Data.dat";
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private static List<TaskClass> tasks = new ArrayList<>();
 
     static {
@@ -23,62 +24,54 @@ public class FileAccess {
     }
 
     public static List<TaskClass> readDataFile() {
+        File dataFile = new File(DATA_FILE);
 
-        try (FileInputStream fis = new FileInputStream(DATA_FILE)) {
-            File dataFile = new File(DATA_FILE);
+        if (!dataFile.exists() || dataFile.length() == 0) {
+            return buildDataFile(tasks);
+        }
 
-            if (!dataFile.exists() || dataFile.length() == 0) {
-                return buildDataFile(tasks);
-            }
-
-            byte[] fileData = new byte[(int) dataFile.length()];
-            int bytesRead = fis.read(fileData);
-            if (bytesRead != fileData.length) {
-                LOGGER.error("Can't read file data");
-            }
+        try (FileInputStream fis = new FileInputStream(dataFile)) {
+            byte[] fileData = fis.readAllBytes();
 
             String decryptedData = FileEncryption.decrypt(fileData);
-            tasks = objectMapper.readValue(decryptedData, new TypeReference<>() {
+            tasks = OBJECT_MAPPER.readValue(decryptedData, new TypeReference<>() {
             });
 
+        } catch (IOException e) {
+            LOGGER.error("Error reading file: ", e);
+            ResetAllFile.resetAllFile();
         } catch (Exception e) {
-            LOGGER.error("Can't find file or file has broken", e);
-
-            /**
-             * This is for fix bug when program can't find file or file has broken and can't decrypt data, but it will delete all data in file.
-             * This action can fix most of the problem in user interface.
-             */
+            LOGGER.error("Error decrypting file: ", e);
             ResetAllFile.resetAllFile();
         }
         return tasks;
     }
 
-    public static void writeToDataFile(List<TaskClass> tasks) {
+    public static void writeDataFile(List<TaskClass> tasks) {
         try {
-            String json = objectMapper.writeValueAsString(tasks);
+            String json = OBJECT_MAPPER.writeValueAsString(tasks);
             byte[] encryptedData = FileEncryption.encrypt(json);
             try (FileOutputStream fos = new FileOutputStream(DATA_FILE)) {
                 fos.write(encryptedData);
             }
+        } catch (IOException e) {
+            LOGGER.error("Error writing file: ", e);
         } catch (Exception e) {
-            LOGGER.error("Writing file fail：", e);
+            LOGGER.error("Error encrypting data: ", e);
         }
     }
 
     public static List<TaskClass> buildDataFile(List<TaskClass> tasks) {
+        File dataFile = new File(DATA_FILE);
+
         try {
-            File dataFile = new File(DATA_FILE);
-
-            boolean created = dataFile.createNewFile();
-            if (created) {
-                LOGGER.info("File create successfully：" + DATA_FILE);
+            if (dataFile.createNewFile()) {
+                LOGGER.info("File created successfully: " + DATA_FILE);
             } else {
-                LOGGER.warn("File exist：" + DATA_FILE);
+                LOGGER.warn("File already exists: " + DATA_FILE);
             }
-            return tasks;
-
-        } catch (Exception e) {
-            LOGGER.error("Creating file fail：", e);
+        } catch (IOException e) {
+            LOGGER.error("Error creating file: ", e);
         }
         return tasks;
     }

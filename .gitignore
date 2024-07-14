@@ -39,3 +39,4 @@ build/
 .idea/workspace.xml
 *.bin
 *.dat
+*.txt

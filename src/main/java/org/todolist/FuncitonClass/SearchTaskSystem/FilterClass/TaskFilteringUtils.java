@@ -1,63 +1,66 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
-import org.todolist.FileAccess;
+import org.todolist.FuncitonClass.SearchTaskSystem.SearchingSystemManager;
 import org.todolist.TaskClass;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface TaskFilteringUtils {
+public abstract class TaskFilteringUtils extends SearchingSystemManager {
 
-    List<TaskClass> toBeFilteredTask = new ArrayList<>();
-    List<TaskClass> filteredTask = new ArrayList<>();
+    static List<TaskClass> toBeFilteredTask = new ArrayList<>();
+    static List<TaskClass> filteredTask = new ArrayList<>();
 
-    static void updateToBeFilteredTasks() {
+    public static void updateToBeFilteredTasks() {
         toBeFilteredTask.clear();
-        toBeFilteredTask.addAll(FileAccess.readDataFile());
+        toBeFilteredTask.addAll(tasksInData);
     }
 
-    static void resetFilteredTasks() {
+    public static void resetFilteredTasks() {
         filteredTask.clear();
     }
 
-    static void printFilteredTasks() {
+    public static void printFilteredTasks() {
         if (filteredTask.isEmpty()) {
             System.out.println("No task found for the given search criteria.");
             return;
         }
 
-        for (TaskClass taskClass : filteredTask) {
-            System.out.println("-------------------------------------------------------------------------");
-            System.out.println("Task ID: " + taskClass.getTaskID());
-            System.out.printf("\t%s\n", taskClass.getContent());
-            System.out.printf("\tby " + taskClass.getAuthor());
-            System.out.printf("\t(%s)\n", taskClass.getTime());
-            System.out.println("Status: " + (taskClass.isTaskCompleteStatus() ? "Completed" : "Pending"));
-            System.out.println("-------------------------------------------------------------------------");
+        StringBuilder output = new StringBuilder();
+        for (TaskClass task : filteredTask) {
+            output.append("-------------------------------------------------------------------------\n")
+                    .append("Task ID: ").append(task.getTaskId()).append("\n")
+                    .append("\t").append(task.getContent()).append("\n")
+                    .append("\tby ").append(task.getAuthor()).append("\n")
+                    .append("\t(").append(task.getTime()).append(")\n")
+                    .append("Status: ").append(task.isTaskCompleteStatus() ? "Completed" : "Pending").append("\n")
+                    .append("-------------------------------------------------------------------------\n");
         }
+
+        System.out.print(output);
 
         int foundTaskCount = filteredTask.size();
         System.out.println("Found " + foundTaskCount + " matching tasks.");
 
     }
 
-    static void contentFilter(String keyword) {
+    public static void contentFilter(String keyword) {
         ContentFilter.contentFilter(keyword);
     }
 
-    static void authorFilter(String keyword) {
+    public static void authorFilter(String keyword) {
         AuthorFilter.authorFilter(keyword);
     }
 
-    static void createdDateFilter(String keyword) {
+    public static void createdDateFilter(String keyword) {
         CreatedDateFilter.createdDateFilter(keyword);
     }
 
-    static void taskIDFilter(String keyword) {
+    public static void taskIDFilter(String keyword) {
         TaskIDFilter.taskIDFilter(keyword);
     }
 
-    static void completedStatusFilter(String keyword) {
+    public static void completedStatusFilter(String keyword) {
         CompletedStatusFilter.completedStatusFilter(keyword);
     }
 

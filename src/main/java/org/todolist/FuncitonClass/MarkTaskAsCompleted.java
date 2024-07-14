@@ -6,14 +6,13 @@ import org.todolist.TaskClass;
 import java.util.List;
 import java.util.Scanner;
 
-public class MarkTaskAsCompleted implements TodoListManager {
+public class MarkTaskAsCompleted extends TodoListManager {
+    private static final List<TaskClass> tasksInData = TodoListManager.tasksInData;
 
     public static void markTaskCompleted() {
         while (true) {
 
-            List<TaskClass> tasks = FileAccess.readDataFile();
-
-            if (tasks.isEmpty()) {
+            if (tasksInData.isEmpty()) {
                 System.out.println("There are currently no to-do task");
                 break;
             }
@@ -27,9 +26,9 @@ public class MarkTaskAsCompleted implements TodoListManager {
 
             boolean taskFound = false;
 
-            for (TaskClass task : tasks) {
+            for (TaskClass task : tasksInData) {
 
-                if (task.getTaskID() != inputTaskID) {
+                if (task.getTaskId() != inputTaskID) {
                     continue;
                 }
 
@@ -37,7 +36,7 @@ public class MarkTaskAsCompleted implements TodoListManager {
                     System.out.println("Task is already marked as completed.");
                 } else {
                     task.setTaskCompleteStatus(true);
-                    FileAccess.writeToDataFile(tasks);
+                    FileAccess.writeDataFile(tasksInData);
                     System.out.println("Task marked as completed successfully.");
                 }
 

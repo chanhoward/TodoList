@@ -1,6 +1,6 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
-public class AuthorFilter implements TaskFilteringUtils {
+public class AuthorFilter extends TaskFilteringUtils {
     public static void authorFilter(String keyword) {
         String processedKeyword;
         if (keyword.isEmpty()) {

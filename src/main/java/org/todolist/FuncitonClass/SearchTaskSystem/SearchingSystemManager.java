@@ -6,7 +6,7 @@ import org.todolist.FuncitonClass.TodoListManager;
 
 import java.util.Scanner;
 
-public class SearchingSystemManager implements TodoListManager {
+public class SearchingSystemManager extends TodoListManager {
 
     public static void filterProcessingManager() {
 
@@ -36,13 +36,17 @@ public class SearchingSystemManager implements TodoListManager {
     }
 
     private static void displayMenu() {
-        System.out.println();
-        System.out.println("0. Exit");
-        System.out.println("1. Search by content");
-        System.out.println("2. Search by author");
-        System.out.println("3. Search by created date (XXXX-XX-XX)");
-        System.out.println("4. Search by task ID");
-        System.out.println("5. Search by completed status (y/n)");
+        String menu = """
+
+                0. Exit
+                1. Search by content
+                2. Search by author
+                3. Search by created date (XXXX-XX-XX)
+                4. Search by task ID
+                5. Search by completed status (y/n)
+                """;
+
+        System.out.print(menu);
     }
 
     private static int getUserSearchType() {
