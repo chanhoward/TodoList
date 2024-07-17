@@ -54,14 +54,14 @@ public class MarkTaskAsCompleted extends TodoListManager {
     private static int inputTaskID() {
         System.out.print("Input task ID to mark as completed: ");
 
-        Scanner inputTaskID = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        while (!inputTaskID.hasNextInt()) {
+        while (!scanner.hasNextInt()) {
             System.out.println("Invalid input.");
             System.out.print("Input task ID to mark as completed: ");
-            inputTaskID.next(); // clear invalid input
+            scanner.next(); // clear invalid input
         }
-        return inputTaskID.nextInt();
+        return scanner.nextInt();
 
     }
 

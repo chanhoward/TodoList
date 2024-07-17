@@ -24,11 +24,8 @@ public class FileEncryption {
     private static SecretKey key;
     private static byte[] iv;
 
-    static {
-        initializeKeyAndIv();
-    }
-
     static void initializeKeyAndIv() {
+        LOGGER.info("Initializing key and IV...");
         File keyFile = new File(KEY_FILE);
         File ivFile = new File(IV_FILE);
 
@@ -36,7 +33,7 @@ public class FileEncryption {
             loadKeyAndIv(keyFile, ivFile);
         } else {
             generateKeyAndIv();
-            saveKeyAndIv(keyFile, ivFile);
+            saveKeyAndIv();
         }
     }
 
@@ -49,61 +46,61 @@ public class FileEncryption {
 
             if (keyBytes.length != 32 || iv.length != 16) { // 32 bytes for 256-bit key
                 LOGGER.error("Incomplete key or IV data");
-                throw new IOException("Failed to read the complete key or IV");
             }
 
             key = new SecretKeySpec(keyBytes, "AES");
         } catch (IOException e) {
-            LOGGER.error("An error occurred while loading the key and IV", e);
-            throw new RuntimeException("Failed to load key and IV", e);
+            LOGGER.error("An error occurred while loading the key and IV: ", e);
         }
     }
 
     private static void generateKeyAndIv() {
+        LOGGER.info("Generating key and IV...");
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-            keyGenerator.init(256); // 使用 256 位元金鑰
+            keyGenerator.init(256);
             key = keyGenerator.generateKey();
 
             iv = new byte[16];
             SecureRandom random = new SecureRandom();
             random.nextBytes(iv);
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("An error occurred while generating the key and IV", e);
-            throw new RuntimeException("Failed to generate key and IV", e);
+            LOGGER.error("An error occurred while generating the key and IV: ", e);
         }
     }
 
-    private static void saveKeyAndIv(File keyFile, File ivFile) {
-        try (FileOutputStream keyOut = new FileOutputStream(keyFile);
-             FileOutputStream ivOut = new FileOutputStream(ivFile)) {
+    private static void saveKeyAndIv() {
+        LOGGER.info("Saving key and IV to files...");
+        try (FileOutputStream keyOut = new FileOutputStream(KEY_FILE);
+             FileOutputStream ivOut = new FileOutputStream(IV_FILE)) {
             keyOut.write(key.getEncoded());
             ivOut.write(iv);
         } catch (IOException e) {
-            LOGGER.error("An error occurred while saving the key and IV", e);
-            throw new RuntimeException("Failed to save key and IV", e);
+            LOGGER.error("An error occurred while saving the key and IV: ", e);
         }
     }
 
     public static byte[] encrypt(String data) {
+        LOGGER.info("Encrypting data...");
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
             return cipher.doFinal(data.getBytes());
         } catch (Exception e) {
-            LOGGER.error("An error occurred while encrypting data", e);
+            LOGGER.error("An error occurred while encrypting data: ", e);
             throw new RuntimeException("Failed to encrypt data", e);
         }
     }
 
     public static String decrypt(byte[] encryptedData) {
+        LOGGER.info("Decrypting data...");
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
             byte[] decryptedBytes = cipher.doFinal(encryptedData);
             return new String(decryptedBytes);
         } catch (Exception e) {
-            LOGGER.error("An error occurred while decrypting data", e);
+            LOGGER.error("An error occurred while decrypting data: ", e);
             throw new RuntimeException("Failed to decrypt data", e);
         }
     }

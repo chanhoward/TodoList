@@ -4,9 +4,11 @@ import org.todolist.TaskClass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AddTaskPressureTest {
-    private static final int AMOUNT = 5000000;
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final int AMOUNT = scanner.nextInt();
     private static final List<TaskClass> TASKS = new ArrayList<>();
     private static final List<TaskClass> tasksInData = FileAccess.readDataFile();
     private static final LocalTime localTime = new LocalTime();
@@ -15,24 +17,25 @@ public class AddTaskPressureTest {
     public static void main(String[] args) {
 
         int task = tasksInData.isEmpty() ? 1 : tasksInData.size() + 1;
-        int taskID;
+
         for (int i = 1; i <= AMOUNT; i++) {
             String inputContent = "Task " + task;
             String inputAuthor = "Author " + task;
+
+            TaskClass newTask = new TaskClass(task, inputContent, inputAuthor, currentlyTime, false);
+            TASKS.add(newTask);
             task++;
 
-            taskID = tasksInData.isEmpty() ? i : tasksInData.size() + i;
+            if (i % 10 == 0 || i == AMOUNT) {
+                printProgressBar(i);
+            }
 
-            TaskClass newTask = new TaskClass(taskID, inputContent, inputAuthor, currentlyTime, false);
-            TASKS.add(newTask);
-
-            printProgressBar(i);
         }
-
+        System.out.println();
         addTaskToDataFile();
-        System.out.println("\n" + AMOUNT + " tasks added successfully!");
+        System.out.println("Data written successfully.");
 
-        cleanUpTaskList();
+
     }
 
     private static void printProgressBar(int current) {
@@ -53,12 +56,11 @@ public class AddTaskPressureTest {
         System.out.print(progressBar);
     }
 
-
     private static void addTaskToDataFile() {
-        FileAccess.writeDataFile(TASKS);
-    }
-
-    private static void cleanUpTaskList() {
+        List<TaskClass> updatedTasks = tasksInData;
+        updatedTasks.addAll(TASKS);
+        FileAccess.writeDataFile(updatedTasks);
         TASKS.clear();
     }
+
 }

@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddTask extends TodoListManager {
-    private static final List<TaskClass> tasksInData = TodoListManager.tasksInData;
 
     public static void addTask() {
+        if (isTasksFull) {
+            return;
+        }
 
         String inputContent = inputContent();
         String inputAuthor = inputAuthor();
@@ -27,11 +29,11 @@ public class AddTask extends TodoListManager {
     }
 
     private static String inputContent() {
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String inputContent;
         do {
             System.out.println("Input content: ");
-            inputContent = input.nextLine();
+            inputContent = scanner.nextLine();
             if (inputContent.isEmpty()) {
                 System.out.println("Content cannot be empty.");
             }
@@ -43,8 +45,8 @@ public class AddTask extends TodoListManager {
     private static String inputAuthor() {
         System.out.println("Input author: ");
         String inputAuthor;
-        Scanner input = new Scanner(System.in);
-        inputAuthor = input.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        inputAuthor = scanner.nextLine();
         if (inputAuthor.isEmpty()) {
             return "unknown";
         }

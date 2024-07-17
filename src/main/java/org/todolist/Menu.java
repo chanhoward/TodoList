@@ -4,7 +4,7 @@ import org.todolist.FuncitonClass.TodoListManager;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends TodoListManager {
     private static boolean isRunning = true;
 
     public static void menuCommandManager() {
@@ -28,6 +28,10 @@ public class Menu {
     }
 
     private static void displayMenu() {
+        if (tasksInData.size() >= TASK_COUNT_LIMIT) {
+            System.err.println("\nTask count limit reached(100000). Please remove some tasks before adding new ones.");
+            isTasksFull = true;
+        }
 
         String menu = """
 
@@ -44,16 +48,16 @@ public class Menu {
     }
 
     private static int getUserCommand() {
-        Scanner inputCommand = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.print("Enter your command: ");
 
-            if (inputCommand.hasNextInt()) {
-                return inputCommand.nextInt();
+            if (scanner.hasNextInt()) {
+                return scanner.nextInt();
             } else {
                 System.out.println("Invalid input. Please enter a integer.");
-                inputCommand.next();
+                scanner.next();
             }
         }
     }

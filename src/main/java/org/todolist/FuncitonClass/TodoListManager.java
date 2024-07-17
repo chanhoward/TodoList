@@ -7,7 +7,9 @@ import org.todolist.TaskClass;
 import java.util.List;
 
 public abstract class TodoListManager {
+    public static final int TASK_COUNT_LIMIT = 100000;
     public static List<TaskClass> tasksInData;
+    public static boolean isTasksFull = false;
 
     static {
         tasksInData = FileAccess.readDataFile();

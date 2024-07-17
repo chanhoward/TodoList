@@ -4,8 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,7 +13,6 @@ import java.util.Scanner;
 public class ResetAllFile {
 
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
-    private static final List<TaskClass> tasks = new ArrayList<>();
     private static final String DATA_FILE = "Data.dat";
     private static final String KEY_FILE = "key.bin";
     private static final String IV_FILE = "iv.bin";
@@ -26,10 +23,12 @@ public class ResetAllFile {
         }
 
         // Reset files
+        LOGGER.info("Resetting all files...");
         deleteDataFile();
         deleteKeyAndIvFile();
         FileEncryption.initializeKeyAndIv();
-        FileAccess.buildDataFile(tasks);
+//        FileAccess.buildDataFile();
+        System.out.println("All files have been reset.");
     }
 
     private static boolean isAgreeToResetFile() {
@@ -37,6 +36,7 @@ public class ResetAllFile {
         System.out.println("Do you want to reset all data? (That will make you lose all of the data) (y/n)");
         String confirmation = scanner.nextLine();
         if (confirmation.equalsIgnoreCase("y")) {
+            System.out.println("Reset confirmed.");
             return true;
         } else {
             System.out.println("Reset canceled.");
