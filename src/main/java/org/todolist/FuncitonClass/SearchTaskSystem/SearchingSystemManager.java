@@ -42,8 +42,9 @@ public class SearchingSystemManager extends TodoListManager {
                 1. Search by content
                 2. Search by author
                 3. Search by created date (XXXX-XX-XX)
-                4. Search by task ID
+                4. Search by task Rank (High/Medium/Low) [1/2/3]
                 5. Search by completed status (y/n)
+                6. Search by task ID
                 """;
 
         System.out.print(menu);
@@ -68,6 +69,7 @@ public class SearchingSystemManager extends TodoListManager {
         Scanner input = new Scanner(System.in);
         String inputKeyword;
 
+        //Deal with empty keyword
         do {
             System.out.print("Input keyword: ");
             inputKeyword = input.nextLine();
@@ -85,8 +87,9 @@ public class SearchingSystemManager extends TodoListManager {
             case 1 -> TaskFilteringUtils.contentFilter(keyword);                    //content
             case 2 -> TaskFilteringUtils.authorFilter(keyword);                     //author
             case 3 -> TaskFilteringUtils.createdDateFilter(keyword);                //date
-            case 4 -> TaskFilteringUtils.taskIDFilter(keyword);                     //ID
+            case 4 -> TaskFilteringUtils.pendingRankFilter(keyword);                //rank
             case 5 -> TaskFilteringUtils.completedStatusFilter(keyword);            //status
+            case 6 -> TaskFilteringUtils.taskIdFilter(keyword);                     //ID
             default -> System.out.println("Invalid search searchType.");
         }
     }

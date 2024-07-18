@@ -41,4 +41,5 @@ build/
 *.dat
 *.txt
 /TODO
-/logs
+/logs/
+*.log
