@@ -31,6 +31,8 @@ public class Menu extends TodoListManager {
         if (tasksInData.size() >= TASK_COUNT_LIMIT) {
             System.err.println("\nTask count limit reached(100000). Please remove some tasks before adding new ones.");
             isTasksFull = true;
+        } else {
+            isTasksFull = false;
         }
 
         String menu = """

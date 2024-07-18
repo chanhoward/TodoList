@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TaskClass {
+    private final String pendingRank;
     private final String content;
     private final String author;
     private final String time;
@@ -12,11 +13,13 @@ public class TaskClass {
 
     @JsonCreator
     public TaskClass(@JsonProperty("taskId") int taskId,
+                     @JsonProperty("pendingRank") String pendingRank,
                      @JsonProperty("content") String content,
                      @JsonProperty("author") String author,
                      @JsonProperty("time") String time,
                      @JsonProperty("taskCompleteStatus") boolean taskCompleteStatus) {
         this.taskId = taskId;
+        this.pendingRank = pendingRank;
         this.content = content;
         this.author = author;
         this.time = time;
@@ -29,6 +32,10 @@ public class TaskClass {
 
     public void setTaskId(int taskId) {
         this.taskId = taskId;
+    }
+
+    public String getPendingRank() {
+        return pendingRank;
     }
 
     public String getContent() {

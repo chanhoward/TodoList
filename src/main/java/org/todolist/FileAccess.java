@@ -76,7 +76,6 @@ public class FileAccess {
             initialize();
         }
 
-        LOGGER.info("Writing data file...");
         try {
             // Convert tasks list to JSON string
             String json = objectMapper.writeValueAsString(tasks);
@@ -84,6 +83,7 @@ public class FileAccess {
             // Encrypt the JSON string
             byte[] encryptedData = FileEncryption.encrypt(json);
 
+            LOGGER.info("Writing data file...");
             try (FileChannel fileChannel = FileChannel.open(Path.of(DATA_FILE), StandardOpenOption.WRITE, StandardOpenOption.CREATE)) {
                 ByteBuffer buffer = ByteBuffer.wrap(encryptedData);
                 while (buffer.hasRemaining()) {

@@ -22,7 +22,7 @@ public class AddTaskPressureTest {
             String inputContent = "Task " + task;
             String inputAuthor = "Author " + task;
 
-            TaskClass newTask = new TaskClass(task, inputContent, inputAuthor, currentlyTime, false);
+            TaskClass newTask = new TaskClass(task, "Low", inputContent, inputAuthor, currentlyTime, false);
             TASKS.add(newTask);
             task++;
 

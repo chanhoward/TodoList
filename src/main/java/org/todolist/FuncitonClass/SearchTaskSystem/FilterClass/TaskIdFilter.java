@@ -1,7 +1,7 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
-public class TaskIDFilter extends TaskFilteringUtils {
-    public static void taskIDFilter(String keyword) {
+public class TaskIdFilter extends TaskFilteringUtils {
+    public static void taskIdFilter(String keyword) {
         try {
             toBeFilteredTask.stream()
                     .filter(task -> task.getTaskId() == Integer.parseInt(keyword))

@@ -30,6 +30,7 @@ public abstract class TaskFilteringUtils extends SearchingSystemManager {
         for (TaskClass task : filteredTask) {
             output.append("-------------------------------------------------------------------------\n")
                     .append("Task ID: ").append(task.getTaskId()).append("\n")
+                    .append("Pending Rank: ").append(task.getPendingRank()).append("\n")
                     .append("\t").append(task.getContent()).append("\n")
                     .append("\tby ").append(task.getAuthor()).append("\n")
                     .append("\t(").append(task.getTime()).append(")\n")
@@ -56,12 +57,16 @@ public abstract class TaskFilteringUtils extends SearchingSystemManager {
         CreatedDateFilter.createdDateFilter(keyword);
     }
 
-    public static void taskIDFilter(String keyword) {
-        TaskIDFilter.taskIDFilter(keyword);
+    public static void pendingRankFilter(String keyword) {
+        PendingRankFilter.pendingRankFilter(keyword);
     }
 
     public static void completedStatusFilter(String keyword) {
         CompletedStatusFilter.completedStatusFilter(keyword);
+    }
+
+    public static void taskIdFilter(String keyword) {
+        TaskIdFilter.taskIdFilter(keyword);
     }
 
 }
