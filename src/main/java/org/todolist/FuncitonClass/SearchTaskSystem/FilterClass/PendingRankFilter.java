@@ -1,7 +1,7 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
 public class PendingRankFilter extends TaskFilteringUtils {
-    public static void pendingRankFilter(String keyword) {
+    public static void filterByPendingRank(String keyword) {
         String processedKeyword;
         switch (keyword) {
             case "1":

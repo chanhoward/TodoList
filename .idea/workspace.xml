@@ -5,8 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.6.4&#10;. add task pending rank&#10;. fix isTasksFull won't back to false&#10;. fix logger order">
-      <change afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data.dat.new" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data.dat.old" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AutoRemoveTasks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/DueDateFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TimeClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AddTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AddTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/ListTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/ListTasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/MarkTaskAsCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/MarkTaskAsCompleted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/DeleteTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/AuthorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/AuthorFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/ContentFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/ContentFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/PendingRankFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/PendingRankFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskIdFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskIdFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/TodoListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/TodoListManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/LocalTime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +160,7 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\how20\dev\ToDoList\TODO" />
+      <recent name="C:\Users\how20\dev\ToDoList\src\main\java\org\todolist" />
       <recent name="C:\Users\how20\dev\ToDoList" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -146,7 +174,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.AddTaskPressureTest">
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile" />
       <method v="2" />
@@ -424,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721267182627</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="1.6.4&#10;. add task pending rank&#10;. fix isTasksFull won't back to false&#10;. fix logger order">
+      <option name="closed" value="true" />
+      <created>1721267407416</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1721267407416</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

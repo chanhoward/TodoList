@@ -20,7 +20,8 @@ public class Menu extends TodoListManager {
                 case 2 -> TodoListManager.markTaskCompleted();
                 case 3 -> TodoListManager.removeTask();
                 case 4 -> TodoListManager.searchTypeManager();
-                case 5 -> TodoListManager.listTasks();
+                case 5 -> TodoListManager.listTasks(tasksInData);
+                case 6 -> TodoListManager.autoRemoveTasks();
                 default -> System.out.println("Invalid command.");
             }
         }
@@ -44,6 +45,7 @@ public class Menu extends TodoListManager {
                 3. Remove a task
                 4. Search task
                 5. List the tasks
+                6. Auto remove tasks to clear space
                 """;
 
         System.out.print(menu);

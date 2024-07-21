@@ -6,8 +6,13 @@ import java.util.Scanner;
 
 public class RemoveTask extends TodoListManager {
 
-    public static void removeTask() {
+    public static void inputAndDeleteTask() {
         while (true) {
+            if (isAccessFail) {
+                System.err.println("Failed to access data file.");
+                return;
+            }
+
             if (tasksInData.isEmpty()) {
                 System.out.println("No task to remove.");
                 break;
@@ -23,9 +28,7 @@ public class RemoveTask extends TodoListManager {
                 continue;
             }
 
-            tasksInData.remove(index - 1);
-            rearrangeTasksID();
-            FileAccess.writeDataFile(tasksInData);
+            deleteTaskById(index);
 
             System.out.println("Task removed successfully.");
             break;
@@ -36,7 +39,7 @@ public class RemoveTask extends TodoListManager {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            ListTasks.listTasks();
+            listTasks(tasksInData);
             System.out.print("Enter your taskID: ");
 
             if (scanner.hasNextInt()) {
@@ -48,10 +51,15 @@ public class RemoveTask extends TodoListManager {
         }
     }
 
-    private static void rearrangeTasksID() {
+    public static void deleteTaskById(int index) {
+        tasksInData.removeIf(task -> task.getTaskId() == index);
+        rearrangeTasksId();
+        FileAccess.writeDataFile(tasksInData);
+    }
+
+    private static void rearrangeTasksId() {
         for (int i = 0; i < tasksInData.size(); i++) {
             tasksInData.get(i).setTaskId(i + 1);
         }
     }
-
 }

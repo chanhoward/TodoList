@@ -1,9 +1,9 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
 public class CreatedDateFilter extends TaskFilteringUtils {
-    public static void createdDateFilter(String keyword) { //ToDo use more easy input format
+    public static void filterByCreatedDate(String keyword) { //ToDo use more easy input format
         toBeFilteredTask.stream()
-                .filter(task -> task.getTime().contains(keyword))
+                .filter(task -> task.getCreatedDate().contains(keyword))
                 .forEach(filteredTask::add);
     }
 }

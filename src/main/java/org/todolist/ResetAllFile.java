@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 /**
  * This class is responsible for resetting all files related to the application.
- * It includes methods to delete the data file, key and IV files, and initialize them again.
+ * It includes methods to delete the data file, key and IV files.
  */
-public class ResetAllFile {
+public class ResetAllFile extends FileAccess {
 
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
     private static final String DATA_FILE = "Data.dat";
@@ -26,8 +26,10 @@ public class ResetAllFile {
         LOGGER.info("Resetting all files...");
         deleteDataFile();
         deleteKeyAndIvFile();
-        FileEncryption.initializeKeyAndIv();
-//        FileAccess.buildDataFile();
+        initialize();
+        buildDataFile();
+
+        isAccessFail = false;
         System.out.println("All files have been reset.");
     }
 

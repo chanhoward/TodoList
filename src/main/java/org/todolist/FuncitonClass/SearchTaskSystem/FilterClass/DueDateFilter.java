@@ -1,15 +1,16 @@
 package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
 
-public class AuthorFilter extends TaskFilteringUtils {
-    public static void filterByAuthor(String keyword) {
+public class DueDateFilter extends TaskFilteringUtils {
+    public static void filterByDueDate(String keyword) { //ToDo use more easy input format
         String processedKeyword;
         if (keyword.isEmpty()) {
-            processedKeyword = "unknown";
+            processedKeyword = "null";
         } else {
             processedKeyword = keyword;
         }
+
         toBeFilteredTask.stream()
-                .filter(task -> task.getAuthor().contains(processedKeyword))
+                .filter(task -> task.getDueDate().contains(processedKeyword))
                 .forEach(filteredTask::add);
     }
 }
