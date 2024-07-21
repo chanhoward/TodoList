@@ -10,17 +10,19 @@ public abstract class TodoListManager {
     public static final int TASK_COUNT_LIMIT = 100000;
     public static List<TaskClass> tasksInData;
     public static boolean isTasksFull = false;
+    public static boolean isAccessFail;
 
     static {
         tasksInData = FileAccess.readDataFile();
+        isAccessFail = FileAccess.isAccessFail;
     }
 
     public static void addTask() {
         AddTask.addTask();
     }
 
-    public static void listTasks() {
-        ListTasks.listTasks();
+    public static void listTasks(List<TaskClass> list) {
+        ListTasks.listTasks(list);
     }
 
     public static void markTaskCompleted() {
@@ -32,7 +34,11 @@ public abstract class TodoListManager {
     }
 
     public static void removeTask() {
-        RemoveTask.removeTask();
+        RemoveTask.inputAndDeleteTask();
+    }
+
+    public static void autoRemoveTasks() {
+        AutoRemoveTasks.autoRemoveTasks();
     }
 
 }

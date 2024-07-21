@@ -2,9 +2,15 @@ package org.todolist.FuncitonClass;
 
 import org.todolist.TaskClass;
 
+import java.util.List;
+
 public class ListTasks extends TodoListManager {
 
-    public static void listTasks() {
+    public static void listTasks(List<TaskClass> list) {
+        if (isAccessFail) {
+            System.err.println("Failed to access data file.");
+            return;
+        }
 
         if (tasksInData.isEmpty()) {
             System.out.println("There are currently no to-do tasks");
@@ -12,15 +18,18 @@ public class ListTasks extends TodoListManager {
         }
 
         StringBuilder output = new StringBuilder();
-
-        for (TaskClass task : tasksInData) {
-            output.append("-------------------------------------------------------------------------\n")
-                    .append("Task ID: ").append(task.getTaskId()).append("\n")
-                    .append("Rank: ").append(task.getPendingRank()).append("\n")
-                    .append("\t").append(task.getContent()).append("\n")
-                    .append("\tby ").append(task.getAuthor()).append("\t(").append(task.getTime()).append(")\n")
-                    .append("Status: ").append(task.isTaskCompleteStatus() ? "Completed" : "Pending").append("\n")
-                    .append("-------------------------------------------------------------------------\n");
+        for (TaskClass task : list) {
+            output.append("--------------------------------------------------------------------------\n")
+                    .append(String.format("Due Date: %-18s Task ID: %-20d Rank: %-10s\n\n",
+                            task.getTimeScore() == 999999999 ? "No due date" : task.getDueDate(),
+                            task.getTaskId(),
+                            task.getPendingRank()))
+                    .append(String.format("Content: %-50s\n\n", task.getContent()))
+                    .append(String.format("Status: %-21s By %-20s ( %-15s )\n",
+                            task.isTaskCompleteStatus() ? "Completed" : "Pending",
+                            task.getAuthor(),
+                            task.getCreatedDate()))
+                    .append("--------------------------------------------------------------------------\n");
         }
 
         System.out.print(output);

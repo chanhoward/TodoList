@@ -26,47 +26,37 @@ public abstract class TaskFilteringUtils extends SearchingSystemManager {
             return;
         }
 
-        StringBuilder output = new StringBuilder();
-        for (TaskClass task : filteredTask) {
-            output.append("-------------------------------------------------------------------------\n")
-                    .append("Task ID: ").append(task.getTaskId()).append("\n")
-                    .append("Pending Rank: ").append(task.getPendingRank()).append("\n")
-                    .append("\t").append(task.getContent()).append("\n")
-                    .append("\tby ").append(task.getAuthor()).append("\n")
-                    .append("\t(").append(task.getTime()).append(")\n")
-                    .append("Status: ").append(task.isTaskCompleteStatus() ? "Completed" : "Pending").append("\n")
-                    .append("-------------------------------------------------------------------------\n");
-        }
-
-        System.out.print(output);
-
-        int foundTaskCount = filteredTask.size();
-        System.out.println("Found " + foundTaskCount + " matching tasks.");
+        listTasks(filteredTask);
+        System.out.println("Found " + filteredTask.size() + " matching tasks.");
 
     }
 
-    public static void contentFilter(String keyword) {
-        ContentFilter.contentFilter(keyword);
+    public static void filterByContent(String keyword) {
+        ContentFilter.filterByContent(keyword);
     }
 
-    public static void authorFilter(String keyword) {
-        AuthorFilter.authorFilter(keyword);
+    public static void filterByPendingRank(String keyword) {
+        PendingRankFilter.filterByPendingRank(keyword);
     }
 
-    public static void createdDateFilter(String keyword) {
-        CreatedDateFilter.createdDateFilter(keyword);
+    public static void filterByDueDate(String keyword) {
+        DueDateFilter.filterByDueDate(keyword);
     }
 
-    public static void pendingRankFilter(String keyword) {
-        PendingRankFilter.pendingRankFilter(keyword);
+    public static void filterByCompletedStatus(String keyword) {
+        CompletedStatusFilter.filterByCompletedStatus(keyword);
     }
 
-    public static void completedStatusFilter(String keyword) {
-        CompletedStatusFilter.completedStatusFilter(keyword);
+    public static void filterByAuthor(String keyword) {
+        AuthorFilter.filterByAuthor(keyword);
     }
 
-    public static void taskIdFilter(String keyword) {
-        TaskIdFilter.taskIdFilter(keyword);
+    public static void filterByCreatedDate(String keyword) {
+        CreatedDateFilter.filterByCreatedDate(keyword);
+    }
+
+    public static void filterByTaskId(String keyword) {
+        TaskIdFilter.filterByTaskId(keyword);
     }
 
 }

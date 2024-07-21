@@ -1,15 +1,11 @@
 package org.todolist;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +13,17 @@ public class FileAccess {
 
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
     private static final String DATA_FILE = "Data.dat";
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    public static boolean isAccessFail = false;
     private static boolean isInitialized = false;
     private static List<TaskClass> tasksCache = new ArrayList<>();
 
-    // Initialize encryption key and IV
     static void initialize() {
         LOGGER.info("Initializing data...");
         FileEncryption.initializeKeyAndIv();
         isInitialized = true;
     }
 
+    @SuppressWarnings("unchecked")
     public static List<TaskClass> readDataFile() {
         if (!isInitialized) {
             initialize();
@@ -35,34 +31,38 @@ public class FileAccess {
 
         LOGGER.info("Reading data file...");
 
-        // Return cached tasks if is empty
         if (!tasksCache.isEmpty()) {
             return tasksCache;
         }
 
         File dataFile = new File(DATA_FILE);
 
-        // Check if the file exists and is not empty
-        if (!dataFile.exists() || dataFile.length() == 0) {
+        if (!dataFile.exists()) {
             LOGGER.warn("Data file does not exist or is empty.");
             buildDataFile();
             return new ArrayList<>();
         }
 
-        try (FileChannel fileChannel = FileChannel.open(dataFile.toPath(), StandardOpenOption.READ)) {
-            ByteBuffer buffer = ByteBuffer.allocate((int) fileChannel.size());
-            fileChannel.read(buffer);
-            buffer.flip();
+        if (dataFile.length() == 0) {
+            LOGGER.warn("Data file is empty.");
+            return new ArrayList<>();
+        }
 
-            byte[] fileData = new byte[buffer.remaining()];
-            buffer.get(fileData);
+        try (BufferedInputStream bufferedIn = new BufferedInputStream(new FileInputStream(dataFile));
+             CipherInputStream cipherIn = new CipherInputStream(bufferedIn, FileEncryption.getDecryptCipher());
+             ObjectInputStream objIn = new ObjectInputStream(cipherIn)) {
 
-            // Decrypt the data
-            String decryptedData = FileEncryption.decrypt(fileData);
-            tasksCache = objectMapper.readValue(decryptedData, new TypeReference<>() {
-            });
+            Object obj = objIn.readObject();
+
+            if (obj instanceof List<?>) {
+                tasksCache = (List<TaskClass>) obj;
+            } else {
+                LOGGER.error("Deserialized object is not of type List<TaskClass>");
+                throw new ClassNotFoundException("Deserialized object is not of type List<TaskClass>");
+            }
 
         } catch (Exception e) {
+            isAccessFail = true;
             LOGGER.error("Error occurred while reading or decrypting the data file: ", e);
             ResetAllFile.resetAllFile();
             tasksCache = new ArrayList<>();
@@ -76,24 +76,12 @@ public class FileAccess {
             initialize();
         }
 
-        try {
-            // Convert tasks list to JSON string
-            String json = objectMapper.writeValueAsString(tasks);
-
-            // Encrypt the JSON string
-            byte[] encryptedData = FileEncryption.encrypt(json);
+        try (BufferedOutputStream bufferedOut = new BufferedOutputStream(new FileOutputStream(DATA_FILE));
+             CipherOutputStream cipherOut = new CipherOutputStream(bufferedOut, FileEncryption.getEncryptCipher());
+             ObjectOutputStream objOut = new ObjectOutputStream(cipherOut)) {
 
             LOGGER.info("Writing data file...");
-            try (FileChannel fileChannel = FileChannel.open(Path.of(DATA_FILE), StandardOpenOption.WRITE, StandardOpenOption.CREATE)) {
-                ByteBuffer buffer = ByteBuffer.wrap(encryptedData);
-                while (buffer.hasRemaining()) {
-                    int bytesWritten = fileChannel.write(buffer);
-                    if (bytesWritten == 0) {
-                        LOGGER.warn("No bytes written, potential issue with file write.");
-                    }
-                }
-            }
-            // Update the cache
+            objOut.writeObject(tasks);
             tasksCache = new ArrayList<>(tasks);
         } catch (Exception e) {
             LOGGER.error("Error occurred while writing the data file: ", e);

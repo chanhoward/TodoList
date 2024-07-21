@@ -3,11 +3,20 @@ package org.todolist;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TaskClass {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class TaskClass implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private final String pendingRank;
     private final String content;
+    private final String dueDate;
     private final String author;
-    private final String time;
+    private final String createdDate;
+    private final int timeScore;
     private int taskId;
     private boolean taskCompleteStatus;
 
@@ -15,14 +24,18 @@ public class TaskClass {
     public TaskClass(@JsonProperty("taskId") int taskId,
                      @JsonProperty("pendingRank") String pendingRank,
                      @JsonProperty("content") String content,
+                     @JsonProperty("dueDate") String dueDate,
                      @JsonProperty("author") String author,
-                     @JsonProperty("time") String time,
+                     @JsonProperty("createdDate") String createdDate,
+                     @JsonProperty("dueTimeScore") int timeScore,
                      @JsonProperty("taskCompleteStatus") boolean taskCompleteStatus) {
         this.taskId = taskId;
         this.pendingRank = pendingRank;
         this.content = content;
+        this.dueDate = dueDate;
         this.author = author;
-        this.time = time;
+        this.createdDate = createdDate;
+        this.timeScore = timeScore;
         this.taskCompleteStatus = taskCompleteStatus;
     }
 
@@ -34,6 +47,10 @@ public class TaskClass {
         this.taskId = taskId;
     }
 
+    public int getTimeScore() {
+        return timeScore;
+    }
+
     public String getPendingRank() {
         return pendingRank;
     }
@@ -42,12 +59,16 @@ public class TaskClass {
         return content;
     }
 
+    public String getDueDate() {
+        return dueDate;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-    public String getTime() {
-        return time;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
     public boolean isTaskCompleteStatus() {

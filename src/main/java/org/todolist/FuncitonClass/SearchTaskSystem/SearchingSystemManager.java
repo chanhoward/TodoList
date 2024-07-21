@@ -1,6 +1,5 @@
 package org.todolist.FuncitonClass.SearchTaskSystem;
 
-import org.todolist.FuncitonClass.ListTasks;
 import org.todolist.FuncitonClass.SearchTaskSystem.FilterClass.TaskFilteringUtils;
 import org.todolist.FuncitonClass.TodoListManager;
 
@@ -9,6 +8,10 @@ import java.util.Scanner;
 public class SearchingSystemManager extends TodoListManager {
 
     public static void filterProcessingManager() {
+        if (isAccessFail) {
+            System.err.println("Failed to access data file.");
+            return;
+        }
 
         while (true) {
             TaskFilteringUtils.updateToBeFilteredTasks();
@@ -25,7 +28,7 @@ public class SearchingSystemManager extends TodoListManager {
                 continue;
             }
 
-            ListTasks.listTasks();
+            listTasks(tasksInData);
             String keyword = getInputKeyword(searchType);
 
             filterTypeDistribution(searchType, keyword);
@@ -40,11 +43,12 @@ public class SearchingSystemManager extends TodoListManager {
 
                 0. Exit
                 1. Search by content
-                2. Search by author
-                3. Search by created date (XXXX-XX-XX)
-                4. Search by task Rank (High/Medium/Low) [1/2/3]
-                5. Search by completed status (y/n)
-                6. Search by task ID
+                2. Search by task Rank (High/Medium/Low) [1/2/3]
+                3. Search by due date (XXXX-XX-XX)
+                4. Search by completed status (y/n)
+                5. Search by author
+                6. Search by created date (XXXX-XX-XX)
+                7. Search by task ID
                 """;
 
         System.out.print(menu);
@@ -74,22 +78,23 @@ public class SearchingSystemManager extends TodoListManager {
             System.out.print("Input keyword: ");
             inputKeyword = input.nextLine();
 
-            if (inputKeyword.isEmpty() && searchType != 2) {
+            if (inputKeyword.isEmpty() && (searchType != 3 && searchType != 5)) {
                 System.out.println("Keyword cannot be empty.");
             }
-        } while (inputKeyword.isEmpty() && searchType != 2);
+        } while (inputKeyword.isEmpty() && (searchType != 3 && searchType != 5));
 
         return inputKeyword;
     }
 
     private static void filterTypeDistribution(int searchType, String keyword) {
         switch (searchType) {
-            case 1 -> TaskFilteringUtils.contentFilter(keyword);                    //content
-            case 2 -> TaskFilteringUtils.authorFilter(keyword);                     //author
-            case 3 -> TaskFilteringUtils.createdDateFilter(keyword);                //date
-            case 4 -> TaskFilteringUtils.pendingRankFilter(keyword);                //rank
-            case 5 -> TaskFilteringUtils.completedStatusFilter(keyword);            //status
-            case 6 -> TaskFilteringUtils.taskIdFilter(keyword);                     //ID
+            case 1 -> TaskFilteringUtils.filterByContent(keyword);                    //content
+            case 2 -> TaskFilteringUtils.filterByPendingRank(keyword);                //rank
+            case 3 -> TaskFilteringUtils.filterByDueDate(keyword);                    //due date
+            case 4 -> TaskFilteringUtils.filterByCompletedStatus(keyword);            //status
+            case 5 -> TaskFilteringUtils.filterByAuthor(keyword);                     //author
+            case 6 -> TaskFilteringUtils.filterByCreatedDate(keyword);                //created date
+            case 7 -> TaskFilteringUtils.filterByTaskId(keyword);                     //ID
             default -> System.out.println("Invalid search searchType.");
         }
     }

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-public class FileEncryption {
+public class FileEncryption extends FileAccess {
 
     private static final Logger LOGGER = LogManager.getLogger(FileEncryption.class);
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
@@ -33,7 +33,7 @@ public class FileEncryption {
             loadKeyAndIv(keyFile, ivFile);
         } else {
             generateKeyAndIv();
-            saveKeyAndIv();
+            saveKeyAndIv(keyFile, ivFile);
         }
     }
 
@@ -69,10 +69,10 @@ public class FileEncryption {
         }
     }
 
-    private static void saveKeyAndIv() {
+    private static void saveKeyAndIv(File keyFile, File ivFile) {
         LOGGER.info("Saving key and IV to files...");
-        try (FileOutputStream keyOut = new FileOutputStream(KEY_FILE);
-             FileOutputStream ivOut = new FileOutputStream(IV_FILE)) {
+        try (FileOutputStream keyOut = new FileOutputStream(keyFile);
+             FileOutputStream ivOut = new FileOutputStream(ivFile)) {
             keyOut.write(key.getEncoded());
             ivOut.write(iv);
         } catch (IOException e) {
@@ -80,28 +80,27 @@ public class FileEncryption {
         }
     }
 
-    public static byte[] encrypt(String data) {
-        LOGGER.info("Encrypting data...");
+    public static Cipher getEncryptCipher() {
+        LOGGER.info("Getting encrypt cipher...");
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
-            return cipher.doFinal(data.getBytes());
+            return cipher;
         } catch (Exception e) {
-            LOGGER.error("An error occurred while encrypting data: ", e);
-            throw new RuntimeException("Failed to encrypt data", e);
+            LOGGER.error("An error occurred while initializing the encrypt cipher", e);
+            throw new IllegalArgumentException("Failed to initialize the encrypt cipher");
         }
     }
 
-    public static String decrypt(byte[] encryptedData) {
-        LOGGER.info("Decrypting data...");
+    public static Cipher getDecryptCipher() {
+        LOGGER.info("Getting decrypt cipher...");
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
-            byte[] decryptedBytes = cipher.doFinal(encryptedData);
-            return new String(decryptedBytes);
+            return cipher;
         } catch (Exception e) {
-            LOGGER.error("An error occurred while decrypting data: ", e);
-            throw new RuntimeException("Failed to decrypt data", e);
+            LOGGER.error("An error occurred while initializing the decrypt cipher", e);
+            throw new IllegalArgumentException("Failed to initialize the decrypt cipher");
         }
     }
 }

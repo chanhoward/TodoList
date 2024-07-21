@@ -1,6 +1,6 @@
 import org.todolist.FileAccess;
-import org.todolist.LocalTime;
 import org.todolist.TaskClass;
+import org.todolist.TimeClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +11,22 @@ public class AddTaskPressureTest {
     private static final int AMOUNT = scanner.nextInt();
     private static final List<TaskClass> TASKS = new ArrayList<>();
     private static final List<TaskClass> tasksInData = FileAccess.readDataFile();
-    private static final LocalTime localTime = new LocalTime();
-    private static final String currentlyTime = localTime.getTime();
+    private static final TimeClass TIME_CLASS = new TimeClass();
+    private static final String currentlyTime = TIME_CLASS.getCurrentTime();
+    private static final String pendingRank = "Low";
+    private static final String dueTime = null;
+    private static final int DUE_TIME_SCORE = 1064147650;
+    private static final boolean isDone = true;
 
     public static void main(String[] args) {
 
         int task = tasksInData.isEmpty() ? 1 : tasksInData.size() + 1;
 
         for (int i = 1; i <= AMOUNT; i++) {
-            String inputContent = "Task " + task;
-            String inputAuthor = "Author " + task;
+            String content = "Task " + task;
+            String author = "Author " + task;
 
-            TaskClass newTask = new TaskClass(task, "Low", inputContent, inputAuthor, currentlyTime, false);
+            TaskClass newTask = new TaskClass(task, pendingRank, content, dueTime, author, currentlyTime, DUE_TIME_SCORE, isDone);
             TASKS.add(newTask);
             task++;
 
@@ -34,7 +38,6 @@ public class AddTaskPressureTest {
         System.out.println();
         addTaskToDataFile();
         System.out.println("Data written successfully.");
-
 
     }
 
