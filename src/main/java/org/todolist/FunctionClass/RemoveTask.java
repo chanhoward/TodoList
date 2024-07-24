@@ -1,4 +1,4 @@
-package org.todolist.FuncitonClass;
+package org.todolist.FunctionClass;
 
 import org.todolist.FileAccess;
 
@@ -39,7 +39,7 @@ public class RemoveTask extends TodoListManager {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            listTasks(tasksInData);
+            tasksLister(tasksInData);
             System.out.print("Enter your taskID: ");
 
             if (scanner.hasNextInt()) {

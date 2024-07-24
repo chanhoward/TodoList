@@ -1,4 +1,4 @@
-package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
+package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
 public class PendingRankFilter extends TaskFilteringUtils {
     public static void filterByPendingRank(String keyword) {

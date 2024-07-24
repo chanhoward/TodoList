@@ -1,6 +1,6 @@
-package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
+package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
-import org.todolist.FuncitonClass.SearchTaskSystem.SearchingSystemManager;
+import org.todolist.FunctionClass.SearchTaskSystem.SearchingSystemManager;
 import org.todolist.TaskClass;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public abstract class TaskFilteringUtils extends SearchingSystemManager {
             return;
         }
 
-        listTasks(filteredTask);
+        tasksLister(filteredTask);
         System.out.println("Found " + filteredTask.size() + " matching tasks.");
 
     }

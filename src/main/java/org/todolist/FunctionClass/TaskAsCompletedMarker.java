@@ -1,4 +1,4 @@
-package org.todolist.FuncitonClass;
+package org.todolist.FunctionClass;
 
 import org.todolist.FileAccess;
 import org.todolist.TaskClass;
@@ -6,7 +6,7 @@ import org.todolist.TaskClass;
 import java.util.List;
 import java.util.Scanner;
 
-public class MarkTaskAsCompleted extends TodoListManager {
+public class TaskAsCompletedMarker extends TodoListManager {
     private static final List<TaskClass> tasksInData = TodoListManager.tasksInData;
 
     public static void markTaskCompleted() {
@@ -22,7 +22,7 @@ public class MarkTaskAsCompleted extends TodoListManager {
                 break;
             }
 
-            listTasks(tasksInData);
+            tasksLister(tasksInData);
 
             int inputTaskID = inputTaskID();
             if (inputTaskID == 0) {

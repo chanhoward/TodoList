@@ -1,7 +1,7 @@
-package org.todolist.FuncitonClass.SearchTaskSystem;
+package org.todolist.FunctionClass.SearchTaskSystem;
 
-import org.todolist.FuncitonClass.SearchTaskSystem.FilterClass.TaskFilteringUtils;
-import org.todolist.FuncitonClass.TodoListManager;
+import org.todolist.FunctionClass.SearchTaskSystem.FilterClass.TaskFilteringUtils;
+import org.todolist.FunctionClass.TodoListManager;
 
 import java.util.Scanner;
 
@@ -28,7 +28,7 @@ public class SearchingSystemManager extends TodoListManager {
                 continue;
             }
 
-            listTasks(tasksInData);
+            tasksLister(tasksInData);
             String keyword = getInputKeyword(searchType);
 
             filterTypeDistribution(searchType, keyword);

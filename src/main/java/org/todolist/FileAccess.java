@@ -38,7 +38,7 @@ public class FileAccess {
         File dataFile = new File(DATA_FILE);
 
         if (!dataFile.exists()) {
-            LOGGER.warn("Data file does not exist or is empty.");
+            LOGGER.warn("Data file does not exist.");
             buildDataFile();
             return new ArrayList<>();
         }

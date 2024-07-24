@@ -1,4 +1,4 @@
-package org.todolist.FuncitonClass;
+package org.todolist.FunctionClass;
 
 import org.todolist.FileAccess;
 import org.todolist.TaskClass;
@@ -8,7 +8,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class AddTask extends TodoListManager {
+public class TaskAdder extends TodoListManager {
 
     private static final Scanner scanner = new Scanner(System.in);
 

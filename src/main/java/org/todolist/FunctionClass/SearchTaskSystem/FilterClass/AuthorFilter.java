@@ -1,4 +1,4 @@
-package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
+package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
 public class AuthorFilter extends TaskFilteringUtils {
     public static void filterByAuthor(String keyword) {

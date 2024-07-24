@@ -19,6 +19,9 @@ public class AddTaskPressureTest {
     private static final boolean isDone = true;
 
     public static void main(String[] args) {
+        if (AMOUNT == 0) {
+            return;
+        }
 
         int task = tasksInData.isEmpty() ? 1 : tasksInData.size() + 1;
 

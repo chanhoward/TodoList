@@ -1,6 +1,6 @@
 package org.todolist;
 
-import org.todolist.FuncitonClass.TodoListManager;
+import org.todolist.FunctionClass.TodoListManager;
 
 import java.util.Scanner;
 
@@ -16,12 +16,12 @@ public class Menu extends TodoListManager {
 
             switch (command) {
                 case 0 -> isRunning = false;
-                case 1 -> TodoListManager.addTask();
-                case 2 -> TodoListManager.markTaskCompleted();
+                case 1 -> TodoListManager.taskAdder();
+                case 2 -> TodoListManager.taskCompletedMarker();
                 case 3 -> TodoListManager.removeTask();
                 case 4 -> TodoListManager.searchTypeManager();
-                case 5 -> TodoListManager.listTasks(tasksInData);
-                case 6 -> TodoListManager.autoRemoveTasks();
+                case 5 -> TodoListManager.tasksLister(tasksInData);
+                case 6 -> TodoListManager.taskAutoRemover();
                 default -> System.out.println("Invalid command.");
             }
         }

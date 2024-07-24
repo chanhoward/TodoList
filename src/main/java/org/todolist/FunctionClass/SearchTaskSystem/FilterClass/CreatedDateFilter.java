@@ -1,4 +1,4 @@
-package org.todolist.FuncitonClass.SearchTaskSystem.FilterClass;
+package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
 public class CreatedDateFilter extends TaskFilteringUtils {
     public static void filterByCreatedDate(String keyword) { //ToDo use more easy input format

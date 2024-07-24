@@ -1,7 +1,7 @@
-package org.todolist.FuncitonClass;
+package org.todolist.FunctionClass;
 
 import org.todolist.FileAccess;
-import org.todolist.FuncitonClass.SearchTaskSystem.SearchingSystemManager;
+import org.todolist.FunctionClass.SearchTaskSystem.SearchingSystemManager;
 import org.todolist.TaskClass;
 
 import java.util.List;
@@ -17,16 +17,16 @@ public abstract class TodoListManager {
         isAccessFail = FileAccess.isAccessFail;
     }
 
-    public static void addTask() {
-        AddTask.addTask();
+    public static void taskAdder() {
+        TaskAdder.addTask();
     }
 
-    public static void listTasks(List<TaskClass> list) {
-        ListTasks.listTasks(list);
+    public static void tasksLister(List<TaskClass> list) {
+        TasksLister.listTasks(list);
     }
 
-    public static void markTaskCompleted() {
-        MarkTaskAsCompleted.markTaskCompleted();
+    public static void taskCompletedMarker() {
+        TaskAsCompletedMarker.markTaskCompleted();
     }
 
     public static void searchTypeManager() {
@@ -37,8 +37,8 @@ public abstract class TodoListManager {
         RemoveTask.inputAndDeleteTask();
     }
 
-    public static void autoRemoveTasks() {
-        AutoRemoveTasks.autoRemoveTasks();
+    public static void taskAutoRemover() {
+        TaskAutoRemover.removeExpiredTasks();
     }
 
 }

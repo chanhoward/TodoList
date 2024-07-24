@@ -1,10 +1,10 @@
-package org.todolist.FuncitonClass;
+package org.todolist.FunctionClass;
 
 import org.todolist.TaskClass;
 
 import java.util.List;
 
-public class ListTasks extends TodoListManager {
+public class TasksLister extends TodoListManager {
 
     public static void listTasks(List<TaskClass> list) {
         if (isAccessFail) {
