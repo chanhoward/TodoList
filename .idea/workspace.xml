@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.0&#10;. rewrite data file system&#10;. rearrange menu display&#10;. add due time&#10;. add auto delete system&#10;. add block action when file access fail&#10;. add TimeClass to deal with task time&#10;. add time score&#10;. make ListTasks more useful when call&#10;. fix ResetAllFile&#10;. rename search system functions">
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs">
       <change afterPath="$PROJECT_DIR$/Data.dat.new" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Data.dat.old" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AddTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/AutoRemoveTasks.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/ListTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/MarkTaskAsCompleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/AuthorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/AuthorFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/ContentFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/ContentFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/DueDateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/DueDateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/PendingRankFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/PendingRankFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/FilterClass/TaskIdFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/TaskIdFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/SearchTaskSystem/SearchingSystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/SearchingSystemManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FuncitonClass/TodoListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TodoListManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +150,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.AddTaskPressureTest">
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile" />
       <method v="2" />
@@ -469,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721543095122</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs">
+      <option name="closed" value="true" />
+      <created>1721799294980</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1721799294980</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -524,7 +515,8 @@
     <MESSAGE value="1.6.3&#10;. add tasks amount limit: 100000&#10;. logger improvement&#10;. file system improvement&#10;. remove task function improvement&#10;. reset file function improvement" />
     <MESSAGE value="1.6.4&#10;. add task pending rank&#10;. fix isTasksFull won't back to false&#10;. fix logger order" />
     <MESSAGE value="1.7.0&#10;. rewrite data file system&#10;. rearrange menu display&#10;. add due time&#10;. add auto delete system&#10;. add block action when file access fail&#10;. add TimeClass to deal with task time&#10;. add time score&#10;. make ListTasks more useful when call&#10;. fix ResetAllFile&#10;. rename search system functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.7.0&#10;. rewrite data file system&#10;. rearrange menu display&#10;. add due time&#10;. add auto delete system&#10;. add block action when file access fail&#10;. add TimeClass to deal with task time&#10;. add time score&#10;. make ListTasks more useful when call&#10;. fix ResetAllFile&#10;. rename search system functions" />
+    <MESSAGE value="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

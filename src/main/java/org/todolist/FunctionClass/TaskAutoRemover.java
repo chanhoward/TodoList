@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class TaskAutoRemover extends TodoListManager {
 
     private static final int NUM_PARTITIONS = 4;
+    private static final int TIME_THRESHOLD = 3 * 24 * 60;  //  3 days
 
     public static void removeExpiredTasks() {
         LocalDateTime currentTime = LocalDateTime.now();
@@ -52,7 +53,7 @@ public class TaskAutoRemover extends TodoListManager {
 
     private static List<TaskClass> filterTasksForRemoval(List<TaskClass> tasks, int currentTimeScore) {
         return tasks.stream()
-                .filter(task -> task.isTaskCompleteStatus() && task.getTimeScore() < currentTimeScore)
+                .filter(task -> task.isTaskCompleteStatus() && task.getTimeScore() < currentTimeScore - TIME_THRESHOLD)
                 .collect(Collectors.toList());
     }
 

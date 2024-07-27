@@ -8,14 +8,17 @@ import java.util.Scanner;
 
 public class AddTaskPressureTest {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final int AMOUNT = scanner.nextInt();
     private static final List<TaskClass> TASKS = new ArrayList<>();
     private static final List<TaskClass> tasksInData = FileAccess.readDataFile();
     private static final TimeClass TIME_CLASS = new TimeClass();
     private static final String currentlyTime = TIME_CLASS.getCurrentTime();
     private static final String pendingRank = "Low";
     private static final String dueTime = null;
-    private static final int DUE_TIME_SCORE = 1064147650;
+    private static final int AMOUNT = scanner.nextInt();
+    private static final int dueYear = 2024;
+    private static final int dueMonth = 7;
+    private static final int dueDay = 22;
+    private static final int dueTimeScore = dueYear * 365 * 24 * 60 + dueMonth * 30 * 24 * 60 + dueDay * 24 * 60;
     private static final boolean isDone = true;
 
     public static void main(String[] args) {
@@ -29,7 +32,15 @@ public class AddTaskPressureTest {
             String content = "Task " + task;
             String author = "Author " + task;
 
-            TaskClass newTask = new TaskClass(task, pendingRank, content, dueTime, author, currentlyTime, DUE_TIME_SCORE, isDone);
+            TaskClass newTask = new TaskClass(
+                    task,
+                    pendingRank,
+                    content,
+                    dueTime,
+                    author,
+                    currentlyTime,
+                    dueTimeScore,
+                    isDone);
             TASKS.add(newTask);
             task++;
 
