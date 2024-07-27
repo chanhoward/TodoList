@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs">
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.2&#10;. add time threshold 3 days">
       <change afterPath="$PROJECT_DIR$/Data.dat.new" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Data.dat.old" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +154,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AddTaskPressureTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
       <deployment type="dockerfile" />
       <method v="2" />
@@ -460,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721799294980</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="1.7.2&#10;. add time threshold 3 days">
+      <option name="closed" value="true" />
+      <created>1722040473865</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1722040473865</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -516,7 +528,8 @@
     <MESSAGE value="1.6.4&#10;. add task pending rank&#10;. fix isTasksFull won't back to false&#10;. fix logger order" />
     <MESSAGE value="1.7.0&#10;. rewrite data file system&#10;. rearrange menu display&#10;. add due time&#10;. add auto delete system&#10;. add block action when file access fail&#10;. add TimeClass to deal with task time&#10;. add time score&#10;. make ListTasks more useful when call&#10;. fix ResetAllFile&#10;. rename search system functions" />
     <MESSAGE value="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs" />
+    <MESSAGE value="1.7.2&#10;. add time threshold 3 days" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.7.2&#10;. add time threshold 3 days" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

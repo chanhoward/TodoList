@@ -17,10 +17,6 @@ public class TaskAdder extends TodoListManager {
             System.out.println("Task list is full. Cannot add more tasks.");
             return;
         }
-        if (isAccessFail) {
-            System.err.println("Failed to access the task list.");
-            return;
-        }
 
         String pendingRank = inputRank();
         String content = inputContent();

@@ -7,11 +7,6 @@ import java.util.List;
 public class TasksLister extends TodoListManager {
 
     public static void listTasks(List<TaskClass> list) {
-        if (isAccessFail) {
-            System.err.println("Failed to access data file.");
-            return;
-        }
-
         if (tasksInData.isEmpty()) {
             System.out.println("There are currently no to-do tasks");
             return;

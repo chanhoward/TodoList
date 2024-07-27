@@ -65,7 +65,6 @@ public class FileAccess {
             isAccessFail = true;
             LOGGER.error("Error occurred while reading or decrypting the data file: ", e);
             ResetAllFile.resetAllFile();
-            tasksCache = new ArrayList<>();
         }
 
         return tasksCache;

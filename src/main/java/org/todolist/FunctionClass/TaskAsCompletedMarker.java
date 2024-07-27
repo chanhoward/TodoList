@@ -12,11 +12,6 @@ public class TaskAsCompletedMarker extends TodoListManager {
     public static void markTaskCompleted() {
         while (true) {
 
-            if (isAccessFail) {
-                System.err.println("Failed to access data file.");
-                break;
-            }
-
             if (tasksInData.isEmpty()) {
                 System.out.println("There are currently no to-do task");
                 break;

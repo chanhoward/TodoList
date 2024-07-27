@@ -70,7 +70,7 @@ public class FileEncryption extends FileAccess {
     }
 
     private static void saveKeyAndIv(File keyFile, File ivFile) {
-        LOGGER.info("Saving key and IV to files...");
+        LOGGER.info("Building key and IV files...");
         try (FileOutputStream keyOut = new FileOutputStream(keyFile);
              FileOutputStream ivOut = new FileOutputStream(ivFile)) {
             keyOut.write(key.getEncoded());

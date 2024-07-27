@@ -8,10 +8,6 @@ public class RemoveTask extends TodoListManager {
 
     public static void inputAndDeleteTask() {
         while (true) {
-            if (isAccessFail) {
-                System.err.println("Failed to access data file.");
-                return;
-            }
 
             if (tasksInData.isEmpty()) {
                 System.out.println("No task to remove.");

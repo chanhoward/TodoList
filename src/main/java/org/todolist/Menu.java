@@ -8,6 +8,10 @@ public class Menu extends TodoListManager {
     private static boolean isRunning = true;
 
     public static void menuCommandManager() {
+        if (isAccessFail) {
+            System.err.println("Failed to access the task list.");
+            return;
+        }
 
         while (isRunning) {
             displayMenu();
