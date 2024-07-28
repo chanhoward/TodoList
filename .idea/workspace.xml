@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.2&#10;. add time threshold 3 days">
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.3&#10;. AccessFail display improvement">
       <change afterPath="$PROJECT_DIR$/Data.dat.new" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Data.dat.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_7_21__02_25___.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_7_21_下午_02_25_[更改]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/TimeClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TimeClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +106,7 @@
     &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/how20/dev/ToDoList&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/how20/dev/forge-1.20.6-50.1.0-mdk&quot;,
     &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -472,7 +474,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722040473865</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="1.7.3&#10;. AccessFail display improvement">
+      <option name="closed" value="true" />
+      <created>1722063568303</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1722063568303</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -529,7 +539,8 @@
     <MESSAGE value="1.7.0&#10;. rewrite data file system&#10;. rearrange menu display&#10;. add due time&#10;. add auto delete system&#10;. add block action when file access fail&#10;. add TimeClass to deal with task time&#10;. add time score&#10;. make ListTasks more useful when call&#10;. fix ResetAllFile&#10;. rename search system functions" />
     <MESSAGE value="1.7.1&#10;. task auto remover efficiency improvement&#10;. rename some functions&#10;. fix some bugs" />
     <MESSAGE value="1.7.2&#10;. add time threshold 3 days" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.7.2&#10;. add time threshold 3 days" />
+    <MESSAGE value="1.7.3&#10;. AccessFail display improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.7.3&#10;. AccessFail display improvement" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">

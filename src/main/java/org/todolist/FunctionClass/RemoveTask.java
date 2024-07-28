@@ -3,6 +3,7 @@ package org.todolist.FunctionClass;
 import org.todolist.FileAccess;
 
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class RemoveTask extends TodoListManager {
 
@@ -39,10 +40,12 @@ public class RemoveTask extends TodoListManager {
             System.out.print("Enter your taskID: ");
 
             if (scanner.hasNextInt()) {
-                return scanner.nextInt();
+                int command = scanner.nextInt();
+                scanner.nextLine();
+                return command;
             } else {
                 System.out.println("Invalid input. Please enter an integer.");
-                scanner.next();  // Clear the invalid input
+                scanner.nextLine();
             }
         }
     }
@@ -54,8 +57,8 @@ public class RemoveTask extends TodoListManager {
     }
 
     private static void rearrangeTasksId() {
-        for (int i = 0; i < tasksInData.size(); i++) {
-            tasksInData.get(i).setTaskId(i + 1);
-        }
+        IntStream.range(0, tasksInData.size()).forEach(
+                i -> tasksInData.get(i).setTaskId(i + 1)
+        );
     }
 }

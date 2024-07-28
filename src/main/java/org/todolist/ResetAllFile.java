@@ -24,8 +24,10 @@ public class ResetAllFile extends FileAccess {
 
         // Reset files
         LOGGER.info("Resetting all files...");
-        deleteDataFile();
-        deleteKeyAndIvFile();
+        deleteFile(DATA_FILE);
+        deleteFile(KEY_FILE);
+        deleteFile(IV_FILE);
+
         initialize();
         buildDataFile();
 
@@ -35,9 +37,9 @@ public class ResetAllFile extends FileAccess {
 
     private static boolean isAgreeToResetFile() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to reset all data? (That will make you lose all of the data) (y/n)");
-        String confirmation = scanner.nextLine();
-        if (confirmation.equalsIgnoreCase("y")) {
+        System.out.print("Do you want to reset all data? This will make you lose all of the data (y/n): ");
+        String confirmation = scanner.nextLine().trim().toLowerCase();
+        if (confirmation.equals("y") || confirmation.equals("yes")) {
             System.out.println("Reset confirmed.");
             return true;
         } else {
@@ -46,47 +48,18 @@ public class ResetAllFile extends FileAccess {
         }
     }
 
-    private static void deleteDataFile() {
-        File dataFile = new File(DATA_FILE);
-        if (!dataFile.exists()) {
-            LOGGER.warn("File does not exist: " + DATA_FILE);
+    private static void deleteFile(String fileName) {
+        File file = new File(fileName);
+        if (!file.exists()) {
+            LOGGER.warn("File does not exist: {}", fileName);
+            return;
         }
 
-        boolean deleted = dataFile.delete();
+        boolean deleted = file.delete();
         if (deleted) {
-            LOGGER.info("File deleted successfully: " + DATA_FILE);
+            LOGGER.info("File deleted successfully: {}", fileName);
         } else {
-            LOGGER.warn("Failed to delete file: " + DATA_FILE);
+            LOGGER.warn("Failed to delete file: {}", fileName);
         }
     }
-
-    private static void deleteKeyAndIvFile() {
-        File keyFile = new File(KEY_FILE);
-        File ivFile = new File(IV_FILE);
-        boolean deletedKey = false;
-        boolean deletedIv = false;
-
-        if (keyFile.exists()) {
-            deletedKey = keyFile.delete();
-            if (!deletedKey) {
-                LOGGER.warn("Failed to delete key file: " + KEY_FILE);
-            }
-        } else {
-            LOGGER.warn("Key file does not exist: " + KEY_FILE);
-        }
-
-        if (ivFile.exists()) {
-            deletedIv = ivFile.delete();
-            if (!deletedIv) {
-                LOGGER.warn("Failed to delete IV file: " + IV_FILE);
-            }
-        } else {
-            LOGGER.warn("IV file does not exist: " + IV_FILE);
-        }
-
-        if (deletedKey && deletedIv) {
-            LOGGER.info("Key and IV files deleted successfully");
-        }
-    }
-
 }

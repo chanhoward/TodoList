@@ -27,11 +27,16 @@ public class TimeClass {
     }
 
     public static int calculateTimeScore(int year, int month, int day, int hour, int minute) {
+        int minutesInHour = 60;
+        int minutesInDay = 24 * minutesInHour;
+        int minutesInMonth = 30 * minutesInDay;
+        int minutesInYear = 365 * minutesInDay;
+
         return minute +
-                hour * 60 +
-                day * 24 * 60 +
-                month * 30 * 24 * 60 +  //Todo: need more correct formula
-                year * 365 * 24 * 60;
+                hour * minutesInHour +
+                day * minutesInDay +
+                month * minutesInMonth +
+                year * minutesInYear;
     }
 
     public final int getTimeScore() {

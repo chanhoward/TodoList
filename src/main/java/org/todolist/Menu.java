@@ -62,10 +62,12 @@ public class Menu extends TodoListManager {
             System.out.print("Enter your command: ");
 
             if (scanner.hasNextInt()) {
-                return scanner.nextInt();
+                int command = scanner.nextInt();
+                scanner.nextLine();
+                return command;
             } else {
-                System.out.println("Invalid input. Please enter a integer.");
-                scanner.next();
+                System.out.println("Invalid input. Please enter an integer.");
+                scanner.nextLine();
             }
         }
     }

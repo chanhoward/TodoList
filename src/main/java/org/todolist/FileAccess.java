@@ -29,22 +29,16 @@ public class FileAccess {
             initialize();
         }
 
-        LOGGER.info("Reading data file...");
-
         if (!tasksCache.isEmpty()) {
             return tasksCache;
         }
 
+        LOGGER.info("Reading data file...");
         File dataFile = new File(DATA_FILE);
 
-        if (!dataFile.exists()) {
-            LOGGER.warn("Data file does not exist.");
+        if (!dataFile.exists() || dataFile.length() == 0) {
+            LOGGER.warn("Data file does not exist or is empty. Creating a new data file.");
             buildDataFile();
-            return new ArrayList<>();
-        }
-
-        if (dataFile.length() == 0) {
-            LOGGER.warn("Data file is empty.");
             return new ArrayList<>();
         }
 
@@ -53,20 +47,15 @@ public class FileAccess {
              ObjectInputStream objIn = new ObjectInputStream(cipherIn)) {
 
             Object obj = objIn.readObject();
-
             if (obj instanceof List<?>) {
                 tasksCache = (List<TaskClass>) obj;
             } else {
-                LOGGER.error("Deserialized object is not of type List<TaskClass>");
                 throw new ClassNotFoundException("Deserialized object is not of type List<TaskClass>");
             }
-
         } catch (Exception e) {
-            isAccessFail = true;
             LOGGER.error("Error occurred while reading or decrypting the data file: ", e);
-            ResetAllFile.resetAllFile();
+            handleReadError();
         }
-
         return tasksCache;
     }
 
@@ -92,12 +81,18 @@ public class FileAccess {
         try {
             File dataFile = new File(DATA_FILE);
             if (dataFile.createNewFile()) {
-                LOGGER.info("Data file created successfully: " + DATA_FILE);
+                LOGGER.info("File created successfully: " + DATA_FILE);
             } else {
-                LOGGER.warn("Data file already exists: " + DATA_FILE);
+                LOGGER.warn("File already exists: " + DATA_FILE);
             }
         } catch (Exception e) {
             LOGGER.error("Error occurred while creating the data file: ", e);
         }
+    }
+
+    private static void handleReadError() {
+        LOGGER.error("Handling read error. Resetting all files.");
+        isAccessFail = true;
+        ResetAllFile.resetAllFile();
     }
 }

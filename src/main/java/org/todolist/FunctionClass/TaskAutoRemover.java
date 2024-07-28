@@ -7,14 +7,14 @@ import org.todolist.TimeClass;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TaskAutoRemover extends TodoListManager {
 
     private static final int NUM_PARTITIONS = 4;
-    private static final int TIME_THRESHOLD = 3 * 24 * 60;  //  3 days
+    private static final int TIME_THRESHOLD = 3 * 24 * 60;  // 3 days
 
     public static void removeExpiredTasks() {
         LocalDateTime currentTime = LocalDateTime.now();
@@ -27,19 +27,15 @@ public class TaskAutoRemover extends TodoListManager {
 
         List<List<TaskClass>> partitions = splitTasksIntoPartitions(tasksInData);
 
-        ConcurrentMap<Integer, TaskClass> tasksToRemoveMap = new ConcurrentHashMap<>();
-
-        partitions.parallelStream().forEach(partition -> {
-            List<TaskClass> tasksToRemove = filterTasksForRemoval(partition, currentTimeScore);
-            tasksToRemove.forEach(task -> tasksToRemoveMap.put(task.getTaskId(), task));
-        });
+        ConcurrentMap<Integer, TaskClass> tasksToRemoveMap = partitions.parallelStream()
+                .flatMap(partition -> filterTasksForRemoval(partition, currentTimeScore).stream())
+                .collect(Collectors.toConcurrentMap(TaskClass::getTaskId, task -> task));
 
         List<TaskClass> filteredTasks = tasksInData.stream()
                 .filter(task -> !tasksToRemoveMap.containsKey(task.getTaskId()))
                 .collect(Collectors.toList());
 
-        int totalTasks = tasksInData.size();
-        int removedTasksCount = totalTasks - filteredTasks.size();
+        int removedTasksCount = tasksInData.size() - filteredTasks.size();
 
         if (removedTasksCount == 0) {
             System.out.println("No tasks to remove.");
@@ -69,8 +65,8 @@ public class TaskAutoRemover extends TodoListManager {
     }
 
     private static void rearrangeTaskIds() {
-        for (int i = 0; i < tasksInData.size(); i++) {
-            tasksInData.get(i).setTaskId(i + 1);
-        }
+        IntStream.range(0, tasksInData.size()).forEach(
+                i -> tasksInData.get(i).setTaskId(i + 1)
+        );
     }
 }
