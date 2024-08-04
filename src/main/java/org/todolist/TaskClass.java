@@ -20,6 +20,18 @@ public class TaskClass implements Serializable {
     private int taskId;
     private boolean taskCompleteStatus;
 
+    /**
+     * Creates a new task.
+     *
+     * @param taskId             the task ID
+     * @param pendingRank        the pending rank (e.g., High, Medium, Low)
+     * @param content            the content of the task
+     * @param dueDate            the due date of the task
+     * @param author             the author of the task
+     * @param createdDate        the creation date of the task
+     * @param timeScore          the time score representing the due time
+     * @param taskCompleteStatus the completion status of the task
+     */
     @JsonCreator
     public TaskClass(@JsonProperty("taskId") int taskId,
                      @JsonProperty("pendingRank") String pendingRank,

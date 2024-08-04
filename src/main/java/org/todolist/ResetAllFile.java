@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * This class is responsible for resetting all files related to the application.
- * It includes methods to delete the data file, key and IV files.
+ * It includes methods to delete the data file, key file, and IV file.
  */
 public class ResetAllFile extends FileAccess {
 
@@ -17,6 +17,10 @@ public class ResetAllFile extends FileAccess {
     private static final String KEY_FILE = "key.bin";
     private static final String IV_FILE = "iv.bin";
 
+    /**
+     * Resets all related files by deleting them and reinitializing the necessary data structures.
+     * Prompts the user for confirmation before performing the reset.
+     */
     public static void resetAllFile() {
         if (!isAgreeToResetFile()) {
             return;
@@ -35,6 +39,11 @@ public class ResetAllFile extends FileAccess {
         System.out.println("All files have been reset.");
     }
 
+    /**
+     * Prompts the user for confirmation to reset all data files.
+     *
+     * @return True if the user agrees to reset the files, false otherwise.
+     */
     private static boolean isAgreeToResetFile() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Do you want to reset all data? This will make you lose all of the data (y/n): ");
@@ -48,6 +57,11 @@ public class ResetAllFile extends FileAccess {
         }
     }
 
+    /**
+     * Deletes the specified file from the file system.
+     *
+     * @param fileName The name of the file to delete.
+     */
     private static void deleteFile(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {

@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.3&#10;. AccessFail display improvement">
-      <change afterPath="$PROJECT_DIR$/Data.dat.new" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data.dat.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_7_21__02_25___.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_7_21_下午_02_25_[更改]/shelved.patch" beforeDir="false" />
+    <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.7.3&#10;. some code improvement">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/SearchingSystemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/SearchingSystemManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TodoListManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TodoListManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TaskClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/TimeClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/TimeClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -509,6 +510,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/dev/ToDoList" />
@@ -541,7 +543,9 @@
     <MESSAGE value="1.7.2&#10;. add time threshold 3 days" />
     <MESSAGE value="1.7.3&#10;. AccessFail display improvement" />
     <option name="LAST_COMMIT_MESSAGE" value="1.7.3&#10;. AccessFail display improvement" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

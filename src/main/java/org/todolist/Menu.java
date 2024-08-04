@@ -9,28 +9,34 @@ public class Menu extends TodoListManager {
 
     public static void menuCommandManager() {
         if (isAccessFail) {
-            System.err.println("Failed to access the task list.");
+            showError("Failed to access the task list.");
             return;
         }
 
-        while (isRunning) {
+        do {
             displayMenu();
-
             int command = getUserCommand();
-
-            switch (command) {
-                case 0 -> isRunning = false;
-                case 1 -> TodoListManager.taskAdder();
-                case 2 -> TodoListManager.taskCompletedMarker();
-                case 3 -> TodoListManager.removeTask();
-                case 4 -> TodoListManager.searchTypeManager();
-                case 5 -> TodoListManager.tasksLister(tasksInData);
-                case 6 -> TodoListManager.taskAutoRemover();
-                default -> System.out.println("Invalid command.");
-            }
-        }
-
+            executeCommand(command);
+        } while (isRunning);
     }
+
+    private static void showError(String msg) {
+        System.err.println(msg);
+    }
+
+    private static void executeCommand(int command) {
+        switch (command) {
+            case 0 -> isRunning = false;
+            case 1 -> TodoListManager.taskAdder();
+            case 2 -> TodoListManager.taskCompletedMarker();
+            case 3 -> TodoListManager.removeTask();
+            case 4 -> TodoListManager.searchTypeManager();
+            case 5 -> TodoListManager.tasksLister(tasksInData);
+            case 6 -> TodoListManager.taskAutoRemover();
+            default -> System.out.println("Invalid command.");
+        }
+    }
+
 
     private static void displayMenu() {
         if (tasksInData.size() >= TASK_COUNT_LIMIT) {

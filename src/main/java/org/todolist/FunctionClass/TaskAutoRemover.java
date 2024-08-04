@@ -14,8 +14,13 @@ import java.util.stream.IntStream;
 public class TaskAutoRemover extends TodoListManager {
 
     private static final int NUM_PARTITIONS = 4;
-    private static final int TIME_THRESHOLD = 3 * 24 * 60;  // 3 days
+    private static final int DAYS_THRESHOLD = 3;
+    private static final int MINUTES_IN_A_DAY = 24 * 60;
+    private static final int TIME_THRESHOLD = DAYS_THRESHOLD * MINUTES_IN_A_DAY;
 
+    /**
+     * Removes expired tasks based on the current time and defined threshold.
+     */
     public static void removeExpiredTasks() {
         LocalDateTime currentTime = LocalDateTime.now();
         int currentTimeScore = TimeClass.calculateTimeScore(
@@ -47,12 +52,28 @@ public class TaskAutoRemover extends TodoListManager {
         }
     }
 
+    /**
+     * Filters tasks for removal based on their completion status and time score.
+     *
+     * @param tasks            The list of tasks to filter.
+     * @param currentTimeScore The current time score for comparison.
+     * @return The list of tasks to be removed.
+     */
     private static List<TaskClass> filterTasksForRemoval(List<TaskClass> tasks, int currentTimeScore) {
         return tasks.stream()
-                .filter(task -> task.isTaskCompleteStatus() && task.getTimeScore() < currentTimeScore - TIME_THRESHOLD)
+                .filter(task ->
+                        task.getTimeScore() != 0 &&
+                                task.isTaskCompleteStatus() &&
+                                task.getTimeScore() < currentTimeScore - TIME_THRESHOLD)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Splits the tasks into partitions for parallel processing.
+     *
+     * @param tasks The list of tasks to split.
+     * @return The list of partitions.
+     */
     private static List<List<TaskClass>> splitTasksIntoPartitions(List<TaskClass> tasks) {
         int partitionSize = (int) Math.ceil((double) tasks.size() / NUM_PARTITIONS);
         List<List<TaskClass>> partitions = new ArrayList<>();
@@ -64,6 +85,9 @@ public class TaskAutoRemover extends TodoListManager {
         return partitions;
     }
 
+    /**
+     * Rearranges the task IDs to ensure they are sequential.
+     */
     private static void rearrangeTaskIds() {
         IntStream.range(0, tasksInData.size()).forEach(
                 i -> tasksInData.get(i).setTaskId(i + 1)

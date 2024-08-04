@@ -4,33 +4,47 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeClass {
-    private final LocalDateTime currentTime = LocalDateTime.now();
-    private final String formatterTime = currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-    private final int year, month, day, hour, minute;
-    private int timeScore;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public TimeClass(int timeScore, int year, int month, int day, int hour, int minute) {
-        this.timeScore = timeScore;
+    private final LocalDateTime currentTime = LocalDateTime.now();
+    private final int year, month, day, hour, minute;
+    private final int timeScore;
+
+    // Constructor to initialize with specific values
+    public TimeClass(int year, int month, int day, int hour, int minute) {
         this.year = year;
         this.month = month;
         this.day = day;
         this.hour = hour;
         this.minute = minute;
+        this.timeScore = calculateTimeScore(year, month, day, hour, minute);
     }
 
+    // Default constructor initializing with current time
     public TimeClass() {
         this.year = currentTime.getYear();
         this.month = currentTime.getMonthValue();
         this.day = currentTime.getDayOfMonth();
         this.hour = currentTime.getHour();
         this.minute = currentTime.getMinute();
+        this.timeScore = calculateTimeScore(year, month, day, hour, minute);
     }
 
+    /**
+     * Calculates a time score based on the provided date and time.
+     *
+     * @param year   the year
+     * @param month  the month (1-12)
+     * @param day    the day of the month
+     * @param hour   the hour of the day (0-23)
+     * @param minute the minute of the hour (0-59)
+     * @return the calculated time score
+     */
     public static int calculateTimeScore(int year, int month, int day, int hour, int minute) {
         int minutesInHour = 60;
         int minutesInDay = 24 * minutesInHour;
-        int minutesInMonth = 30 * minutesInDay;
-        int minutesInYear = 365 * minutesInDay;
+        int minutesInMonth = 30 * minutesInDay; // Approximate
+        int minutesInYear = 365 * minutesInDay; // Approximate
 
         return minute +
                 hour * minutesInHour +
@@ -39,36 +53,35 @@ public class TimeClass {
                 year * minutesInYear;
     }
 
-    public final int getTimeScore() {
+    public int getTimeScore() {
         return timeScore;
     }
 
-    public final String getCurrentTime() {
-        return formatterTime;
+    public String getCurrentTime() {
+        return currentTime.format(FORMATTER);
     }
 
-    public final int getCurrentYear() {
+    public int getCurrentYear() {
         return currentTime.getYear();
     }
 
-    public final int getYear() {
+    public int getYear() {
         return year;
     }
 
-    public final int getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public final int getDay() {
+    public int getDay() {
         return day;
     }
 
-    public final int getHour() {
+    public int getHour() {
         return hour;
     }
 
-    public final int getMinute() {
+    public int getMinute() {
         return minute;
     }
-
 }
