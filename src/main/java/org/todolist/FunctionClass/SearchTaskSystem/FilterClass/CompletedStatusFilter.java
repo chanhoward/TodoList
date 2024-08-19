@@ -1,5 +1,7 @@
 package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
+import static org.todolist.UserMessages.INVALID_YES_NO_INPUT_MSG;
+
 public class CompletedStatusFilter extends TaskFilteringUtils {
     public static void filterByCompletedStatus(String keyword) {
         String processedKeyword;
@@ -8,12 +10,12 @@ public class CompletedStatusFilter extends TaskFilteringUtils {
         } else if (keyword.equalsIgnoreCase("n")) {
             processedKeyword = "false";
         } else {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
+            System.out.println(INVALID_YES_NO_INPUT_MSG.getMessage());
             return;
         }
 
         toBeFilteredTask.stream()
-                .filter(task -> String.valueOf(task.isTaskCompleteStatus()).equalsIgnoreCase(processedKeyword))
+                .filter(task -> String.valueOf(task.checkTaskCompleteStatus()).equalsIgnoreCase(processedKeyword))
                 .forEach(filteredTask::add);
     }
 }

@@ -6,10 +6,13 @@ import org.todolist.TaskClass;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.todolist.UserMessages.FOUND_MATCHING_TASKS_MSG;
+import static org.todolist.UserMessages.SEARCH_NO_RESULT_MSG;
+
 public abstract class TaskFilteringUtils extends SearchingSystemManager {
 
-    static List<TaskClass> toBeFilteredTask = new ArrayList<>();
-    static List<TaskClass> filteredTask = new ArrayList<>();
+    static List<TaskClass> toBeFilteredTask = new ArrayList<>(1000);
+    static List<TaskClass> filteredTask = new ArrayList<>(50);
 
     public static void updateToBeFilteredTasks() {
         toBeFilteredTask.clear();
@@ -22,12 +25,12 @@ public abstract class TaskFilteringUtils extends SearchingSystemManager {
 
     public static void printFilteredTasks() {
         if (filteredTask.isEmpty()) {
-            System.out.println("No task found for the given search criteria.");
+            System.out.println(SEARCH_NO_RESULT_MSG.getMessage());
             return;
         }
 
         tasksLister(filteredTask);
-        System.out.println("Found " + filteredTask.size() + " matching tasks.");
+        System.out.printf(FOUND_MATCHING_TASKS_MSG.getMessage(), filteredTask.size());
 
     }
 

@@ -2,9 +2,12 @@ package org.todolist;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.todolist.FunctionClass.TodoListManager;
 
 import java.io.File;
 import java.util.Scanner;
+
+import static org.todolist.UserMessages.*;
 
 /**
  * This class is responsible for resetting all files related to the application.
@@ -12,10 +15,8 @@ import java.util.Scanner;
  */
 public class ResetAllFile extends FileAccess {
 
-    private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
-    private static final String DATA_FILE = "Data.dat";
-    private static final String KEY_FILE = "key.bin";
-    private static final String IV_FILE = "iv.bin";
+    private static final Logger LOGGER = LogManager.getLogger(ResetAllFile.class);
+    private static final String[] filesToBeReset = {"Data.dat", "key.bin", "iv.bin"};
 
     /**
      * Resets all related files by deleting them and reinitializing the necessary data structures.
@@ -28,15 +29,22 @@ public class ResetAllFile extends FileAccess {
 
         // Reset files
         LOGGER.info("Resetting all files...");
-        deleteFile(DATA_FILE);
-        deleteFile(KEY_FILE);
-        deleteFile(IV_FILE);
+        for (String fileName : filesToBeReset) {
+            try {
+                deleteFiles(fileName);
+            } catch (Exception e) {
+                LOGGER.error(e);
+                System.err.println("Fail to reset system.");
+                System.exit(1);
+            }
+        }
 
         initialize();
-        buildDataFile();
 
-        isAccessFail = false;
-        System.out.println("All files have been reset.");
+        TodoListManager.isLoadFail = false;
+        System.out.println(RESET_SUCCESS_MSG.getMessage());
+        System.out.println(RESTART_TO_RESET_MSG.getMessage());
+        System.exit(0);
     }
 
     /**
@@ -46,13 +54,14 @@ public class ResetAllFile extends FileAccess {
      */
     private static boolean isAgreeToResetFile() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to reset all data? This will make you lose all of the data (y/n): ");
+        System.err.println(SOME_THING_WRONG_MSG.getMessage());
+        System.err.print(RESET_CONFIRMATION_MSG.getMessage());
         String confirmation = scanner.nextLine().trim().toLowerCase();
         if (confirmation.equals("y") || confirmation.equals("yes")) {
-            System.out.println("Reset confirmed.");
+            System.out.println(RESET_CONFIRM_MSG.getMessage());
             return true;
         } else {
-            System.out.println("Reset canceled.");
+            System.out.println(RESET_CANCEL_MSG.getMessage());
             return false;
         }
     }
@@ -62,7 +71,7 @@ public class ResetAllFile extends FileAccess {
      *
      * @param fileName The name of the file to delete.
      */
-    private static void deleteFile(String fileName) {
+    private static void deleteFiles(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
             LOGGER.warn("File does not exist: {}", fileName);
@@ -73,7 +82,7 @@ public class ResetAllFile extends FileAccess {
         if (deleted) {
             LOGGER.info("File deleted successfully: {}", fileName);
         } else {
-            LOGGER.warn("Failed to delete file: {}", fileName);
+            throw new RuntimeException("Failed to delete file: ", new Throwable(fileName));
         }
     }
 }

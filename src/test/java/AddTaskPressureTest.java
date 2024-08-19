@@ -1,4 +1,7 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.todolist.FileAccess;
+import org.todolist.ResetAllFile;
 import org.todolist.TaskClass;
 import org.todolist.TimeClass;
 
@@ -7,28 +10,47 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddTaskPressureTest {
+    private static final Logger LOGGER = LogManager.getLogger(AddTaskPressureTest.class);
     private static final Scanner scanner = new Scanner(System.in);
-    private static final List<TaskClass> TASKS = new ArrayList<>();
-    private static final List<TaskClass> tasksInData = FileAccess.readDataFile();
+    private static final List<TaskClass> TASKS = new ArrayList<>(100000);
     private static final TimeClass TIME_CLASS = new TimeClass();
     private static final String currentlyTime = TIME_CLASS.getCurrentTime();
     private static final String pendingRank = "Low";
     private static final String dueTime = null;
-    private static final int AMOUNT = scanner.nextInt();
     private static final int dueYear = 2024;
     private static final int dueMonth = 7;
     private static final int dueDay = 22;
     private static final int dueTimeScore = dueYear * 365 * 24 * 60 + dueMonth * 30 * 24 * 60 + dueDay * 24 * 60;
     private static final boolean isDone = true;
+    private static int amount;
+    private static List<TaskClass> tasksInData;
+
+    static {
+        try {
+            tasksInData = FileAccess.readDataFile();
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while reading data file: ", e);
+            ResetAllFile.resetAllFile();
+        }
+
+        try {
+            System.out.print("Enter the amount of tasks to add: ");
+            amount = scanner.nextInt();
+            scanner.nextLine();
+        } catch (Exception e) {
+            LOGGER.error("Invalid input for amount: ", e);
+            amount = 0;
+        }
+    }
 
     public static void main(String[] args) {
-        if (AMOUNT == 0) {
+        if (amount == 0) {
             return;
         }
 
         int task = tasksInData.isEmpty() ? 1 : tasksInData.size() + 1;
 
-        for (int i = 1; i <= AMOUNT; i++) {
+        for (int i = 1; i <= amount; i++) {
             String content = "Task " + task;
             String author = "Author " + task;
 
@@ -44,7 +66,7 @@ public class AddTaskPressureTest {
             TASKS.add(newTask);
             task++;
 
-            if (i % 10 == 0 || i == AMOUNT) {
+            if (i % 10 == 0 || i == amount) {
                 printProgressBar(i);
             }
 
@@ -56,7 +78,7 @@ public class AddTaskPressureTest {
     }
 
     private static void printProgressBar(int current) {
-        int progress = (int) ((double) current / AMOUNT * 50);
+        int progress = (int) ((double) current / amount * 50);
         StringBuilder progressBar = new StringBuilder("\r[");
 
         for (int i = 0; i < 50; i++) {
@@ -65,9 +87,9 @@ public class AddTaskPressureTest {
         progressBar.append("] ")
                 .append(current)
                 .append("/")
-                .append(AMOUNT)
+                .append(amount)
                 .append(" (")
-                .append((int) ((double) current / AMOUNT * 100))
+                .append((int) ((double) current / amount * 100))
                 .append("%)");
 
         System.out.print(progressBar);
@@ -76,7 +98,11 @@ public class AddTaskPressureTest {
     private static void addTaskToDataFile() {
         List<TaskClass> updatedTasks = tasksInData;
         updatedTasks.addAll(TASKS);
-        FileAccess.writeDataFile(updatedTasks);
+        try {
+            FileAccess.writeDataFile(updatedTasks);
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while writing data file: ", e);
+        }
         TASKS.clear();
     }
 

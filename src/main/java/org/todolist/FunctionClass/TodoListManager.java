@@ -1,7 +1,10 @@
 package org.todolist.FunctionClass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.todolist.FileAccess;
 import org.todolist.FunctionClass.SearchTaskSystem.SearchingSystemManager;
+import org.todolist.ResetAllFile;
 import org.todolist.TaskClass;
 
 import java.util.List;
@@ -11,13 +14,19 @@ import java.util.List;
  */
 public abstract class TodoListManager {
     public static final int TASK_COUNT_LIMIT = 100000;
+    private static final Logger LOGGER = LogManager.getLogger(TodoListManager.class);
     public static List<TaskClass> tasksInData;
     public static boolean isTasksFull = false;
-    public static boolean isAccessFail;
+    public static boolean isLoadFail;
 
     static {
-        tasksInData = FileAccess.readDataFile();
-        isAccessFail = FileAccess.isAccessFail;
+        try {
+            tasksInData = FileAccess.readDataFile();
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while reading data: ", e);
+            ResetAllFile.resetAllFile();
+            isLoadFail = true;
+        }
     }
 
     /**

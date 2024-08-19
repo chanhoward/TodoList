@@ -8,14 +8,16 @@ import javax.crypto.CipherOutputStream;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public class FileAccess {
 
     private static final Logger LOGGER = LogManager.getLogger(FileAccess.class);
     private static final String DATA_FILE = "Data.dat";
-    public static boolean isAccessFail = false;
+    private static final int BUFFER_SIZE = 8192;
     private static boolean isInitialized = false;
-    private static List<TaskClass> tasksCache = new ArrayList<>();
+    private static List<TaskClass> tasksCache = new ArrayList<>(1000);
 
     static void initialize() {
         LOGGER.info("Initializing data...");
@@ -36,15 +38,15 @@ public class FileAccess {
         LOGGER.info("Reading data file...");
         File dataFile = new File(DATA_FILE);
 
-        if (!dataFile.exists() || dataFile.length() == 0) {
-            LOGGER.warn("Data file does not exist or is empty. Creating a new data file.");
-            buildDataFile();
-            return new ArrayList<>();
+        if (dataFile.length() == 0 || !dataFile.exists()) {
+            return tasksCache;
         }
 
-        try (BufferedInputStream bufferedIn = new BufferedInputStream(new FileInputStream(dataFile));
+        try (FileInputStream fileIn = new FileInputStream(dataFile);
+             BufferedInputStream bufferedIn = new BufferedInputStream(fileIn, BUFFER_SIZE);
              CipherInputStream cipherIn = new CipherInputStream(bufferedIn, FileEncryption.getDecryptCipher());
-             ObjectInputStream objIn = new ObjectInputStream(cipherIn)) {
+             GZIPInputStream gzipIn = new GZIPInputStream(cipherIn);
+             ObjectInputStream objIn = new ObjectInputStream(gzipIn)) {
 
             Object obj = objIn.readObject();
             if (obj instanceof List<?>) {
@@ -53,8 +55,7 @@ public class FileAccess {
                 throw new ClassNotFoundException("Deserialized object is not of type List<TaskClass>");
             }
         } catch (Exception e) {
-            LOGGER.error("Error occurred while reading or decrypting the data file: ", e);
-            handleReadError();
+            throw new RuntimeException("Fail to read data file: ", e);
         }
         return tasksCache;
     }
@@ -64,35 +65,17 @@ public class FileAccess {
             initialize();
         }
 
-        try (BufferedOutputStream bufferedOut = new BufferedOutputStream(new FileOutputStream(DATA_FILE));
+        try (FileOutputStream fileOut = new FileOutputStream(DATA_FILE);
+             BufferedOutputStream bufferedOut = new BufferedOutputStream(fileOut, BUFFER_SIZE);
              CipherOutputStream cipherOut = new CipherOutputStream(bufferedOut, FileEncryption.getEncryptCipher());
-             ObjectOutputStream objOut = new ObjectOutputStream(cipherOut)) {
+             GZIPOutputStream gzipOut = new GZIPOutputStream(cipherOut);
+             ObjectOutputStream objOut = new ObjectOutputStream(gzipOut)) {
 
             LOGGER.info("Writing data file...");
             objOut.writeObject(tasks);
             tasksCache = new ArrayList<>(tasks);
         } catch (Exception e) {
-            LOGGER.error("Error occurred while writing the data file: ", e);
+            throw new RuntimeException("Fail to write data file: ", e);
         }
-    }
-
-    public static void buildDataFile() {
-        LOGGER.info("Building data file...");
-        try {
-            File dataFile = new File(DATA_FILE);
-            if (dataFile.createNewFile()) {
-                LOGGER.info("File created successfully: " + DATA_FILE);
-            } else {
-                LOGGER.warn("File already exists: " + DATA_FILE);
-            }
-        } catch (Exception e) {
-            LOGGER.error("Error occurred while creating the data file: ", e);
-        }
-    }
-
-    private static void handleReadError() {
-        LOGGER.error("Handling read error. Resetting all files.");
-        isAccessFail = true;
-        ResetAllFile.resetAllFile();
     }
 }

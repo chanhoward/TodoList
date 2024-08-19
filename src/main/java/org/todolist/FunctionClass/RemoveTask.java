@@ -1,15 +1,20 @@
 package org.todolist.FunctionClass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.todolist.FileAccess;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
+
+import static org.todolist.UserMessages.*;
 
 /**
  * This class is responsible for removing tasks from the to-do list.
  * It includes methods to input the task ID, delete the task, and rearrange task IDs.
  */
 public class RemoveTask extends TodoListManager {
+    private static final Logger LOGGER = LogManager.getLogger(RemoveTask.class);
 
     /**
      * Prompts the user to input a task ID and deletes the corresponding task.
@@ -18,7 +23,7 @@ public class RemoveTask extends TodoListManager {
     public static void inputAndDeleteTask() {
         while (true) {
             if (tasksInData.isEmpty()) {
-                System.out.println("No task to remove.");
+                System.out.println(NO_TASK_TO_REMOVE_MSG.getMessage());
                 break;
             }
 
@@ -28,12 +33,12 @@ public class RemoveTask extends TodoListManager {
             }
 
             if (index < 1 || index > tasksInData.size()) {
-                System.out.println("Invalid task ID. No task removed.");
+                System.out.println(TASK_NOT_FOUND_MSG.getMessage());
                 continue;
             }
 
             deleteTaskById(index);
-            System.out.println("Task removed successfully.");
+            System.out.println(TASK_REMOVED_MSG.getMessage());
             break;
         }
     }
@@ -48,14 +53,14 @@ public class RemoveTask extends TodoListManager {
 
         while (true) {
             tasksLister(tasksInData);
-            System.out.print("Enter your task ID: ");
+            System.out.print(PROMPT_ID_TO_REMOVE_MSG.getMessage());
 
             if (scanner.hasNextInt()) {
                 int command = scanner.nextInt();
                 scanner.nextLine();
                 return command;
             } else {
-                System.out.println("Invalid input. Please enter an integer.");
+                System.out.println(INVALID_INTEGER_INPUT_MSG.getMessage());
                 scanner.nextLine();
             }
         }
@@ -69,7 +74,11 @@ public class RemoveTask extends TodoListManager {
     public static void deleteTaskById(int index) {
         tasksInData.removeIf(task -> task.getTaskId() == index);
         rearrangeTasksId();
-        FileAccess.writeDataFile(tasksInData);
+        try {
+            FileAccess.writeDataFile(tasksInData);
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while deleting the task: ", e);
+        }
     }
 
     /**

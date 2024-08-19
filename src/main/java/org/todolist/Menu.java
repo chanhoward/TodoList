@@ -4,12 +4,14 @@ import org.todolist.FunctionClass.TodoListManager;
 
 import java.util.Scanner;
 
+import static org.todolist.UserMessages.*;
+
 public class Menu extends TodoListManager {
     private static boolean isRunning = true;
 
     public static void menuCommandManager() {
-        if (isAccessFail) {
-            showError("Failed to access the task list.");
+        if (isLoadFail) {
+            System.err.println(FAIL_TO_LOAD_MSG.getMessage());
             return;
         }
 
@@ -18,10 +20,6 @@ public class Menu extends TodoListManager {
             int command = getUserCommand();
             executeCommand(command);
         } while (isRunning);
-    }
-
-    private static void showError(String msg) {
-        System.err.println(msg);
     }
 
     private static void executeCommand(int command) {
@@ -33,14 +31,14 @@ public class Menu extends TodoListManager {
             case 4 -> TodoListManager.searchTypeManager();
             case 5 -> TodoListManager.tasksLister(tasksInData);
             case 6 -> TodoListManager.taskAutoRemover();
-            default -> System.out.println("Invalid command.");
+            default -> System.out.println(INVALID_COMMAND_MSG.getMessage());
         }
     }
 
 
     private static void displayMenu() {
         if (tasksInData.size() >= TASK_COUNT_LIMIT) {
-            System.err.println("\nTask count limit reached(100000). Please remove some tasks before adding new ones.");
+            System.err.println(TASK_FULL_MSG.getMessage());
             isTasksFull = true;
         } else {
             isTasksFull = false;
@@ -65,14 +63,14 @@ public class Menu extends TodoListManager {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.print("Enter your command: ");
+            System.out.print(PROMPT_COMMAND_MSG.getMessage());
 
             if (scanner.hasNextInt()) {
                 int command = scanner.nextInt();
                 scanner.nextLine();
                 return command;
             } else {
-                System.out.println("Invalid input. Please enter an integer.");
+                System.out.println(INVALID_INTEGER_INPUT_MSG.getMessage());
                 scanner.nextLine();
             }
         }

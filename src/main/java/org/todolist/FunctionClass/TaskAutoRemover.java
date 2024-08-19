@@ -1,5 +1,7 @@
 package org.todolist.FunctionClass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.todolist.FileAccess;
 import org.todolist.TaskClass;
 import org.todolist.TimeClass;
@@ -11,7 +13,11 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.todolist.UserMessages.NO_TASK_TO_REMOVE_MSG;
+import static org.todolist.UserMessages.TOTAL_REMOVED_MSG;
+
 public class TaskAutoRemover extends TodoListManager {
+    private static final Logger LOGGER = LogManager.getLogger(TaskAutoRemover.class);
 
     private static final int NUM_PARTITIONS = 4;
     private static final int DAYS_THRESHOLD = 3;
@@ -43,12 +49,16 @@ public class TaskAutoRemover extends TodoListManager {
         int removedTasksCount = tasksInData.size() - filteredTasks.size();
 
         if (removedTasksCount == 0) {
-            System.out.println("No tasks to remove.");
+            System.out.println(NO_TASK_TO_REMOVE_MSG.getMessage());
         } else {
             tasksInData = filteredTasks;
             rearrangeTaskIds();
-            FileAccess.writeDataFile(tasksInData);
-            System.out.println("Tasks removed successfully. Total removed: " + removedTasksCount);
+            try {
+                FileAccess.writeDataFile(tasksInData);
+            } catch (Exception e) {
+                LOGGER.error("Error removing tasks from data file: ", e);
+            }
+            System.out.println(TOTAL_REMOVED_MSG.getMessage() + removedTasksCount);
         }
     }
 
@@ -63,7 +73,7 @@ public class TaskAutoRemover extends TodoListManager {
         return tasks.stream()
                 .filter(task ->
                         task.getTimeScore() != 0 &&
-                                task.isTaskCompleteStatus() &&
+                                task.checkTaskCompleteStatus() &&
                                 task.getTimeScore() < currentTimeScore - TIME_THRESHOLD)
                 .collect(Collectors.toList());
     }
@@ -76,7 +86,7 @@ public class TaskAutoRemover extends TodoListManager {
      */
     private static List<List<TaskClass>> splitTasksIntoPartitions(List<TaskClass> tasks) {
         int partitionSize = (int) Math.ceil((double) tasks.size() / NUM_PARTITIONS);
-        List<List<TaskClass>> partitions = new ArrayList<>();
+        List<List<TaskClass>> partitions = new ArrayList<>(4);
 
         for (int i = 0; i < tasks.size(); i += partitionSize) {
             partitions.add(tasks.subList(i, Math.min(i + partitionSize, tasks.size())));

@@ -83,7 +83,7 @@ public class TaskClass implements Serializable {
         return createdDate;
     }
 
-    public boolean isTaskCompleteStatus() {
+    public boolean checkTaskCompleteStatus() {
         return taskCompleteStatus;
     }
 

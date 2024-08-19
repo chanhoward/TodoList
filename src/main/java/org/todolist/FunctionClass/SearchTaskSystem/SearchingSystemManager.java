@@ -5,6 +5,8 @@ import org.todolist.FunctionClass.TodoListManager;
 
 import java.util.Scanner;
 
+import static org.todolist.UserMessages.*;
+
 /**
  * This class manages the task searching system, allowing users to search for tasks based on various criteria.
  */
@@ -15,8 +17,8 @@ public class SearchingSystemManager extends TodoListManager {
      * Displays a menu to the user, handles input, and performs the corresponding filtering operation.
      */
     public static void filterProcessingManager() {
-        if (isAccessFail) {
-            System.err.println("Failed to access data file.");
+        if (isLoadFail) {
+            System.err.println(FAIL_TO_LOAD_MSG.getMessage());
             return;
         }
 
@@ -30,8 +32,8 @@ public class SearchingSystemManager extends TodoListManager {
             if (searchType == 0) {
                 break;
             }
-            if (searchType > 7) {
-                System.out.println("Invalid search type.");
+            if (searchType < 1 || searchType > 7) {
+                System.out.println(INVALID_SEARCH_TYPE_MSG.getMessage());
                 continue;
             }
 
@@ -73,12 +75,12 @@ public class SearchingSystemManager extends TodoListManager {
         Scanner input = new Scanner(System.in);
 
         while (true) {
-            System.out.print("Enter your search type: ");
+            System.out.print(PROMPT_SEARCH_TYPE_MSG.getMessage());
 
             if (input.hasNextInt()) {
                 return input.nextInt();
             } else {
-                System.out.println("Invalid input. Please enter an integer.");
+                System.out.println(INVALID_INTEGER_INPUT_MSG.getMessage());
                 input.next();
             }
         }
@@ -96,11 +98,11 @@ public class SearchingSystemManager extends TodoListManager {
 
         // Deal with empty keyword
         do {
-            System.out.print("Input keyword: ");
+            System.out.print(PROMPT_KEYWORD_MSG.getMessage());
             inputKeyword = input.nextLine();
 
             if (inputKeyword.isEmpty() && (searchType != 3 && searchType != 5)) {
-                System.out.println("Keyword cannot be empty.");
+                System.out.println(EMPTY_KEYWORD_MSG.getMessage());
             }
         } while (inputKeyword.isEmpty() && (searchType != 3 && searchType != 5));
 
@@ -122,7 +124,7 @@ public class SearchingSystemManager extends TodoListManager {
             case 5 -> TaskFilteringUtils.filterByAuthor(keyword);                     // author
             case 6 -> TaskFilteringUtils.filterByCreatedDate(keyword);                // created date
             case 7 -> TaskFilteringUtils.filterByTaskId(keyword);                     // ID
-            default -> System.out.println("Invalid search type.");
+            default -> System.out.println(INVALID_SEARCH_TYPE_MSG.getMessage());
         }
     }
 }

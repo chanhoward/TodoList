@@ -29,8 +29,14 @@ public class FileEncryption extends FileAccess {
         File keyFile = new File(KEY_FILE);
         File ivFile = new File(IV_FILE);
 
-        if (keyFile.exists() && ivFile.exists()) {
+        if (checkExistingFiles()) {
             loadKeyAndIv(keyFile, ivFile);
+        } else if (keyFile.exists() || ivFile.exists()) {
+            if (keyFile.exists()) {
+                throw new RuntimeException("IV file are missing or corrupt.");
+            } else {
+                throw new RuntimeException("Key file are missing or corrupt.");
+            }
         } else {
             generateKeyAndIv();
             saveKeyAndIv(keyFile, ivFile);
@@ -45,12 +51,48 @@ public class FileEncryption extends FileAccess {
             iv = ivIn.readAllBytes();
 
             if (keyBytes.length != 32 || iv.length != 16) { // 32 bytes for 256-bit key
-                LOGGER.error("Incomplete key or IV data");
+                throw new RuntimeException("Invalid key or IV length detected.");
             }
 
             key = new SecretKeySpec(keyBytes, "AES");
         } catch (IOException e) {
-            LOGGER.error("An error occurred while loading the key and IV: ", e);
+            throw new RuntimeException("Failed to load key or IV.", e);
+        }
+    }
+
+    private static boolean checkExistingFiles() {
+        LOGGER.info("Checking files...");
+        File keyFile = new File(KEY_FILE);
+        File ivFile = new File(IV_FILE);
+
+        if (keyFile.exists() && ivFile.exists()) {
+            LOGGER.info("Key and IV files exist.");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static Cipher getEncryptCipher() {
+        LOGGER.info("Getting encrypt cipher...");
+        try {
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
+            return cipher;
+        } catch (Exception e) {
+            LOGGER.error("An error occurred while initializing the encrypt cipher", e);
+            throw new IllegalArgumentException("Failed to initialize the encrypt cipher", e);
+        }
+    }
+
+    public static Cipher getDecryptCipher() {
+        LOGGER.info("Getting decrypt cipher...");
+        try {
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
+            return cipher;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to initialize the decrypt cipher", e);
         }
     }
 
@@ -65,7 +107,7 @@ public class FileEncryption extends FileAccess {
             SecureRandom random = new SecureRandom();
             random.nextBytes(iv);
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("An error occurred while generating the key and IV: ", e);
+            throw new RuntimeException("Fail to generating the key and IV: ", e);
         }
     }
 
@@ -76,31 +118,7 @@ public class FileEncryption extends FileAccess {
             keyOut.write(key.getEncoded());
             ivOut.write(iv);
         } catch (IOException e) {
-            LOGGER.error("An error occurred while saving the key and IV: ", e);
-        }
-    }
-
-    public static Cipher getEncryptCipher() {
-        LOGGER.info("Getting encrypt cipher...");
-        try {
-            Cipher cipher = Cipher.getInstance(ALGORITHM);
-            cipher.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(iv));
-            return cipher;
-        } catch (Exception e) {
-            LOGGER.error("An error occurred while initializing the encrypt cipher", e);
-            throw new IllegalArgumentException("Failed to initialize the encrypt cipher");
-        }
-    }
-
-    public static Cipher getDecryptCipher() {
-        LOGGER.info("Getting decrypt cipher...");
-        try {
-            Cipher cipher = Cipher.getInstance(ALGORITHM);
-            cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(iv));
-            return cipher;
-        } catch (Exception e) {
-            LOGGER.error("An error occurred while initializing the decrypt cipher", e);
-            throw new IllegalArgumentException("Failed to initialize the decrypt cipher");
+            throw new RuntimeException("Failed to save key or IV: ", e);
         }
     }
 }

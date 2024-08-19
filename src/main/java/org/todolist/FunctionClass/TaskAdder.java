@@ -1,5 +1,7 @@
 package org.todolist.FunctionClass;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.todolist.FileAccess;
 import org.todolist.TaskClass;
 import org.todolist.TimeClass;
@@ -8,27 +10,15 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import static org.todolist.UserMessages.*;
+
 /**
  * TaskAdder class provides functionalities to add tasks to the to-do list.
  */
 public class TaskAdder extends TodoListManager {
-
     private static final Scanner scanner = new Scanner(System.in);
+    private static final Logger LOGGER = LogManager.getLogger(TaskAdder.class);
     private static final int MAX_AUTHOR_LENGTH = 30;
-
-    private static final String PROMPT_YEAR = "Input year: ";
-    private static final String PROMPT_MONTH = "Input month (1-12): ";
-    private static final String PROMPT_DAY = "Input day: ";
-    private static final String PROMPT_HOUR = "Input hour (0-23): ";
-    private static final String PROMPT_MINUTE = "Input minute (0-59): ";
-    private static final String INVALID_INPUT_MSG = "Invalid input. Please enter an integer.";
-    private static final String INVALID_YEAR_MSG = "Invalid year. Setting to current year.";
-    private static final String INVALID_MONTH_MSG = "Invalid month. Please enter a number between 1 and 12.";
-    private static final String INVALID_DAY_MSG = "Invalid day for the given month and year. Please enter a valid day.";
-    private static final String INVALID_HOUR_MSG = "Invalid hour. Please enter a number between 0 and 23.";
-    private static final String INVALID_MINUTE_MSG = "Invalid minute. Please enter a number between 0 and 59.";
-    private static final String NO_DUE_TIME_MSG = "Task without due time";
-    private static final String TASK_ADDED_MSG = "Task added successfully!";
 
     /**
      * Adds a new task to the to-do list.
@@ -36,7 +26,7 @@ public class TaskAdder extends TodoListManager {
      */
     public static void addTask() {
         if (isTasksFull) {
-            System.out.println("Task list is full. Cannot add more tasks.");
+            System.out.println(TASK_FULL_MSG.getMessage());
             return;
         }
 
@@ -46,7 +36,7 @@ public class TaskAdder extends TodoListManager {
         TimeClass dueTimeClass = inputDueTime();
 
         if (dueTimeClass.getTimeScore() == Integer.MAX_VALUE) {
-            System.out.println(NO_DUE_TIME_MSG);
+            System.out.println(NO_DUE_TIME_MSG.getMessage());
         }
 
         String dueTime = formatTime(dueTimeClass);
@@ -61,11 +51,10 @@ public class TaskAdder extends TodoListManager {
                 author,
                 currentTime,
                 dueTimeClass.getTimeScore(),
-                false
-        );
+                false);
 
         addTaskToDataFile(newTask);
-        System.out.println(TASK_ADDED_MSG);
+        System.out.println(TASK_ADDED_MSG.getMessage());
     }
 
     /**
@@ -98,13 +87,14 @@ public class TaskAdder extends TodoListManager {
      * @return The rank of the task.
      */
     private static String inputRank() {
-        final String promptMessage = "Input pending rank High/Medium/Low (1-3): ";
-        final String invalidInputMessage = "Invalid input. Please enter a number between 1 and 3.";
         int inputRank;
 
         do {
-            System.out.print(promptMessage);
-            inputRank = readInteger(invalidInputMessage);
+            System.out.print(PROMPT_RANK_MSG.getMessage());
+            inputRank = readInteger();
+            if (inputRank < 1 || inputRank > 3) {
+                System.out.println(INVALID_RANK_MSG.getMessage());
+            }
         } while (inputRank < 1 || inputRank > 3);
 
         return switch (inputRank) {
@@ -123,10 +113,10 @@ public class TaskAdder extends TodoListManager {
     private static String inputContent() {
         String content;
         do {
-            System.out.print("Input content: ");
+            System.out.print(PROMPT_CONTENT_MSG.getMessage());
             content = scanner.nextLine();
             if (content.isEmpty()) {
-                System.out.println("Content cannot be empty.");
+                System.out.println(EMPTY_CONTENT_MSG.getMessage());
             }
         } while (content.isEmpty());
         return content;
@@ -144,11 +134,11 @@ public class TaskAdder extends TodoListManager {
         String author;
 
         while (true) {
-            System.out.print("Input author (max " + MAX_AUTHOR_LENGTH + " characters): ");
+            System.out.printf(PROMPT_AUTHOR_MSG.getMessage(), MAX_AUTHOR_LENGTH);
             author = scanner.nextLine();
 
             if (author.length() > MAX_AUTHOR_LENGTH) {
-                System.out.println("Author name is too long. Please enter up to " + MAX_AUTHOR_LENGTH + " characters.");
+                System.out.printf(INVALID_AUTHOR_MSG.getMessage(), MAX_AUTHOR_LENGTH);
             } else {
                 break;
             }
@@ -167,7 +157,7 @@ public class TaskAdder extends TodoListManager {
         TimeClass timeClass = null;
         boolean validDate = false;
 
-        System.out.println("Input due date");
+        System.out.println(PROMPT_DUE_DATE_MSG.getMessage());
         while (!validDate) {
             try {
                 int year = inputYear();
@@ -182,7 +172,7 @@ public class TaskAdder extends TodoListManager {
                 timeClass = new TimeClass(year, month, day, hour, minute);
                 validDate = true;
             } catch (DateTimeException e) {
-                System.out.println("Invalid date. Please enter a valid date.");
+                System.out.println(INVALID_DATE_MSG.getMessage());
             }
         }
 
@@ -198,12 +188,12 @@ public class TaskAdder extends TodoListManager {
         TimeClass timeClass = new TimeClass();
         int year;
         while (true) {
-            System.out.print(PROMPT_YEAR);
-            year = readInteger(INVALID_INPUT_MSG);
+            System.out.print(PROMPT_YEAR_MSG.getMessage());
+            year = readInteger();
             if (year == 0 || year >= timeClass.getCurrentYear()) {
                 return year;
             }
-            System.out.println(INVALID_YEAR_MSG);
+            System.out.println(INVALID_YEAR_MSG.getMessage());
         }
     }
 
@@ -215,12 +205,12 @@ public class TaskAdder extends TodoListManager {
     private static int inputMonth() {
         int month;
         while (true) {
-            System.out.print(PROMPT_MONTH);
-            month = readInteger(INVALID_INPUT_MSG);
+            System.out.print(PROMPT_MONTH_MSG.getMessage());
+            month = readInteger();
             if (month >= 1 && month <= 12) {
                 return month;
             }
-            System.out.println(INVALID_MONTH_MSG);
+            System.out.print(INVALID_MONTH_MSG.getMessage());
         }
     }
 
@@ -234,12 +224,12 @@ public class TaskAdder extends TodoListManager {
     private static int inputDay(int year, int month) {
         int day;
         while (true) {
-            System.out.print(PROMPT_DAY);
-            day = readInteger(INVALID_INPUT_MSG);
+            System.out.print(PROMPT_DAY_MSG.getMessage());
+            day = readInteger();
             if (isValidDay(year, month, day)) {
                 return day;
             }
-            System.out.println(INVALID_DAY_MSG);
+            System.out.print(INVALID_DAY_MSG.getMessage());
         }
     }
 
@@ -251,12 +241,12 @@ public class TaskAdder extends TodoListManager {
     private static int inputHour() {
         int hour;
         while (true) {
-            System.out.print(PROMPT_HOUR);
-            hour = readInteger(INVALID_INPUT_MSG);
+            System.out.print(PROMPT_HOUR_MSG.getMessage());
+            hour = readInteger();
             if (hour >= 0 && hour <= 23) {
                 return hour;
             }
-            System.out.println(INVALID_HOUR_MSG);
+            System.out.print(INVALID_HOUR_MSG.getMessage());
         }
     }
 
@@ -268,24 +258,23 @@ public class TaskAdder extends TodoListManager {
     private static int inputMinute() {
         int minute;
         while (true) {
-            System.out.print(PROMPT_MINUTE);
-            minute = readInteger(INVALID_INPUT_MSG);
+            System.out.print(PROMPT_MINUTE_MSG.getMessage());
+            minute = readInteger();
             if (minute >= 0 && minute <= 59) {
                 return minute;
             }
-            System.out.println(INVALID_MINUTE_MSG);
+            System.out.print(INVALID_MINUTE_MSG.getMessage());
         }
     }
 
     /**
      * Reads an integer from the user input, handling invalid inputs.
      *
-     * @param errorMessage The error message to display in case of invalid input.
      * @return The input integer.
      */
-    private static int readInteger(String errorMessage) {
+    private static int readInteger() {
         while (!scanner.hasNextInt()) {
-            System.out.println(errorMessage);
+            System.out.println(INVALID_INTEGER_INPUT_MSG.getMessage());
             scanner.next(); // Clear the invalid input
         }
         int value = scanner.nextInt();
@@ -317,6 +306,10 @@ public class TaskAdder extends TodoListManager {
      */
     private static void addTaskToDataFile(TaskClass newTask) {
         tasksInData.add(newTask);
-        FileAccess.writeDataFile(tasksInData);
+        try {
+            FileAccess.writeDataFile(tasksInData);
+        } catch (Exception e) {
+            LOGGER.error("Error adding task to data file: ", e);
+        }
     }
 }
