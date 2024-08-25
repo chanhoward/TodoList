@@ -2,19 +2,22 @@ package org.todolist.FunctionClass;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.todolist.FileAccess;
+import org.todolist.DataIO;
+import org.todolist.FuncMenuMgr;
+import org.todolist.TaskClass;
 
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.IntStream;
 
+import static org.todolist.FunctionClass.TasksLister.listTasks;
 import static org.todolist.UserMessages.*;
 
 /**
  * This class is responsible for removing tasks from the to-do list.
  * It includes methods to input the task ID, delete the task, and rearrange task IDs.
  */
-public class RemoveTask extends TodoListManager {
-    private static final Logger LOGGER = LogManager.getLogger(RemoveTask.class);
+public class TaskRemover extends FuncMenuMgr {
+    private static final Logger LOGGER = LogManager.getLogger(TaskRemover.class);
 
     /**
      * Prompts the user to input a task ID and deletes the corresponding task.
@@ -52,7 +55,7 @@ public class RemoveTask extends TodoListManager {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            tasksLister(tasksInData);
+            listTasks(tasksInData);
             System.out.print(PROMPT_ID_TO_REMOVE_MSG.getMessage());
 
             if (scanner.hasNextInt()) {
@@ -75,7 +78,7 @@ public class RemoveTask extends TodoListManager {
         tasksInData.removeIf(task -> task.getTaskId() == index);
         rearrangeTasksId();
         try {
-            FileAccess.writeDataFile(tasksInData);
+            DataIO.writeDataFile(tasksInData);
         } catch (Exception e) {
             LOGGER.error("Error occurred while deleting the task: ", e);
         }
@@ -85,6 +88,8 @@ public class RemoveTask extends TodoListManager {
      * Rearranges the task IDs of the remaining tasks in the to-do list to maintain a continuous sequence.
      */
     private static void rearrangeTasksId() {
+        Deque<TaskClass> temp = new ArrayDeque<>(tasksInData);
+        List<TaskClass> tasksInData = new ArrayList<>(temp);
         IntStream.range(0, tasksInData.size()).forEach(
                 i -> tasksInData.get(i).setTaskId(i + 1)
         );

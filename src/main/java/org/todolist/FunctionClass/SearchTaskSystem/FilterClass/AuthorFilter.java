@@ -1,15 +1,18 @@
 package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
-public class AuthorFilter extends TaskFilteringUtils {
-    public static void filterByAuthor(String keyword) {
+import org.todolist.FunctionClass.SearchTaskSystem.SearchMgr;
+
+public class AuthorFilter extends SearchMgr implements SearchStrategy {
+    @Override
+    public void executeFilter(String keyword) {
         String processedKeyword;
         if (keyword.isEmpty()) {
             processedKeyword = "unknown";
         } else {
             processedKeyword = keyword;
         }
-        toBeFilteredTask.stream()
+        tasksInData.stream()
                 .filter(task -> task.getAuthor().contains(processedKeyword))
-                .forEach(filteredTask::add);
+                .forEach(filteredTasks::add);
     }
 }

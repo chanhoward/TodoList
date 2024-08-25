@@ -1,13 +1,18 @@
 package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
-public class TaskIdFilter extends TaskFilteringUtils {
-    public static void filterByTaskId(String keyword) {
+import org.todolist.FunctionClass.SearchTaskSystem.SearchMgr;
+
+import static org.todolist.UserMessages.INVALID_ID_FORMAT_MSG;
+
+public class TaskIdFilter extends SearchMgr implements SearchStrategy {
+    @Override
+    public void executeFilter(String keyword) {
         try {
-            toBeFilteredTask.stream()
+            tasksInData.stream()
                     .filter(task -> task.getTaskId() == Integer.parseInt(keyword))
-                    .forEach(filteredTask::add);
+                    .forEach(filteredTasks::add);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid task ID format. Please enter a valid integer.");
+            System.out.println(INVALID_ID_FORMAT_MSG.getMessage());
         }
     }
 }

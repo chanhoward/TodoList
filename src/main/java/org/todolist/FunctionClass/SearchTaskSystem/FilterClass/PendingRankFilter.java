@@ -1,7 +1,10 @@
 package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
-public class PendingRankFilter extends TaskFilteringUtils {
-    public static void filterByPendingRank(String keyword) {
+import org.todolist.FunctionClass.SearchTaskSystem.SearchMgr;
+
+public class PendingRankFilter extends SearchMgr implements SearchStrategy {
+    @Override
+    public void executeFilter(String keyword) {
         String processedKeyword;
         switch (keyword) {
             case "1":
@@ -18,8 +21,8 @@ public class PendingRankFilter extends TaskFilteringUtils {
                 return;
         }
 
-        toBeFilteredTask.stream()
+        tasksInData.stream()
                 .filter(task -> task.getPendingRank().equalsIgnoreCase(processedKeyword))
-                .forEach(filteredTask::add);
+                .forEach(filteredTasks::add);
     }
 }

@@ -2,7 +2,6 @@ package org.todolist;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.todolist.FunctionClass.TodoListManager;
 
 import java.io.File;
 import java.util.Scanner;
@@ -13,7 +12,7 @@ import static org.todolist.UserMessages.*;
  * This class is responsible for resetting all files related to the application.
  * It includes methods to delete the data file, key file, and IV file.
  */
-public class ResetAllFile extends FileAccess {
+public class ResetAllFile extends DataIO {
 
     private static final Logger LOGGER = LogManager.getLogger(ResetAllFile.class);
     private static final String[] filesToBeReset = {"Data.dat", "key.bin", "iv.bin"};
@@ -39,9 +38,7 @@ public class ResetAllFile extends FileAccess {
             }
         }
 
-        initialize();
-
-        TodoListManager.isLoadFail = false;
+        FuncMenuMgr.isLoadFail = false;
         System.out.println(RESET_SUCCESS_MSG.getMessage());
         System.out.println(RESTART_TO_RESET_MSG.getMessage());
         System.exit(0);

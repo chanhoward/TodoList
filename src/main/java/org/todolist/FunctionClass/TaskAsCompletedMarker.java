@@ -2,14 +2,16 @@ package org.todolist.FunctionClass;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.todolist.FileAccess;
+import org.todolist.DataIO;
+import org.todolist.FuncMenuMgr;
 import org.todolist.TaskClass;
 
 import java.util.Scanner;
 
+import static org.todolist.FunctionClass.TasksLister.listTasks;
 import static org.todolist.UserMessages.*;
 
-public class TaskAsCompletedMarker extends TodoListManager {
+public class TaskAsCompletedMarker extends FuncMenuMgr {
 
     private static final Logger LOGGER = LogManager.getLogger(TaskAsCompletedMarker.class);
     private static final Scanner scanner = new Scanner(System.in);
@@ -20,7 +22,7 @@ public class TaskAsCompletedMarker extends TodoListManager {
             return;
         }
 
-        tasksLister(tasksInData);
+        listTasks(tasksInData);
 
         while (true) {
 
@@ -34,7 +36,7 @@ public class TaskAsCompletedMarker extends TodoListManager {
                 return;
             }
 
-            tasksLister(tasksInData);
+            listTasks(tasksInData);
 
             taskStateDisplay(taskState);
         }
@@ -74,7 +76,7 @@ public class TaskAsCompletedMarker extends TodoListManager {
         } else {
             task.setTaskCompleteStatus(true);
             try {
-                FileAccess.writeDataFile(tasksInData);
+                DataIO.writeDataFile(tasksInData);
             } catch (Exception e) {
                 LOGGER.error("Error marking task as completed: ", e);
                 return null;

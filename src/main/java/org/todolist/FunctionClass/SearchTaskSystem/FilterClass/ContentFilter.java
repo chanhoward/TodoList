@@ -1,9 +1,12 @@
 package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
-public class ContentFilter extends TaskFilteringUtils {
-    public static void filterByContent(String keyword) {
-        toBeFilteredTask.stream()
+import org.todolist.FunctionClass.SearchTaskSystem.SearchMgr;
+
+public class ContentFilter extends SearchMgr implements SearchStrategy {
+    @Override
+    public void executeFilter(String keyword) {
+        tasksInData.stream()
                 .filter(task -> task.getContent().contains(keyword))
-                .forEach(filteredTask::add);
+                .forEach(filteredTasks::add);
     }
 }

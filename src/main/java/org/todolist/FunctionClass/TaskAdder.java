@@ -2,7 +2,8 @@ package org.todolist.FunctionClass;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.todolist.FileAccess;
+import org.todolist.DataIO;
+import org.todolist.FuncMenuMgr;
 import org.todolist.TaskClass;
 import org.todolist.TimeClass;
 
@@ -15,7 +16,7 @@ import static org.todolist.UserMessages.*;
 /**
  * TaskAdder class provides functionalities to add tasks to the to-do list.
  */
-public class TaskAdder extends TodoListManager {
+public class TaskAdder extends FuncMenuMgr {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Logger LOGGER = LogManager.getLogger(TaskAdder.class);
     private static final int MAX_AUTHOR_LENGTH = 30;
@@ -26,7 +27,6 @@ public class TaskAdder extends TodoListManager {
      */
     public static void addTask() {
         if (isTasksFull) {
-            System.out.println(TASK_FULL_MSG.getMessage());
             return;
         }
 
@@ -307,7 +307,7 @@ public class TaskAdder extends TodoListManager {
     private static void addTaskToDataFile(TaskClass newTask) {
         tasksInData.add(newTask);
         try {
-            FileAccess.writeDataFile(tasksInData);
+            DataIO.writeDataFile(tasksInData);
         } catch (Exception e) {
             LOGGER.error("Error adding task to data file: ", e);
         }

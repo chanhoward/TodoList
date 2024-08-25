@@ -1,7 +1,10 @@
 package org.todolist.FunctionClass.SearchTaskSystem.FilterClass;
 
-public class DueDateFilter extends TaskFilteringUtils {
-    public static void filterByDueDate(String keyword) { //ToDo use more easy input format
+import org.todolist.FunctionClass.SearchTaskSystem.SearchMgr;
+
+public class DueDateFilter extends SearchMgr implements SearchStrategy {
+    @Override
+    public void executeFilter(String keyword) { //ToDo use more easy input format
         String processedKeyword;
         if (keyword.isEmpty()) {
             processedKeyword = "null";
@@ -9,8 +12,8 @@ public class DueDateFilter extends TaskFilteringUtils {
             processedKeyword = keyword;
         }
 
-        toBeFilteredTask.stream()
+        tasksInData.stream()
                 .filter(task -> task.getDueDate().contains(processedKeyword))
-                .forEach(filteredTask::add);
+                .forEach(filteredTasks::add);
     }
 }

@@ -17,6 +17,7 @@ public enum UserMessages {
     INVALID_MINUTE_MSG("Invalid minute. Please enter a number between 0 and 59."),
     INVALID_ID_TO_MARK_COMPLETE_MSG("Invalid input. Please enter a valid task ID."),
     INVALID_SEARCH_TYPE_MSG("Invalid search type. Please enter a number between 1 and 7."),
+    INVALID_ID_FORMAT_MSG("Invalid task ID format. Please enter a valid integer."),
     /*------------------------------PROMPT----------------------------------*/
     PROMPT_COMMAND_MSG("Input command (0-6): "),
     PROMPT_RANK_MSG("Input pending rank High/Medium/Low (1-3): "),
@@ -41,10 +42,15 @@ public enum UserMessages {
     TASK_MARKED_COMPLETE_MSG("Task marked as completed successfully!"),
     RESET_SUCCESS_MSG("All data has been reset successfully!"),
     /*-----------------------------STATUS----------------------------------*/
+    LOADING_MSG("Loading data..."),
     NO_TASK_MSG("There are currently no to-do tasks"),
     TASK_NOT_FOUND_MSG("Task not found."),
     SEARCH_NO_RESULT_MSG("No matching tasks found."),
-    TASK_FULL_MSG("Task count limit reached(100000). Please remove some tasks before adding new ones."),
+    TASK_FULL_MSG("""
+            
+            Task count limit reached(100000). Please remove some tasks before adding new ones.
+            Press 6 to auto remove tasks.
+            """),
     EMPTY_CONTENT_MSG("Task content cannot be empty."),
     EMPTY_KEYWORD_MSG("Keyword cannot be empty."),
     NO_DUE_TIME_MSG("Task without due time."),
@@ -52,7 +58,30 @@ public enum UserMessages {
     TASK_ALREADY_COMPLETED_MSG("Task is already marked as completed."),
     RESET_CANCEL_MSG("Reset canceled."),
     TOTAL_REMOVED_MSG("Total tasks removed: "),
-    FOUND_MATCHING_TASKS_MSG("Found %d matching tasks.");
+    FOUND_MATCHING_TASKS_MSG("Found %d matching tasks."),
+    /*-----------------------------OBJECT----------------------------------*/
+    MAIN_MENU("""
+            
+            Welcome to your To-Do-List!
+            0. Exit
+            1. Add a task
+            2. Mark task as completed
+            3. Remove a task
+            4. Search task
+            5. List the tasks
+            6. Auto remove tasks to clear space
+            """),
+    SEARCH_MENU("""
+            
+            0. Exit
+            1. Search by content
+            2. Search by task Rank (High/Medium/Low) [1/2/3]
+            3. Search by due date (XXXX-XX-XX)
+            4. Search by completed status (y/n)
+            5. Search by author
+            6. Search by created date (XXXX-XX-XX)
+            7. Search by task ID
+            """);
 
     private final String msg;
 

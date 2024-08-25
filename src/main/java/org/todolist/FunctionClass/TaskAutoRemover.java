@@ -2,12 +2,15 @@ package org.todolist.FunctionClass;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.todolist.FileAccess;
+import org.todolist.DataIO;
+import org.todolist.FuncMenuMgr;
 import org.todolist.TaskClass;
 import org.todolist.TimeClass;
 
 import java.time.LocalDateTime;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
@@ -16,7 +19,7 @@ import java.util.stream.IntStream;
 import static org.todolist.UserMessages.NO_TASK_TO_REMOVE_MSG;
 import static org.todolist.UserMessages.TOTAL_REMOVED_MSG;
 
-public class TaskAutoRemover extends TodoListManager {
+public class TaskAutoRemover extends FuncMenuMgr {
     private static final Logger LOGGER = LogManager.getLogger(TaskAutoRemover.class);
 
     private static final int NUM_PARTITIONS = 4;
@@ -36,15 +39,15 @@ public class TaskAutoRemover extends TodoListManager {
                 currentTime.getHour(),
                 currentTime.getMinute());
 
-        List<List<TaskClass>> partitions = splitTasksIntoPartitions(tasksInData);
+        List<List<TaskClass>> partitions = splitTasksIntoPartitions(new ArrayList<>(tasksInData));
 
         ConcurrentMap<Integer, TaskClass> tasksToRemoveMap = partitions.parallelStream()
                 .flatMap(partition -> filterTasksForRemoval(partition, currentTimeScore).stream())
                 .collect(Collectors.toConcurrentMap(TaskClass::getTaskId, task -> task));
 
-        List<TaskClass> filteredTasks = tasksInData.stream()
+        Deque<TaskClass> filteredTasks = tasksInData.stream()
                 .filter(task -> !tasksToRemoveMap.containsKey(task.getTaskId()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayDeque::new));
 
         int removedTasksCount = tasksInData.size() - filteredTasks.size();
 
@@ -54,7 +57,7 @@ public class TaskAutoRemover extends TodoListManager {
             tasksInData = filteredTasks;
             rearrangeTaskIds();
             try {
-                FileAccess.writeDataFile(tasksInData);
+                DataIO.writeDataFile(tasksInData);
             } catch (Exception e) {
                 LOGGER.error("Error removing tasks from data file: ", e);
             }
@@ -86,10 +89,11 @@ public class TaskAutoRemover extends TodoListManager {
      */
     private static List<List<TaskClass>> splitTasksIntoPartitions(List<TaskClass> tasks) {
         int partitionSize = (int) Math.ceil((double) tasks.size() / NUM_PARTITIONS);
-        List<List<TaskClass>> partitions = new ArrayList<>(4);
+        List<List<TaskClass>> partitions = new ArrayList<>(NUM_PARTITIONS);
 
         for (int i = 0; i < tasks.size(); i += partitionSize) {
-            partitions.add(tasks.subList(i, Math.min(i + partitionSize, tasks.size())));
+            int end = Math.min(i + partitionSize, tasks.size());
+            partitions.add(new ArrayList<>(tasks.subList(i, end)));
         }
 
         return partitions;
@@ -99,6 +103,8 @@ public class TaskAutoRemover extends TodoListManager {
      * Rearranges the task IDs to ensure they are sequential.
      */
     private static void rearrangeTaskIds() {
+        Deque<TaskClass> temp = new ArrayDeque<>(tasksInData);
+        List<TaskClass> tasksInData = new ArrayList<>(temp);
         IntStream.range(0, tasksInData.size()).forEach(
                 i -> tasksInData.get(i).setTaskId(i + 1)
         );
