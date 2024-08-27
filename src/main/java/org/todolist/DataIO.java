@@ -28,7 +28,17 @@ public class DataIO {
     private static final int THREAD_COUNT = Runtime.getRuntime().availableProcessors();
     private static final int BUFFER_SIZE = 8192;
     private static volatile boolean isInitialized = false;
-
+    private static final LoadingCache<String, Deque<TaskClass>> tasksCache = CacheBuilder.newBuilder()
+            .maximumSize(500)
+            .expireAfterWrite(5, TimeUnit.MINUTES)
+            .expireAfterAccess(2, TimeUnit.MINUTES)
+            .build(new CacheLoader<>() {
+                @Override
+                public Deque<TaskClass> load(String key) {
+                    LOGGER.info("Loading tasks from disk...");
+                    return readDataFileFromDisk();
+                }
+            });
     /**
      * Initializes the data IO system by setting up encryption parameters.
      * This method is synchronized to ensure that initialization happens only once.
@@ -92,17 +102,7 @@ public class DataIO {
         }
         tasksCache.invalidateAll();
         System.gc();
-    }    private static final LoadingCache<String, Deque<TaskClass>> tasksCache = CacheBuilder.newBuilder()
-            .maximumSize(500)
-            .expireAfterWrite(5, TimeUnit.MINUTES)
-            .expireAfterAccess(2, TimeUnit.MINUTES)
-            .build(new CacheLoader<>() {
-                @Override
-                public Deque<TaskClass> load(String key) {
-                    LOGGER.info("Loading tasks from disk...");
-                    return readDataFileFromDisk();
-                }
-            });
+    }
 
     /**
      * Decrypts and decompresses the data file.

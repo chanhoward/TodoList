@@ -5,36 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b320964-9c34-4197-b15f-da1e072b1ae6" name="更改" comment="1.8.0&#10;. *Fix memory leak&#10;. Fix tasks full warning msg&#10;. Lister function optimize&#10;. Using multithreading &amp; cache optimize io system&#10;. Use deque to optimize&#10;. Consolidate functions at the manager level&#10;. Add comments for global variables&#10;. Consolidate search system subclasses using an interface">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/DataIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FuncMenuMgr.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/SearchStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/SearchMgr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO/TODO" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileAccess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FileEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/EncryptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/RemoveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskRemover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/AuthorFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/AuthorFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/CompletedStatusFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/CompFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/ContentFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/ContentFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/CreatedDateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/DueDateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/DueDateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/PendingRankFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/PendingRankFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/TaskFilteringUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/TaskIdFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/FilterClass/TaskIdFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/SearchTaskSystem/SearchingSystemManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAdder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAsCompletedMarker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TaskAutoRemover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TasksLister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/FunctionClass/TodoListManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/ResetAllFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/UserMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/UserMessages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AddTaskPressureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/todolist/DataIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/todolist/DataIO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -528,7 +500,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724052856720</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="1.8.0&#10;. *Fix memory leak&#10;. Fix tasks full warning msg&#10;. Lister function optimize&#10;. Using multithreading &amp; cache optimize io system&#10;. Use deque to optimize&#10;. Consolidate functions at the manager level&#10;. Add comments for global variables&#10;. Consolidate search system subclasses using an interface">
+      <option name="closed" value="true" />
+      <created>1724574014524</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1724574014524</updated>
+    </task>
+    <task id="LOCAL-00040" summary="1.8.0&#10;. *Fix memory leak&#10;. Fix tasks full warning msg&#10;. Lister function optimize&#10;. Using multithreading &amp; cache optimize io system&#10;. Use deque to optimize&#10;. Consolidate functions at the manager level&#10;. Add comments for global variables&#10;. Consolidate search system subclasses using an interface">
+      <option name="closed" value="true" />
+      <created>1724721191850</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1724721191850</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -555,14 +543,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/dev/ToDoList" />
       <path value="$PROJECT_DIR$/src/main/java/org/ToDoList" />
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="1.1.2&#10;刪除無使用檔案&#10;Author.java&#10;Content.java" />
     <MESSAGE value="1.1.3&#10;LOGGER -&gt; Logger" />
     <MESSAGE value="1.0.0" />
     <MESSAGE value="1.0.1&#10;public -&gt; private" />
@@ -587,10 +575,8 @@
     <MESSAGE value="1.7.3&#10;. AccessFail display improvement" />
     <MESSAGE value="1.7.5&#10;. tasks display improvement&#10;. add MAX_AUTHOR_LENGTH 30&#10;. add Javadoc comments&#10;. some code improvement" />
     <MESSAGE value="1.7.6&#10;. add data compression&#10;. gather user messages to enum&#10;. error messages improvement&#10;. reset function improvement&#10;. TaskAsCompletedMarker display improvement&#10;. fix search type input" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.7.6&#10;. add data compression&#10;. gather user messages to enum&#10;. error messages improvement&#10;. reset function improvement&#10;. TaskAsCompletedMarker display improvement&#10;. fix search type input" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="1.8.0&#10;. *Fix memory leak&#10;. Fix tasks full warning msg&#10;. Lister function optimize&#10;. Using multithreading &amp; cache optimize io system&#10;. Use deque to optimize&#10;. Consolidate functions at the manager level&#10;. Add comments for global variables&#10;. Consolidate search system subclasses using an interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.8.0&#10;. *Fix memory leak&#10;. Fix tasks full warning msg&#10;. Lister function optimize&#10;. Using multithreading &amp; cache optimize io system&#10;. Use deque to optimize&#10;. Consolidate functions at the manager level&#10;. Add comments for global variables&#10;. Consolidate search system subclasses using an interface" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
