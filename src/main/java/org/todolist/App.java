@@ -11,7 +11,7 @@ public class App {
         try {
             LOGGER.info("Application started");
 
-            Thread.sleep(10000);
+            //Thread.sleep(10000);
 
             // Display menu and handle user commands
             LOGGER.info("Starting menu command manager");

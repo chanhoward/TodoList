@@ -15,10 +15,10 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * Handles reading and writing of task data files with support for encryption, compression, and parallel processing.
- * This class uses Guava's caching mechanisms to optimize the reading of task data and handles large data processing
- * in parallel to improve performance.
+ * 處理任務資料檔案的讀取與寫入，支援加密、壓縮和平行處理。
+ * 此類別使用 Guava 的快取機制來優化任務資料的讀取，並透過平行處理來提升大資料的處理效能。
  */
+
 public class DataIO {
 
     private static final Logger LOGGER = LogManager.getLogger(DataIO.class);
@@ -40,9 +40,10 @@ public class DataIO {
                 }
             });
     /**
-     * Initializes the data IO system by setting up encryption parameters.
-     * This method is synchronized to ensure that initialization happens only once.
+     * 通過設定加密參數來初始化資料輸入/輸出系統。
+     * 此方法是同步的，以確保初始化只發生一次。
      */
+
     private static synchronized void initialize() {
         if (!isInitialized) {
             LOGGER.info("Initializing data...");
@@ -52,10 +53,11 @@ public class DataIO {
     }
 
     /**
-     * Reads and decrypts data from the disk, decompresses it, and processes it in parallel.
+     * 從磁碟讀取並解密資料，解壓縮後進行平行處理。
      *
-     * @return A deque of {@link TaskClass} objects loaded from the data file.
+     * @return 從資料檔案載入的 {@link TaskClass} 物件的雙端佇列（Deque）。
      */
+
     private static Deque<TaskClass> readDataFileFromDisk() {
         LOGGER.info("Reading data file from disk...");
         File dataFile = new File(DATA_FILE);
@@ -91,10 +93,11 @@ public class DataIO {
     }
 
     /**
-     * Cleans up resources in case of an error during data processing.
+     * 在資料處理過程中發生錯誤時清理資源。
      *
-     * @param deque The deque to clear, if not null.
+     * @param deque 要清除的雙端佇列，如果不為 null。
      */
+
     private static void cleanUpOnError(Deque<?> deque) {
         LOGGER.error("An error occurred, clearing memory...");
         if (deque != null) {
@@ -105,12 +108,13 @@ public class DataIO {
     }
 
     /**
-     * Decrypts and decompresses the data file.
+     * 解密並解壓縮資料檔案。
      *
-     * @param dataFile The file to be decrypted and decompressed.
-     * @return The decompressed byte array.
-     * @throws Exception If any error occurs during decryption or decompression.
+     * @param dataFile 要解密和解壓縮的檔案。
+     * @return 解壓縮後的位元組陣列。
+     * @throws Exception 如果在解密或解壓縮過程中發生任何錯誤。
      */
+
     private static byte[] decryptAndDecompress(File dataFile) throws Exception {
         LOGGER.info("Starting decryption and decompression of data file...");
         try (FileInputStream fileIn = new FileInputStream(dataFile);
@@ -130,11 +134,12 @@ public class DataIO {
     }
 
     /**
-     * Processes objects in parallel chunks to improve performance.
+     * 以平行區塊的方式處理物件，以提升效能。
      *
-     * @param allObjects The deque of all objects to be processed.
-     * @return A deque of {@link TaskClass} objects processed in parallel.
+     * @param allObjects 要處理的所有物件的雙端佇列。
+     * @return 以平行方式處理的 {@link TaskClass} 物件的雙端佇列。
      */
+
     private static Deque<TaskClass> processObjectsInParallel(Deque<Object> allObjects) {
         LOGGER.info("Starting parallel processing with {} threads...", THREAD_COUNT);
 
@@ -176,10 +181,11 @@ public class DataIO {
     }
 
     /**
-     * Shuts down the executor service and waits for termination.
+     * 關閉執行器服務並等待其終止。
      *
-     * @param executor The executor service to shut down.
+     * @param executor 要關閉的執行器服務。
      */
+
     private static void shutdown(ExecutorService executor) {
         LOGGER.info("Shutting down executor service...");
         executor.shutdown();
@@ -200,11 +206,12 @@ public class DataIO {
     }
 
     /**
-     * Processes a chunk of objects and converts them to {@link TaskClass} instances.
+     * 處理一批物件並將其轉換為 {@link TaskClass} 實例。
      *
-     * @param chunk The chunk of objects to process.
-     * @return A deque of {@link TaskClass} objects.
+     * @param chunk 要處理的物件批次。
+     * @return {@link TaskClass} 物件的雙端佇列。
      */
+
     private static Deque<TaskClass> processChunk(Deque<Object> chunk) {
         Deque<TaskClass> tasks = new ArrayDeque<>(INITIAL_CAPACITY);
         try {
@@ -227,11 +234,12 @@ public class DataIO {
     }
 
     /**
-     * Calculates an adaptive chunk size based on the total number of objects and the number of available threads.
+     * 根據物件的總數和可用執行緒的數量計算自適應的區塊大小。
      *
-     * @param totalSize The total number of objects to be processed.
-     * @return The calculated chunk size.
+     * @param totalSize 要處理的物件總數。
+     * @return 計算出的區塊大小。
      */
+
     private static int calculateAdaptiveChunkSize(int totalSize) {
         int idealChunkCount = THREAD_COUNT << 1; // Each thread processes 2 chunks
         int idealChunkSize = Math.max(totalSize / idealChunkCount, 1);
@@ -240,10 +248,11 @@ public class DataIO {
     }
 
     /**
-     * Reads data from the cache or loads it from the disk if not present in the cache.
+     * 從快取中讀取資料，如果快取中不存在則從磁碟載入資料。
      *
-     * @return A deque of {@link TaskClass} objects loaded from the cache or disk.
+     * @return 從快取或磁碟載入的 {@link TaskClass} 物件的雙端佇列。
      */
+
     public static Deque<TaskClass> readDataFile() {
         long startTime = System.currentTimeMillis();
         if (!isInitialized) {
@@ -260,10 +269,11 @@ public class DataIO {
     }
 
     /**
-     * Writes task data to the file with encryption and compression.
+     * 將任務資料以加密和壓縮的方式寫入檔案。
      *
-     * @param tasks The deque of {@link TaskClass} objects to write to the data file.
+     * @param tasks 要寫入資料檔案的 {@link TaskClass} 物件的雙端佇列。
      */
+
     public static void writeDataFile(Deque<TaskClass> tasks) {
         long startTime = System.currentTimeMillis();
         if (!isInitialized) {
